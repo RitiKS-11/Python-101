@@ -51,6 +51,11 @@ def top(notes, n):
     sorted_result = dict(sorted(top_words.items(), key=lambda item: item[1], reverse=True))
     top_20 = dict(list(sorted_result.items())[:10])
     return top_20
+
+def write_data(note, note_category):
+    with open('note-category.csv', 'a') as file:
+        writer = csv.DictWriter(file, fieldnames=['Note', 'Category'])
+        writer.writerow({'Note':note, 'Category':note_category})
     
 
 def main(filepath):
@@ -59,10 +64,13 @@ def main(filepath):
     notes = clean_data(notes)
     note_category = top(notes, 2)
 
-    for index, note in enumerate(notes, start=1):
+    for note in notes:
         ngram = ngrams(note, 3)
-        result = check_category(ngram, note_category)
-        print(f"Category of line {index} is {result}")
+        result_category = check_category(ngram, note_category)
+        write_data(note, result_category)
+
+
+    
 
 
 if __name__ == "__main__":
