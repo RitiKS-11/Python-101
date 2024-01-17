@@ -6,7 +6,7 @@ Department Education,Virginia,"2-1-1 VIRGINIA is a service of the Virginia Depar
 State Board,NY,"511 NY (New York State Department of Transportation), the free, official one-stop, all-encompassing telephone and Web service offering  information on transportation services and conditions throughout New York State.  "
 State Board,Idaho,State of Idaho (mirror website of www.idaho.gov) 
 University Extension,Alabama,Alabama Cooperative Extension System 
-University Extension,,New Mexico Cooperative Extension Publications 
+University Extension,New Mexico,New Mexico Cooperative Extension Publications 
 ,Pennsylvania,Pennsylvania Adoption Exchange 
 Public Health,Alabama,Alabama Department of Public Health 
 University Extension,Massachusetts,University of Massachusetts Center for Agriculture Research and Extension 
@@ -53,16 +53,16 @@ State Board,Arkansas,Arkansas State Board of Physical Therapy
 State Board,Arkansas,Arkansas State Board of Collection Agencies 
 State Board,Alabama,"Alabama State Port Authority, Mobile, AL "
 ,,American Samoa Territorial Energy Office 
-Public Health,,New York State Public Service Commission‚Äôs Consumer Web Site 
+Public Health,New York,New York State Public Service Commission‚Äôs Consumer Web Site 
 State Board,California,"California State Assembly Democratic Caucus, State of California "
 ,,Assistive Technology Loan Fund Authority. The authority offers low interest loans for a variety of special equipment to eligible applicants. See the establishing law at http://law.lis.virginia.gov/authorities/assistive-technology-loan-fund-authority-atlfa  
 Board Examiners,Arizona,Arizona Board of Behavioral Health Examiners 
 ,Arizona,Arizona Commerce Authority 
 State Board,Arizona,Arizona State Board of Dental Examiners 
 ,Arizona,Arizona State Parks 
-Department Education,,"USS North Carolina Battleship, North Carolina Department of Cultural Resources "
+Department Education,North Carolina,"USS North Carolina Battleship, North Carolina Department of Cultural Resources "
 ,NY,"Village of Baxter Estates, Port Washington, NY "
-State Board,,North Carolina Board of Massage & Bodywork Therapy 
+State Board,North Carolina,North Carolina Board of Massage & Bodywork Therapy 
 ,NC,NC museum of natural sciences  
 ,Connecticut,State of Connecticut Bonds 
 National Guard,California,"California Humanities is an independent non-profit partner of the National Endowment for the Humanities,  nthat promotes the humanities in California in order to help create &ldquo;a state of open mind.' "
@@ -75,7 +75,7 @@ Public Health,California,"California Environmental Health Tracking Program, Cali
 University Extension,Kentucky,Univ of Kentucky Extension website 
 State Board,,"Hawaii-Pacific Area Combined Federal Campaign - geographic area includes the State of Hawaii, Guam, Northern Marianas Islands, and American Samoa "
 ,Indiana,"Tristate CFC, Indiana "
-,,"College Foundation of North Carolina, a¬†service of the State¬†of North Carolina "
+,North Carolina,"College Foundation of North Carolina, a¬†service of the State¬†of North Carolina "
 ,,"Chesapeake Bay Program, Restoration of the Chesapeake Bay http://www.chesapeakebay.net "
 Public Health,,Pennsylvania's Children's Health Insurance Program (CHIP) 
 Economic Development,Maryland,Maryland Department of Business and Economic Development 
@@ -88,12 +88,12 @@ Travel Tourism,Colorado,Travel and Tourism Site for Colorado
 ,Colorado,Colorado lottery 
 Public Health,Colorado,"Colorado No Call program. A private company, Data Protection Group, operates this site under contract with the Colorado Public Utilities Commission. "
 ,Colorado,"Upper Colorado River Endangered Fish Recovery Program, U.S. Fish and Wildlife Service "
-,,North Carolina DOT Complete Streets 
-Department Education,,"Correction Enterprises, North Carolina Department of Public Safety "
+,North Carolina,North Carolina DOT Complete Streets 
+Department Education,North Carolina,"Correction Enterprises, North Carolina Department of Public Safety "
 State Board,Louisiana,Louisiana Crawfish Promotion and Research Board (LCPRB) 
 ,Georgia,Georgia Superior Courts 
 State Board,Connecticut,Connecticut State Treasury Unclaimed Property Owners List 
-University Extension,,"Center for Technology at the University at Albany, State University of New York "
+University Extension,New York,"Center for Technology at the University at Albany, State University of New York "
 ,Connecticut,Connecticut lottery 
 ,Connecticut,Connecticut State Library 
 Travel Tourism,Connecticut,Travel and Tourism Site for Connecticut 
@@ -104,11 +104,11 @@ Department Education,NC,"Division of Employment Security (DES), NC Department of
 ,Massachusetts,"Massachusetts JobQuest, Massachusetts Deparment of Career Services "
 State Board,Maine,"About the Digital Maine Repository The Digital Maine Repository is one of several services of the Maine State Library to facilitate digitization of - and enhanced access to - collections related to Maine history, genealogy, culture and government. The repository was designed to host a variety of media including books, images, maps and documents, as well as audio and video collections.  "
 Travel Tourism,Ohio,Travel and Tourism Site for Ohio 
-Travel Tourism,,Travel and Tourism Site for South Carolina 
+Travel Tourism,South Carolina,Travel and Tourism Site for South Carolina 
 Department Education,Virginia,Virginia Department of Motor Vehicles 
 Department Education,,American Samoa Department of Education 
 ,NC,NC Dept of Revenue 
-Department Education,,"Driving95 Corridor Planning and Finance Study website, North Carolina Department of Transportation (NCDOT) "
+Department Education,North Carolina,"Driving95 Corridor Planning and Finance Study website, North Carolina Department of Transportation (NCDOT) "
 National Guard,Wisconsin,Wisconsin National Guard Drug Control Program 
 ,,myeatsmartmovemore.com is the 'consumer' site and eatsmartmovemorenc.com is the 'program' site. 
 State Board,WI,Educational Communications Board of WI 
@@ -127,10 +127,10 @@ Travel Tourism,Georgia,Travel and Tourism Site for Georgia
 Travel Tourism,Minnesota,Travel and tourism site for state of Minnesota hosted by Explore Minnesota Tourism 
 ,Virginia,Virginia Cooperative Extension  
 State Board,Washington,Washington State University Extension 
-University Extension,Virginia,West Virginia University Extension Service 
+University Extension,West Virginia,West Virginia University Extension Service 
 State Board,Iowa,Iowa State University Extension 
 ,Illinois,University of Illinois Extension 
-University Extension,,New Mexico Cooperative Extension Service 
+University Extension,New Mexico,New Mexico Cooperative Extension Service 
 University Extension,Oregon,Oregon State University Extension Service 
 ,,Penn State Extension 
 University Extension,,Purdue (Indiana) Cooperative Extension 
@@ -167,7 +167,7 @@ State Board,Georgia,Georgia State Defense Force public beta domain. Crosslinked 
 State Board,Georgia,Georgia State Defense Force email domain. Referenced on https://directory.doas.ga.gov/. Not in use as a public website.
 Department Education,Mississippi,"GEAR UP Mississippi operates as part of the Institutions of Higher Learning, Office of Academic and Student Affairs in collaboration with the Mississippi Department of Education, State Board for Community and Junior Colleges and community and national partners. Funding is provided by the United States Department of Education. "
 National Guard,,Lousiana National Guard 
-,,New Mexico Bureau of Geology & Mineral Resources 
+,New Mexico,New Mexico Bureau of Geology & Mineral Resources 
 ,Georgia,The Georgia Civil War Commission 
 ,Georgia,The Georgia Fiscal Management Council    
 ,Georgia,Georgia Trust (Preservation Committee) 
@@ -195,7 +195,7 @@ Department Education,,Guam Department of Revenue and Taxation
 State Board,Hawaii,Hawaii State Department of Education 
 ,IL,"Village of Hoffman Estates, IL "
 ,Minnesota,Minnesota House of Representatives 
-,,Historical Society of New Mexico 
+,New Mexico,Historical Society of New Mexico 
 State Board,Michigan,Michigan State Humanities and Social Services Online 
 Economic Development,Hawaii,High Technology Development Corporation. HTDC 'is a state agency established by the Hawaii State Legislature in 1983 to facilitate the development and growth of Hawaii's commercial high technology industry.' 
 ,NC,NC health and Wellness Trust fund 
@@ -207,8 +207,8 @@ National Guard,Idaho,Idaho Army National Guard
 ,Indiana,"Benefits Portal, http://www.in.gov/fssa/ Indiana Family and Social Services Administration "
 State Board,Illinois,Office of the Illinois State Treasurer 
 ,Illinois,Illinois Lottery 
-Travel Tourism,,Travel and Tourism Site for New York 
-Public Health,,"Inclusive Health, North Carolina Health Insurance Risk Pool, Inc. "
+Travel Tourism,New York,Travel and Tourism Site for New York 
+Public Health,North Carolina,"Inclusive Health, North Carolina Health Insurance Risk Pool, Inc. "
 ,Washington,Innovate Washington is hereby created as a state agency exercising public and essential governmental functions. Innovate Washington is created as the successor to the Washington technology center and the Spokane intercollegiate research and technology institute (SIRTI). See http://apps.leg.wa.gov/RCW/default.aspx?cite=43.333&full=true  
 Economic Development,,Guam Economic Development Authority (GEDA) web site. GEDA is an autonomous agency of the Government of Guam and a Guam public corporation. 
 ,Montana,Montana Board of Investments 
@@ -216,9 +216,9 @@ Economic Development,Iowa,Iowa Economic Development Authority
 ,Iowa,"Iowa Tribe of Oklahoma, Perkins, OK "
 ,Iowa,Iowa National Guard 
 ,Iowa,Iowa State Fair 
-Public Health,,"The North Carolina Division of Public Health, Injury and Violence Prevention Branch, Youth Suicide Prevention Program works in collaboration with The North Carolina Youth Suicide Prevention Task Force to address youth suicide prevention in North Carolina. "
+Public Health,North Carolina,"The North Carolina Division of Public Health, Injury and Violence Prevention Branch, Youth Suicide Prevention Program works in collaboration with The North Carolina Youth Suicide Prevention Task Force to address youth suicide prevention in North Carolina. "
 ,,new jersey history site 
-State Board,,Julian F. Keith Alcohol and Drug Abuse Treatment Center. JFK ADATC operates under the authority of the State of North Carolina through the Division of State Operated Healthcare Facilities 
+State Board,North Carolina,Julian F. Keith Alcohol and Drug Abuse Treatment Center. JFK ADATC operates under the authority of the State of North Carolina through the Division of State Operated Healthcare Facilities 
 Department Education,NJ,Jobs4Jersey. NJ Department of Labor and Workforce Development. 
 ,,"Unified Courts of Guam, Guam Judiciary - www.justice.gov.gu "
 ,,"Justice Administration Commission - The Justice Administrative Commission (JAC), created in 1965, provides administrative services on behalf of 49 judicial related entities. "
@@ -263,11 +263,11 @@ State Board,Louisiana,Louisiana State Board of Architectural Examiners
 ,Louisiana,Louisiana Workforce Commission (LAWorks) 
 Board Examiners,Louisiana,Louisiana Board of Examiners in Dietetics and Nutrition  
 ,Louisiana,Louisiana board of speech language pathology 
-,,Legislature of the Virgin Islands 
+,Virgin Islands,Legislature of the Virgin Islands 
 ,Kansas,League of Kansas Municipalities 
-Department Education,,"South Carolina Department of Labor, Licensing and Regulation "
+Department Education,South Carolina,"South Carolina Department of Labor, Licensing and Regulation "
 ,Minnesota,"League of Minnesota Cities Per the 'About the League' section of their website, LMC is 'a membership organization dedicated to promoting excellence in local government.'  "
-,,Loter√É¬≠a Electr√É¬≥nica de Puerto Rico 
+,Puerto Rico,Loter√É¬≠a Electr√É¬≥nica de Puerto Rico 
 Economic Development,Louisiana,Louisiana Community Development Authority 
 ,Louisiana,Louisiana Lottery Corporation 
 State Board,Louisiana,"Louisiana Seafood Board. In 1984, the State of Louisiana created the Louisiana Seafood Promotion & Marketing Board. For more information see https://www.legis.la.gov/legis/BoardMembers.aspx?boardId=355. "
@@ -345,167 +345,167 @@ Department Education,Florida,Florida Department of Financial Services
 Public Health,Florida,Developed by the Florida Attorney General and the Agency for Health Care Administration (AHCA) to help consumers shop for the lowest price in their area for their prescription drugs. 
 ,Florida,Florida Fish and Wildlife Conservation Commission 
 Tourism Site,,Travel and Tourism Site for the Northern Mariana Islands 
-National Guard,,"National Archives and Records Management Unit, Government of the Virgin Islands "
+National Guard,Virgin Islands,"National Archives and Records Management Unit, Government of the Virgin Islands "
 ,NC,NC Museum of Natural Sciences 
 ,NC,NC Council on Developmental Disabilities 
-,,North Carolina Education Lottery 
+,North Carolina,North Carolina Education Lottery 
 State Board,NC,NC State Construction Office 
-,,North Carolina Alcoholic Beverage Control Commission 
+,North Carolina,North Carolina Alcoholic Beverage Control Commission 
 Economic Development,NC,NC Agriculture Development & Farmland Preservation Trust Fund 
-Department Education,,"Multi-Hazard Threat Database, Emergency Programs Division, North Carolina Department of Agriculture and Consumer Services "
-,,North Carolina Division of Air Quality 
-,,The North Carolina Auctioneers board 
+Department Education,North Carolina,"Multi-Hazard Threat Database, Emergency Programs Division, North Carolina Department of Agriculture and Consumer Services "
+,North Carolina,North Carolina Division of Air Quality 
+,North Carolina,The North Carolina Auctioneers board 
 ,NC,NC Court System  
 ,NC,NC appraisal board 
 Public Health,NC,NC Triangle Public Access TV n  n  
 ,NC,NC Aquariums 
 ,NC,NC Museum of Art 
-,,North Carolina Arts Council 
+,North Carolina,North Carolina Arts Council 
 Department Education,NC,"NC Assistive technology Program - Receives grant funding under Public Law 108-364  through the Rehabilitation Services Administration, U.S. Department of Education, and is administered by the N.C. Department of Health and Human Services, Division of Vocational Rehabilitation Services "
 State Board,NC,NC Office of the State Auditor 
-,,North Carolina Board of Architecture 
+,North Carolina,North Carolina Board of Architecture 
 Board Examiners,NC,NC Board of Athletic Trainers Examiners 
-,,North Carolina Board of Dietetics/Nutrition   
+,North Carolina,North Carolina Board of Dietetics/Nutrition   
 Board Examiners,NC,NC Board of Examiners of electrical contractors 
 Board Examiners,NC,NC Board of Examiners for engineers and surveyors 
 State Board,NC,NC Board of Nursing Homes Administrators 
 State Board,NC,NC Board of Funeral Services 
 State Board,NC,NC Board of Law Examiners 
-State Board,,The North Carolina Board for the Licensing of Geologists  
-State Board,,The North Carolina Board of Licensed Professional Counselors 
-,,The North Carolina Soil Scientist Licensing Program 
+State Board,North Carolina,The North Carolina Board for the Licensing of Geologists  
+State Board,North Carolina,The North Carolina Board of Licensed Professional Counselors 
+,North Carolina,The North Carolina Soil Scientist Licensing Program 
 Board Examiners,NC,NC Board of Examiners for Speech Language and Pathologist & Audiologist n  
 State Board,NC,Welcome to the NC Board of Landscape Architects 
 ,NC,NC Board of Nursing 
 ,NC,NC Board of Pharmacy 
-State Board,,The North Carolina Board of Occupational Therapy 
-State Board,,The Board of Podiatry Examiners for the State of North Carolina  
+State Board,North Carolina,The North Carolina Board of Occupational Therapy 
+State Board,North Carolina,The Board of Podiatry Examiners for the State of North Carolina  
 ,NC,NC Waste Management 
 ,,nc business court 
 ,NC,NC School bus Safety 
-Department Education,,"Rail Division, North Carolina Department of Transportation "
-State Board,,North Carolina Social Work Certification and Licensure Board 
-,,"The North Carolina Center for Global Logistics is a collaborative effort between community colleges, universities, and industry partners focused on developing a highly trained workforce for the logistics and supply chain industry. "
+Department Education,North Carolina,"Rail Division, North Carolina Department of Transportation "
+State Board,North Carolina,North Carolina Social Work Certification and Licensure Board 
+,North Carolina,"The North Carolina Center for Global Logistics is a collaborative effort between community colleges, universities, and industry partners focused on developing a highly trained workforce for the logistics and supply chain industry. "
 ,NC,NC Child Support Enforcement 
-State Board,,North Carolina Board of Chiropractic Examiners 
-Department Education,,"North Carolina Civil War Sesquicentennial, North Carolina Department of Cultural Resources "
+State Board,North Carolina,North Carolina Board of Chiropractic Examiners 
+Department Education,North Carolina,"North Carolina Civil War Sesquicentennial, North Carolina Department of Cultural Resources "
 ,NC,NC Division of Coastal Management 
 National Guard,NC,"NC Coastal Reserve and National Estuarine Research Reserve, NC DEQ "
-,,North Carolina Office of the Commissioner of Banks (NCCOB) 
-,,North Carolina Department of Commerce 
+,North Carolina,North Carolina Office of the Commissioner of Banks (NCCOB) 
+,North Carolina,North Carolina Department of Commerce 
 ,,nc court system 
 Public Health,NC,NC Dept of Public Safety 
 Department Education,,N.C. Department of Environment and Natural Resources 
-State Board,,North Carolina State Board of Dental Examiners 
-,,"This site is a tool for North Carolina citizens and providers to reduce the impact of diabetes through leadership, education, communication and community involvement. "
+State Board,North Carolina,North Carolina State Board of Dental Examiners 
+,North Carolina,"This site is a tool for North Carolina citizens and providers to reduce the impact of diabetes through leadership, education, communication and community involvement. "
 ,NC,"The NC Helping Neighbors Fund is managed by the Governor's Office, in partnership with United Way of North Carolina. Donations are tax deductible; 100% of donated funds will go to the states impacted by Hurricane Sandy. "
 Department Education,," Juvenile Justice section of the N.C. Department of Public Safety, Division of Adult Correction and Juvenile Justice.  "
 ,NC,"Division of Marine Fisheries, NC DENR "
 ,NC,NC Marine Fisheries Commission Store 
 Public Health,NC,NC Division of Non Public Education 
-,,North Carolina Department of Insurance 
+,North Carolina,North Carolina Department of Insurance 
 ,,Dept of Justice 
-,,North Carolina Drought Management Advisory Council 
+,North Carolina,North Carolina Drought Management Advisory Council 
 ,NC,NC DENR's Division of Waste Management 
-,,The North Carolina Office of EMS 
-State Board,,The North Carolina Forest Service operates a system of six Educational State Forests (ESFs) designed to teach the public - especially school children - about the forest environment. 
+,North Carolina,The North Carolina Office of EMS 
+State Board,North Carolina,The North Carolina Forest Service operates a system of six Educational State Forests (ESFs) designed to teach the public - especially school children - about the forest environment. 
 ,NC,"Facility Management Division, NC DOA "
-,,"North Carolina Farm Fresh is a directory of pick-your-own farms, roadside farm markets, and farmers markets throughout North Carolina. It is designed to help the consumer, find the freshest locally grown fruits, vegetables, christmas trees, ornamental plants, flowers, and herbs. "
+,North Carolina,"North Carolina Farm Fresh is a directory of pick-your-own farms, roadside farm markets, and farmers markets throughout North Carolina. It is designed to help the consumer, find the freshest locally grown fruits, vegetables, christmas trees, ornamental plants, flowers, and herbs. "
 Department Education,NC,"NC Farm to School program, North Carolina Department of Agriculture and Consumer Services "
-Public Health,,"North Carolina Farmworker Health Program (NCFHP), a statewide Migrant Health Voucher Program within the Office of Rural Health "
+Public Health,North Carolina,"North Carolina Farmworker Health Program (NCFHP), a statewide Migrant Health Voucher Program within the Office of Rural Health "
 ,NC,NC Film Office 
 ,,"Firewise North Carolina,¬†North Carolina Forest Service "
 ,,Division of Marine Fisheries  
 ,NC,NC flood risk information system 
 ,NC,NC Foreclosure Prevention Fund 
-,,"North Carolina Forest Action Plan, North Carolina Forest Service "
-,,North Carolina Forest Action Plan See historical snapshot at: http://web.archive.org/web/20140517174935/http://ncforestassessment.com/  
+,North Carolina,"North Carolina Forest Action Plan, North Carolina Forest Service "
+,North Carolina,North Carolina Forest Action Plan See historical snapshot at: http://web.archive.org/web/20140517174935/http://ncforestassessment.com/  
 ,NC,NC Fresh Produce Information site 
-,,State of North Carolina 
+,North Carolina,State of North Carolina 
 Department Education,NC,"Governor's School of North Carolina, NC Department of Public Instruction "
-,,The North Carolina Global TransPark 
+,North Carolina,The North Carolina Global TransPark 
 ,NC,NC hearing Aid Dealers 
 Public Health,NC,NC Health & Human Services 
 ,NC,NC Healthy School Website 
 ,NC,NC Housing Finance Agency  
-State Board,,North Carolina Home Inspetor Licensure Board 
+State Board,North Carolina,North Carolina Home Inspetor Licensure Board 
 ,NC,NC Historic Sites 
 ,,Office of Indigent Defense Services  
 ,NC,NC International House 
 ,NC,NC Institute of Medecine 
-State Board,,The North Carolina Interpreters & Transliterators Licensing Board 
-State Board,,NCknows is a service that allows North Carolina residents to get help from librarians and use their library resources remotely through a computer. NCknows is a pilot project supported by a grant under the Federally-funded Library Services and Technology Act (LSTA). The project is administered by the State Library of North Carolina in Raleigh with help from a committee of librarians and directors from North Carolina's libraries. 
+State Board,North Carolina,The North Carolina Interpreters & Transliterators Licensing Board 
+State Board,North Carolina,NCknows is a service that allows North Carolina residents to get help from librarians and use their library resources remotely through a computer. NCknows is a pilot project supported by a grant under the Federally-funded Library Services and Technology Act (LSTA). The project is administered by the State Library of North Carolina in Raleigh with help from a committee of librarians and directors from North Carolina's libraries. 
 ,NC,NC Dept of Labor 
 ,NC,NC Generla Assembly  
-Board Examiners,,"North Carolina State Board of Examiners of Plumbing, Heating and Fire Sprinkler Contractors "
+Board Examiners,North Carolina,"North Carolina State Board of Examiners of Plumbing, Heating and Fire Sprinkler Contractors "
 State Board,NC,NC Lifetime Income - Members of the Teachers' and State Employees' Retirement System (TSERS) and Local Governmental Employees' Retirement System (LGERS) will have a one-time opportunity to transfer all or part of their NC 401(k) and/or NC Deferred Compensation (457) funds to the Retirement System in order to receive lifetime income at or after retirement. 
 ,NC,NC Public Library 
-,,North Carolina League of Municipalities 
-,,the board of Marriage and family therapy of North Carolina 
-State Board,,The North Carolina Locksmith Licensing Board 
-State Board,,State of North Carolina Office of Information Technology Services 
-,,North Carolina Maritime Museum System 
-Department Education,NC,"North Carolina Highway Historical Marker Program, NC Department of Cultural Resources "
+,North Carolina,North Carolina League of Municipalities 
+,North Carolina,the board of Marriage and family therapy of North Carolina 
+State Board,North Carolina,The North Carolina Locksmith Licensing Board 
+State Board,North Carolina,State of North Carolina Office of Information Technology Services 
+,North Carolina,North Carolina Maritime Museum System 
+Department Education,North Carolina,"North Carolina Highway Historical Marker Program, NC Department of Cultural Resources "
 ,NC,NC Medical Board 
 ,NC,NC Division of Medical Assistance 
 Public Health,,N.C. Office of Minority Health and Health Disparities 
 ,NC,NC Motor fleet management 
 Public Health,,The N.C. Health Care Personnel Registry Section   
 ,,Early Hearing Detection and Intervention Program (NC DHHS &gt; DPH &gt; WCH Section &gt; Children and Youth Branch) 
-,,The North Carolina Natural Heritage Program 
-,,"Established in 1987, the North Carolina Natural Heritage Trust Fund provided supplemental funding to select state agencies for the acquisition and protection of important natural areas, to preserve the state's ecological diversity and cultural heritage, and to inventory the natural heritage resources of the state. In July 2013, these key purposes were incorporated in the Clean Water Management Trust Fund enabling legislation and the NHTF statute was repealed. See historical snapshot at:  http://web.archive.org/web/20150129185256/http://www.ncnhtf.org/pages/aboutnhtf.htm  "
-,,North Carolina Office of Administrative Hearings 
+,North Carolina,The North Carolina Natural Heritage Program 
+,North Carolina,"Established in 1987, the North Carolina Natural Heritage Trust Fund provided supplemental funding to select state agencies for the acquisition and protection of important natural areas, to preserve the state's ecological diversity and cultural heritage, and to inventory the natural heritage resources of the state. In July 2013, these key purposes were incorporated in the Clean Water Management Trust Fund enabling legislation and the NHTF statute was repealed. See historical snapshot at:  http://web.archive.org/web/20150129185256/http://www.ncnhtf.org/pages/aboutnhtf.htm  "
+,North Carolina,North Carolina Office of Administrative Hearings 
 ,NC,Welcome to the Grand Chapter of NC Order of the Eastern Star 
 ,NC,NC OneMap is a public service providing comprehensive discovery and access to North Carolina's geospatial data resources. 
 ,NC,"NC OneMap, a public service providing comprehensive discovery and access to North Carolina's geospatial data resources. "
-State Board,,he North Carolina State Board of Examiners in Optometry 
+State Board,North Carolina,he North Carolina State Board of Examiners in Optometry 
 Public Health,NC,"NC Physical Activity and Nutrition Branch (NC PAN), NC Department of Public Health See historical snapshot at: http://web.archive.org/web/20130128034822/http://www.ncpanbranch.com/  "
 ,NC,NC ports  
 ,NC,NC Progress Portal 
 ,,nc psychology board 
-Board Examiners,,The North Carolina Board of Physical Therapy Examiners 
-Department Education,,"Historical Publications, North Carolina Office of Archives and History, Department of Cultural Resources -¬†www.ncpublications.com "
-Public Health,,North Carolina Division of Public Health 
+Board Examiners,North Carolina,The North Carolina Board of Physical Therapy Examiners 
+Department Education,North Carolina,"Historical Publications, North Carolina Office of Archives and History, Department of Cultural Resources -¬†www.ncpublications.com "
+Public Health,North Carolina,North Carolina Division of Public Health 
 ,,nc public schools 
 Department Education,NC,"Radiation Protection Section, NC Department of Health and Human Services "
 Tourism Site,NC,NC Radon Awarenes Site 
 ,NC,"We serve the NC insurance industry by providing services and programs for automobile, property and workers compensation insurance. This site contains information for these types of insurance. "
-,,the North Carolina Respiratory Care   
-,,North Carolina Rural Electrification Authority 
+,North Carolina,the North Carolina Respiratory Care   
+,North Carolina,North Carolina Rural Electrification Authority 
 Board Examiners,NC,NC State Board of Environmental Health Specialist Examiners 
 ,,nc report cards for schools 
 ,,nc science and technology 
 ,NC,NC School for the deaf 
 State Board,NC,NC State Employees Combined Campaign 
-Public Health,,North Carolina Seniors' Health Insurance Information Program (SHIIP) 
-Department Education,NC,"North Carolina Sickle Cell Syndrome Program, NC Department of Public Health "
-Department Education,NC,The North Carolina State Improvement Project (NC SIP ). NC SIP is a program in the Exceptional Children Division of the North Carolina Department of Public Instruction (NC DPI). 
-,,"Thank you for visiting ACCESSNC, your one-stop source for North Carolina economic data and site information. "
+Public Health,North Carolina,North Carolina Seniors' Health Insurance Information Program (SHIIP) 
+Department Education,North Carolina,"North Carolina Sickle Cell Syndrome Program, NC Department of Public Health "
+Department Education,North Carolina,The North Carolina State Improvement Project (NC SIP ). NC SIP is a program in the Exceptional Children Division of the North Carolina Department of Public Instruction (NC DPI). 
+,North Carolina,"Thank you for visiting ACCESSNC, your one-stop source for North Carolina economic data and site information. "
 ,,"The Carolina Star Program is designed to recognize and promote effective safety and health management systems. In Star, management, labor and OSH establish a cooperative relationship at a workplace that has implemented a strong program. "
 ,NC,NC state Fair 
 ,NC,NC Stormwater and Runoff pollution site 
 State Board,NC,NC State Univ Extension  
-State Board,,North Carolina Social Work Certification and Licensure Board 
+State Board,North Carolina,North Carolina Social Work Certification and Licensure Board 
 ,NC,NC Symphony 
 Department Education,NC,"Tobacco Free Schools, NC Department of Health and Human Services "
-State Board,,State of North Carolina Japan Office 
+State Board,North Carolina,State of North Carolina Japan Office 
 ,,NC-TOPPS homepage is now http://www.ncdhhs.gov/MHDDSAS/providers/NCTOPPS/index.htm. Entry still included here for nctopps.ncdmh.net pattern for pages such as https://www.google.com/search?q=site%3Anctopps.ncdmh.net. 
 State Board,NC,NC Office of State Personnel 
 ,NC,NC Transportation Museum 
-State Board,,North Carolina Department of State Treasurer 
-State Board,,North Carolina Veterinary Medical Board 
+State Board,North Carolina,North Carolina Department of State Treasurer 
+State Board,North Carolina,North Carolina Veterinary Medical Board 
 ,,North Carolina's marketplace for discarded or surplus materials and products. 
 ,NC,NC Division of Water Resources 
-,,North Carolina Division of Water Resources 
-Department Education,,"North Carolina Well Contractors Certification Commission - protects the public health and safety by ensuring the integrity and competence of well contractors through examination, certification, continuing education and enforcement. The Well Contractors Certification Unit is now part of the Department of Health and Human Services. "
+,North Carolina,North Carolina Division of Water Resources 
+Department Education,North Carolina,"North Carolina Well Contractors Certification Commission - protects the public health and safety by ensuring the integrity and competence of well contractors through examination, certification, continuing education and enforcement. The Well Contractors Certification Unit is now part of the Department of Health and Human Services. "
 ,,nc wildlife resource commission  
 ,NC,"NC WiseOwl (NC Online Windows for Learning) has been providing online subscription resources for our schools since 1999.  Our mission is to ensure that all of our public and charter school students have access to a collection of online resources for use in research projects and homework assignments, without regard to the economic status of their local school system.  NC WiseOwl has three major strengths as an educational resource: "
 Department Education,NC,NC Zoo is an agency of the North Carolina Department of Natural and Cultural Resources 
-,,North Dakota League of Cities 
+,North Dakota,North Dakota League of Cities 
 ,Nevada,Nevada Department of Wildlife 
 Department Education,Nevada,Nevada Department of Wildlife (NDOW) Licensing 
-,,North Dakota Recorders Information Network 
-Travel Tourism,,Travel and Tourism Site for North Dakota 
+,North Dakota,North Dakota Recorders Information Network 
+Travel Tourism,North Dakota,Travel and Tourism Site for North Dakota 
 ,Nebraska,Nebraska Ethanol Board 
 ,Nebraska,Nebraska AgRelations Council 
 Department Transportation,Nebraska,Nebraska Association of Transportation Providers 
@@ -519,31 +519,31 @@ Economic Development,Nebraska,Nebraska Department of Economic Development
 ,Nebraska,Nebraska Lottery 
 ,Nevada,Nevada Department of Transportation 
 ,Nevada,The Nevada Judiciary 
-Travel Tourism,,Travel and Tourism Site for New Mexico 
+Travel Tourism,New Mexico,Travel and Tourism Site for New Mexico 
 Economic Development,Pennsylvania,Pennsylvania Department of Community & Economic Development 
 ,Nebraska,Nebraska Forest Service 
 ,NH,NH Historical Society 
 ,NH,NH Municipal Association 
-,,New Hampshire Lottery Commission 
+,New Hampshire,New Hampshire Lottery Commission 
 ,NH,NH State Parks 
-Economic Development,,New Jersey Economic Development Authority 
+Economic Development,New Jersey,New Jersey Economic Development Authority 
 Department Education,NJ,"Division of Fish and Wildlife, NJ Department of Environmental Protection "
-,,New Jersey State Library 
-,,New Jersey Surcharge Violation System (NJSVS) 
+,New Jersey,New Jersey State Library 
+,New Jersey,New Jersey Surcharge Violation System (NJSVS) 
 Department Education,,Department of Labor and Workforce Development   
-,,New Mexico Lottery 
-Public Health,,New Mexico Environmental Public Health Tracking 
-,,"Special Supplemental Nutrition Program for New Mexico Women, Infants & Children "
+,New Mexico,New Mexico Lottery 
+Public Health,New Mexico,New Mexico Environmental Public Health Tracking 
+,New Mexico,"Special Supplemental Nutrition Program for New Mexico Women, Infants & Children "
 Public Health,NC,"Nutrition Services Branch, Women's and Children's Health, NC Division of Public Health, NCDepartment of Health and Human Services  "
 Department Education,Nevada,"Aging and Disability Services Division, Department of Health and Human Services, State of Nevada "
-State Board,,New York State Conference of Mayors and Municipal Officials (NYCOM) 
-,,New York Historical Society Museum and Library 
-State Board,,New York State Council on the Arts 
-State Board,,New York State eGovernment listing of state agencies 
-,,New York State Fair 
-State Board,,New York State Homes and Community Renewal 
-State Board,,New York State Local Government IT Directors Association (NYSLGITDA) 
-State Board,,New York State Police Recruitment Center 
+State Board,New York,New York State Conference of Mayors and Municipal Officials (NYCOM) 
+,New York,New York Historical Society Museum and Library 
+State Board,New York,New York State Council on the Arts 
+State Board,New York,New York State eGovernment listing of state agencies 
+,New York,New York State Fair 
+State Board,New York,New York State Homes and Community Renewal 
+State Board,New York,New York State Local Government IT Directors Association (NYSLGITDA) 
+State Board,New York,New York State Police Recruitment Center 
 ,OK,OK Corporation Commission 
 ,,"Office of Hawaiian Affairs - 'Under the direction of nine trustees elected statewide, OHA has functioned operationally as both a government agency with a strong degree of autonomy, and as a trust.' "
 ,Ohio,Ohio Bureau of Workers' Compensation 
@@ -566,7 +566,7 @@ State Board,Virginia,State of Virginia Olmstead Initiative
 State Board,Kansas,Office of the State Bank Commissioner of Kansas 
 State Board,OK,OK State Court System 
 State Board,Maryland,Office of the Maryland State Prosecutor 
-,,North Carolina Division of Environmental Assistance and Customer Service   
+,North Carolina,North Carolina Division of Environmental Assistance and Customer Service   
 ,,Commonwealth of Pennsylvania's media hub 
 ,Pennsylvania,Unified Judicial System of Pennsylvania 
 ,PA,PA eHealth Partnership Authority 
@@ -574,7 +574,7 @@ State Board,Maryland,Office of the Maryland State Prosecutor
 National Guard,,Republic of Palau National Government 
 ,,Palau Judiciary Branch 
 State Board,Georgia,Georgia State Defense Force public affairs office. Website mirrored on gasdf.com. Referenced on https://ga.ng.mil/Leadership/Georgia-State-Defense-Force/.
-,,South Dakota Parks & Wildlife Foundation 
+,South Dakota,South Dakota Parks & Wildlife Foundation 
 State Board,PA,PA State System of Higher Education 
 ,PA,PA Patient Safety Authority 
 ,Pennsylvania,Pennsylvania Turnpike Commission 
@@ -583,11 +583,11 @@ Department Education,PA,PA Higher Education Assistance Agency
 ,PA,PA Higher Educational Facilities Authority 
 ,PA,PA Housing Finance Agency 
 State Board,Mississippi,"Pat Harrison Waterway District (PHWD), a Mississippi State Agency that provides camping, cabins and recreational facilities in Mississippi "
-,,South Carolina Ports Authority 
+,South Carolina,South Carolina Ports Authority 
 ,Virginia,The Port of Virginia 
 State Board,Washington,Washington State Potato Commission 
 State Board,Alabama,"Alabama Historical Commission, State of Alabama Historic Preservation Office "
-Department Education,,"Queen Anne's Revenge, a project of the http://www.qaronline.org/ North Carolina Department of Cultural Resources to educate the next generation on colonial life "
+Department Education,North Carolina,"Queen Anne's Revenge, a project of the http://www.qaronline.org/ North Carolina Department of Cultural Resources to educate the next generation on colonial life "
 State Board,Maryland,"Uninsured Employers' Fund, State of Maryland "
 State Board,OK,OK State AG Econ at OSU 
 Department Education,NC,"Ready NC, NC Department of Public Safety "
@@ -595,17 +595,17 @@ Department Education,NC,"Ready NC, NC Department of Public Safety "
 ,Washington,Washington Red Raspberry Commission 
 State Board,,The State Board of Refrigeration Examiners 
 Department Education,Florida,Division of Vocational Rehabilitation - Florida Department of Education 
-,,Rhode Island Clean Water Finance Agency 
-,,Rhode Island Emissions and Safety Testing 
-,,Rhode Island Lottery 
-Public Health,,Rhode Island Public Utilities Commission 
-,,Rhode Island Turnpike and Bridge Authority 
+,Rhode Island,Rhode Island Clean Water Finance Agency 
+,Rhode Island,Rhode Island Emissions and Safety Testing 
+,Rhode Island,Rhode Island Lottery 
+Public Health,Rhode Island,Rhode Island Public Utilities Commission 
+,Rhode Island,Rhode Island Turnpike and Bridge Authority 
 ,,"Office of the President, Republic of the Marshall Islands "
 State Board,Montana,"SafeMT, a resource of the Montana State Fund for safety in Montana's workplaces. "
 Tourism Site,NC,NC Safe Haven Law - Abandoned Infant Protection Law Site 
 University Extension,Virginia,"The website of the Virginia Center on Aging (VCoA), a statewide agency created by the Virginia General Assembly and housed at Virginia Commonwealth University in the School of Allied Health Professions. VCoA works to protect and improve the quality of life of older Virginians, so that they might remain interdependent and contributing members to life in Virginia. "
-Public Health,,"Santee Cooper, also known officially from the 1930s as the South Carolina Public Service Authority, is South Carolina's state-owned electric and water utility that came into being during the New Deal. "
-State Board,,New Mexico Office of the State Auditor 
+Public Health,South Carolina,"Santee Cooper, also known officially from the 1930s as the South Carolina Public Service Authority, is South Carolina's state-owned electric and water utility that came into being during the New Deal. "
+State Board,New Mexico,New Mexico Office of the State Auditor 
 ,NC,Save Water NC 
 State Board,Florida,"Florida State Board of Administration, created by the Florida Constitution and is governed by a three-member Board of Trustees (Trustees), comprised of the Governor as Chair, the Chief Financial Officer and the Attorney General. "
 State Board,Washington,Washington State Board for Community and Technical Colleges 
@@ -613,33 +613,33 @@ State Board,PA,"State College Borough Water Authority, PA "
 ,SC,SC dept of commerce 
 ,SC,SC judicial courts 
 ,SC,SC DMV 
-,,South Carolina Education Lottery 
-,,South Carolina Emergency Management Division 
+,South Carolina,South Carolina Education Lottery 
+,South Carolina,South Carolina Emergency Management Division 
 ,SC,SC early childhood education program 
 ,SC,SC Gov Mansion  
 ,SC,SC govoners school for science and math 
 ,SC,SC National Guard 
 Department Education,Virginia,"The State Council of Higher Education for Virginia (SCHEV) makes higher education public policy recommendations to the Governor and General Assembly in such areas as capital and operating budget planning, enrollment projections, institutional technology needs, and student financial aid. "
-Department Education,,"School Planning Section, North Carolina Department of Public Instruction "
-,,South Carolina Independent Living Council (SCILC) 
-,,South Carolina Independent Living Council (SCILC) 
-,,"The South Carolina EPSCoR/IDeA Program, CCCR COBRE, and the USC School of Medicine Instrumentation Resource Facility "
+Department Education,North Carolina,"School Planning Section, North Carolina Department of Public Instruction "
+,South Carolina,South Carolina Independent Living Council (SCILC) 
+,South Carolina,South Carolina Independent Living Council (SCILC) 
+,South Carolina,"The South Carolina EPSCoR/IDeA Program, CCCR COBRE, and the USC School of Medicine Instrumentation Resource Facility "
 ,SC,SC malpractice patient compensation fund 
-,,South Carolina School for the Deaf and Blind 
-,,South Carolina Statewide Independent Living Council (SILC) 
+,South Carolina,South Carolina School for the Deaf and Blind 
+,South Carolina,South Carolina Statewide Independent Living Council (SILC) 
 ,SC,SC sec of state 
-,,South Carolina Department of Revenue 
-,,South Carolina Higher EducationTuition Grants Commission 
+,South Carolina,South Carolina Department of Revenue 
+,South Carolina,South Carolina Higher EducationTuition Grants Commission 
 State Board,SC,SC State Election Committee 
 ,SC,SC Vocab Rehab 
-,,South Dakota Department of Transportation 
-Economic Development,,South Dakota Housing Development Authority 
+,South Dakota,South Dakota Department of Transportation 
+Economic Development,South Dakota,South Dakota Housing Development Authority 
 ,,STATE EMPLOYEES ASSOCIATION OF NORTH CAROLINA 
 ,Michigan,"Seeking Michigan, the online platform for the http://michigan.gov/mhc Michigan Historical Center. It includes http://www.michigan.gov/archivesofmi Archives of Michigan research guides and indexes, a blog, and educator resources&ndash;all from the Michigan Historical Center and Archives of Michigan staff. "
 ,Minnesota,Minnesota Senate 
 Department Transportation,Arizona,"Authorized Service Website for the Arizona Department of Transportation, Motor Vehicle Division "
 State Board,Mississippi,Mississippi State Port Authority 
-State Board,,North Carolina State Health Plan for Teachers and State Employees 
+State Board,North Carolina,North Carolina State Health Plan for Teachers and State Employees 
 ,,SLED (Statewide Library Electronic Doorway) 
 Public Health,NC,"State Laboratory of Public Health, NC Division of Public Health "
 ,VA,"Science Museum of Virginia, located in Richmond, VA "
@@ -647,8 +647,8 @@ Public Health,NC,"State Laboratory of Public Health, NC Division of Public Healt
 ,,south carolina arts commission 
 ,,south carolina historical society 
 Public Health,PA,PA State Public School Building Authority 
-State Board,Pennsylvania,"Susquehanna River Basin Commission -¬†The Susquehanna River Basin Compact, was signed into law on December 24, 1970. The Compact, as adopted by the Congress of the United States, and the legislatures of New York State, Pennsylvania and Maryland, provides the mechanism to guide the conservation, development, and administration of the water resources of the vast river basin. "
-State Board,,"Start Squad, kid's portal to the State Library of North Carolina "
+State Board,New York,"Susquehanna River Basin Commission -¬†The Susquehanna River Basin Compact, was signed into law on December 24, 1970. The Compact, as adopted by the Congress of the United States, and the legislatures of New York State, Pennsylvania and Maryland, provides the mechanism to guide the conservation, development, and administration of the water resources of the vast river basin. "
+State Board,North Carolina,"Start Squad, kid's portal to the State Library of North Carolina "
 ,,North Carolina's Justus-Warren Heart Disease and Stroke Prevention Task Force 
 ,Alaska,"*state.ak.us pattern to include Alaska state agencies, such as those at: https://www.google.com/#q=site:state.ak.us  "
 ,Alabama,"*state.al.us pattern to include Alabama state agencies, such as those at: https://www.google.com/#q=site:state.al.us  "
@@ -672,13 +672,13 @@ State Board,Minnesota,Minnesota.gov portal; 'electronic entry point to Minnesota
 ,Mississippi,State of Mississippi 
 ,,*.state.ne.us pattern to include several state agencies. 
 ,NH,NH State Website 
-,,"http://www.state.nj.us/ and http://www.nj.gov both resolve to the same site. n*state.nj.us pattern to include New Jersey state agencies, such as those at: https://www.google.com/#q=site:state.nj.us  "
-,,State of New Mexico 
+,New Jersey,"http://www.state.nj.us/ and http://www.nj.gov both resolve to the same site. n*state.nj.us pattern to include New Jersey state agencies, such as those at: https://www.google.com/#q=site:state.nj.us  "
+,New Mexico,State of New Mexico 
 ,Ohio,State of Ohio 
 ,OK,State of OK website 
 State Board,Oregon,"http://www.state.or.us/ resolves to a non-styled version of http://www.oregon.gov/  n*state.or.us pattern included here to find State of Oregon agencies, such as: https://www.google.com/search?q=site:state.or.us "
 ,SC,State of SC  
-State Board,,South Dakota State Government Website 
+State Board,South Dakota,South Dakota State Government Website 
 ,Tennessee,Official site of the Tennessee Government 
 ,Virginia,The official website of the Commonwealth of Virginia 
 ,Vermont,State of Vermont 
@@ -708,7 +708,7 @@ Travel Tourism,Kansas,Travel and Tourism Site for Kansas
 Travel Tourism,Nevada,Travel and Tourism Sites for Nevada 
 Travel Tourism,Oklahoma,Travel and Tourism Sites for Oklahoma 
 Travel Tourism,Oregon,"Travel and Tourism Site for Oregon, Oregon Tourism Commission "
-Travel Tourism,,Travel and Tourism Sites for South Dakota 
+Travel Tourism,South Dakota,Travel and Tourism Sites for South Dakota 
 Travel Tourism,Texas,Travel and Tourism Sites for Texas 
 Travel Tourism,Wisconsin,Travel and Tourism Sites for Wisconsin 
 ,Nebraska,Nebraska State Treasurer 
@@ -718,8 +718,8 @@ State Board,Washington,Washington State Tobacco Settlement Authority
 University Extension,Arkansas,"University of Arkansas, Division of AgricultureResearch & Extension, University of Arkansas System Arkansas Cooperative Extension Service "
 University Extension,Alaska,University of Alaska Fairbanks Cooperative Extension Service 
 ,Idaho,University of Idaho Extension 
-Economic Development,,U.S. Virgin Islands Bureau of Economic Research 
-Economic Development,,U.S. Virgin Islands Economic Development Authority 
+Economic Development,Virgin Islands,U.S. Virgin Islands Bureau of Economic Research 
+Economic Development,Virgin Islands,U.S. Virgin Islands Economic Development Authority 
 ,Vermont,University of Vermont Extension 
 ,,University of Wisconsin-Extension 
 University Extension,Wyoming,University of Wyoming Cooperative Extension Service 
@@ -745,9 +745,9 @@ Economic Development,Virginia,Virginia Housing Development Authority
 ,Vermont,Vermont Housing Finance Agency 
 State Board,Virginia,The Virginia Horse Industry Board is responsible for the promotion and economic development of the horse industry in Virginia and operates through the Virginia Department of Agriculture and Consumer Services. 
 ,Virginia,"Virginia Industries for the Blind, Commonwealth of Virginia "
-,,Virgin Islands Department of Education 
-,,Office of the Virgin Islands Inspector General 
-Department Education,,U.S. Virgin Islands Police Department 
+,Virgin Islands,Virgin Islands Department of Education 
+,Virgin Islands,Office of the Virgin Islands Inspector General 
+Department Education,Virgin Islands,U.S. Virgin Islands Police Department 
 Travel Tourism,Virginia,Travel and Tourism Sites for Virginia 
 ,Virginia,Virginia College Savings Plan 
 Economic Development,Virginia,Virginia Economic Development Partnership's Ally Information Exchange 
@@ -764,18 +764,18 @@ Travel Tourism,Maryland,Travel and Tourism Site for Maryland
 Travel Tourism,Mississippi,Travel and Tourism Sites for Mississippi 
 Travel Tourism,Missouri,Travel and Tourism Site for Missouri 
 Travel Tourism,Montana,Travel and Tourism Site for Montana 
-Travel Tourism,,Travel and Tourism Site for North Carolina 
+Travel Tourism,North Carolina,Travel and Tourism Site for North Carolina 
 Travel Tourism,Nebraska,Travel and Tourism Site for Nebraska 
 Travel Tourism,Pennsylvania,Travel and Tourism Site for Pennsylvania 
-Travel Tourism,,Travel and Tourism Site for Rhode Island 
-Travel Tourism,,Travel and tourism site for the US Virgin Islands 
+Travel Tourism,Rhode Island,Travel and Tourism Site for Rhode Island 
+Travel Tourism,Virgin Islands,Travel and tourism site for the US Virgin Islands 
 Travel Tourism,Utah,Travel and Tourism Site for Utah 
-,,Supreme Court of the United States Virgin Islands 
+,Virgin Islands,Supreme Court of the United States Virgin Islands 
 Department Education,Florida,"Viva Florida 500 is a statewide initiative led by the Florida Department of State, under the leadership of Governor Rick Scott, to highlight the 500 years of historic people, places and events in present-day Florida since the arrival of Juan Ponce de Leon to the land he named La Florida in 1513. See more at http://www.vivaflorida.org/About-Viva-Florida/ "
 ,Virginia,"Virginia Museum of Natural History in Martinsville, VA "
 ,Florida,Florida Governor's Commission on Volunteerism and Community Service 
 ,Mississippi,"Volunteer Mississippi, A Mississippi Commission for Volunteer Service (MCVS) "
-,,North Carolina Commission on Volunteerism and Community Service 
+,North Carolina,North Carolina Commission on Volunteerism and Community Service 
 ,Virginia,Virginia Rehabilitation Center for the Blind and Vision Impaired 
 ,Virginia,Virginia Rural Water Association 
 ,Virginia,Virginia State Bar 
@@ -792,16 +792,16 @@ National Guard,Washington,Washington Army National Guard
 State Board,Washington,Washington State Wine Commission 
 ,Washington,Washington Association of Sheriffs and Police Chiefs 
 State Board,Mississippi,"Waterparkin', a website of the Pat Harrison Waterway District (PHWD) a Mississippi State Agency that provides camping, cabins and recreational facilities in Mississippi. See historical snaphot at: http://web.archive.org/web/20101224004547/http://waterparkin.com/  "
-,,"The Way We Lived in North Carolina, presented by http://www.ah.dcr.state.nc.us/ The North Carolina Office of Archives & History. "
+,North Carolina,"The Way We Lived in North Carolina, presented by http://www.ah.dcr.state.nc.us/ The North Carolina Office of Archives & History. "
 Department Education,Wisconsin,State of Wisconsin Department of Financial Institutions 
-University Extension,,University of Rhode Island Cooperative Extension 
+University Extension,Rhode Island,University of Rhode Island Cooperative Extension 
 Economic Development,Washington,Washington Economic Development Finance Authority 
 Public Health,NC,"Women's Health Branch, NC Division of Public Health "
 Economic Development,Wisconsin,Wisconsin Housing and Economic Development Authority 
 Department Education,Washington,Washington Higher Education Facilities Authority 
 Department Education,Oklahoma,Oklahoma Department of Wildlife Conservation - http://www.wildlifedepartment.com/  
 ,Wisconsin,Wisconsin Lottery 
-,,Virgin Islands Lottery 
+,Virgin Islands,Virgin Islands Lottery 
 ,Wisconsin,Wisconsin Historical Society 
 Public Health,Wisconsin,Wisconsin State Public Defender's Office 
 ,Wisconsin,Register of Deeds Association of Wisconsin 
@@ -810,20 +810,20 @@ State Board,Washington,Washington State Convention Center
 State Board,Washington,Washington State Commission on Pesticide Registration 
 State Board,Washington,Washington State Housing Finance Commission 
 State Board,Washington,Washington State School for the Blind 
-,Virginia,West Virginia Department of Agriculture 
-,Virginia,West Virginia Department of Commerce 
-,Virginia,West Virginia Division of Culture and History 
-Public Health,Virginia,West Virginia Department of Health and Human Resources 
-Economic Development,Virginia,West Virginia Housing Development Fund 
-Department Education,Virginia,West Virginia Higher Education Policy Commission 
-Department Education,Virginia,"West Virginia Department of Commerce, Division of Labor "
-,Virginia,West Virginia Lottery 
-,Virginia,West Virginia Network for Educational Telecomputing 
-Public Health,Virginia,West Virginia Consolidated Public Retirement Board 
-,Virginia,West Virginia State Parks 
-State Board,Virginia,West Virginia State Treasurer's Office 
-Travel Tourism,Virginia,Travel and Tourism Site for West Virginia 
-Economic Development,Virginia,West Virginia Water Development Authority 
+,West Virginia,West Virginia Department of Agriculture 
+,West Virginia,West Virginia Department of Commerce 
+,West Virginia,West Virginia Division of Culture and History 
+Public Health,West Virginia,West Virginia Department of Health and Human Resources 
+Economic Development,West Virginia,West Virginia Housing Development Fund 
+Department Education,West Virginia,West Virginia Higher Education Policy Commission 
+Department Education,West Virginia,"West Virginia Department of Commerce, Division of Labor "
+,West Virginia,West Virginia Lottery 
+,West Virginia,West Virginia Network for Educational Telecomputing 
+Public Health,West Virginia,West Virginia Consolidated Public Retirement Board 
+,West Virginia,West Virginia State Parks 
+State Board,West Virginia,West Virginia State Treasurer's Office 
+Travel Tourism,West Virginia,Travel and Tourism Site for West Virginia 
+Economic Development,West Virginia,West Virginia Water Development Authority 
 National Guard,Montana,Montana Army National Guard 
 ,Wyoming,Wyoming Business Council 
 Travel Tourism,Wyoming,Travel and Tourism Site for Wyoming 

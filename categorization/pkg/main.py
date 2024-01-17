@@ -70,8 +70,11 @@ def write_data(note, state, note_category ):
 
 def get_state_name(note):
     words = note.split(' ')
-    for word in words:
-        if word in STATES:
+    for index, word in enumerate(words):
+        if words[index - 1] + ' ' + word in STATES:
+            return words[index - 1] + ' ' + word
+
+        if word in STATES: 
             return word
 
 
@@ -93,3 +96,4 @@ def main(filepath):
 
 if __name__ == "__main__":
     main('3_govt_urls_state_only.csv')
+    # print(get_state_name('West Virginia University Extension Service'))
