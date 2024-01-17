@@ -36,6 +36,7 @@ def check_category(ngrams, note_category):
     if found_category:
         result = list(sorted(found_category.items(), key=lambda item: item[1], reverse=True))[:1]
         return result[0][0]
+    return 'Undefined'
 
 def top(notes, n):
     ngram = []
@@ -54,20 +55,20 @@ def top(notes, n):
 
 def write_data(note, note_category):
     with open('note-category.csv', 'a') as file:
-        writer = csv.DictWriter(file, fieldnames=['Note', 'Category'])
-        writer.writerow({'Note':note, 'Category':note_category})
+        writer = csv.DictWriter(file, fieldnames=['category', 'note'])
+        writer.writerow({'category':note_category, 'note':note})
     
 
 def main(filepath):
 
     notes = get_notes(filepath)
-    notes = clean_data(notes)
-    note_category = top(notes, 2)
+    cleaned_notes = clean_data(notes)
+    note_category = top(cleaned_notes, 2)
 
-    for note in notes:
+    for index, note in enumerate(cleaned_notes):
         ngram = ngrams(note, 3)
         result_category = check_category(ngram, note_category)
-        write_data(note, result_category)
+        write_data(notes[index], result_category)
 
 
     
