@@ -36,7 +36,6 @@ def check_category(ngrams, note_category):
     if found_category:
         result = list(sorted(found_category.items(), key=lambda item: item[1], reverse=True))[:1]
         return result[0][0]
-    return 'Undefined'
 
 def top(notes, n):
     ngram = []
