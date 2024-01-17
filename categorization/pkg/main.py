@@ -4,6 +4,16 @@ from collections import defaultdict
 from pkg.cleanup import clean_data
 
 
+STATES = ["Alabama", "AL", "Nebraska", "NE", "Alaska", "AK", "Nevada", "NV", "Arizona", "AZ", "New Hampshire", "NH", "Arkansas", "AR",
+        "New Jersey", "NJ", "California", "CA", "New Mexico", "NM", "Colorado", "CO", "New York", "NY", "Connecticut", "CT",
+        "North Carolina", "NC", "Delaware", "DE", "North Dakota", "ND", "District of Columbia", "DC", "Ohio", "OH", "Florida", "FL",
+        "Oklahoma", "OK", "Georgia", "GA", "Oregon", "OR", "Hawaii", "HI", "Pennsylvania", "PA", "Idaho", "ID", "Puerto Rico", "PR",
+        "Illinois", "IL", "Rhode Island", "RI", "Indiana", "IN", "South Carolina", "SC", "Iowa", "IA", "South Dakota", "SD", "Kansas", "KS",
+        "Tennessee", "TN", "Kentucky", "KY", "Texas", "TX", "Louisiana", "LA", "Utah", "UT", "Maine", "ME", "Vermont", "VT", "Maryland", "MD",
+        "Virginia", "VA", "Massachusetts", "MA", "Virgin Islands", "VI", "Michigan", "MI", "Washington", "WA", "Minnesota", "MN",
+        "West Virginia", "WV", "Mississippi", "MS", "Wisconsin", "WI", "Missouri", "MO", "Wyoming", "WY", "Montana", "MT"]
+
+
 def get_notes(filepath):
     fields = ['domain', 'federal agency', 'level of government', 'location', 'status', 'note', 'link', 'date added']
 
@@ -52,11 +62,18 @@ def top(notes, n):
     top_20 = dict(list(sorted_result.items())[:10])
     return top_20
 
-def write_data(note, note_category):
+def write_data(note, state, note_category ):
     with open('note-category.csv', 'a') as file:
-        writer = csv.DictWriter(file, fieldnames=['category', 'note'])
-        writer.writerow({'category':note_category, 'note':note})
-    
+        writer = csv.DictWriter(file, fieldnames=['category', 'state', 'note'])
+        writer.writerow({'category':note_category, 'state': state, 'note':note})
+
+
+def get_state_name(note):
+    words = note.split(' ')
+    for word in words:
+        if word in STATES:
+            return word
+
 
 def main(filepath):
 
@@ -67,7 +84,8 @@ def main(filepath):
     for index, note in enumerate(cleaned_notes):
         ngram = ngrams(note, 3)
         result_category = check_category(ngram, note_category)
-        write_data(notes[index], result_category)
+        state = get_state_name(notes[index])
+        write_data(notes[index], state, result_category)
 
 
     
