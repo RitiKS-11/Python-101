@@ -69,7 +69,7 @@ def write_data(note, state, note_category ):
 
 
 def get_state_name(note):
-    state = ''
+    state = None
     for word in note:
         words = word.split(' ')
         for index, word in enumerate(words):
@@ -78,6 +78,9 @@ def get_state_name(note):
             
             if index > 0 and (words[index -1] + ' ' + word) in STATES :
                 state =  words[index - 1] + ' ' + word
+
+        if state:
+            break
     return state
 
 
