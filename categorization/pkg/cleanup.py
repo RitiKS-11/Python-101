@@ -48,10 +48,14 @@ def remove_stopwords(text):
         return text
     return ''
 
-def remove_states(text):
-    if not any(text in state for state in STATES):
-        return text
-    return ''
+def remove_states(text_list):
+    parsed_text = []
+    for word in text_list:
+        words = word.split(' ')
+        cleaned_words = [word for word in words if word not in STATES]
+        parsed_text.append(' '.join(cleaned_words))
+        
+    return parsed_text
 
 
 def clean_data(data):
@@ -59,8 +63,8 @@ def clean_data(data):
     for row in data:
         news_words = row.split(' ') 
         removed_stopwords = [remove_stopwords(word) for word in news_words]
-        removed_states = [remove_states(word) for word in removed_stopwords]
-        clean_words = [remove_punctuation(word) for word in removed_states]
+        # removed_states = [remove_states(word) for word in removed_stopwords]
+        clean_words = [remove_punctuation(word) for word in removed_stopwords]
         cleaned_data.append(' '.join(clean_words))
 
     return cleaned_data

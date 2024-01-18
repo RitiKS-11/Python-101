@@ -1,7 +1,7 @@
 import csv
 from collections import defaultdict
 
-from pkg.cleanup import clean_data
+from pkg.cleanup import clean_data, remove_states
 
 
 STATES = ["Alabama", "AL", "Nebraska", "NE", "Alaska", "AK", "Nevada", "NV", "Arizona", "AZ", "New Hampshire", "NH", "Arkansas", "AR",
@@ -69,13 +69,16 @@ def write_data(note, state, note_category ):
 
 
 def get_state_name(note):
-    words = note.split(' ')
-    for index, word in enumerate(words):
-        if words[index - 1] + ' ' + word in STATES:
-            return words[index - 1] + ' ' + word
-
-        if word in STATES: 
-            return word
+    state = ''
+    for word in note:
+        words = word.split(' ')
+        for index, word in enumerate(words):
+            if word in STATES: 
+                state = word
+            
+            if index > 0 and (words[index -1] + ' ' + word) in STATES :
+                state =  words[index - 1] + ' ' + word
+    return state
 
 
 def main(filepath):
@@ -86,8 +89,9 @@ def main(filepath):
 
     for index, note in enumerate(cleaned_notes):
         ngram = ngrams(note, 3)
+        state = get_state_name(ngram)
+        ngram = remove_states(ngram)
         result_category = check_category(ngram, note_category)
-        state = get_state_name(notes[index])
         write_data(notes[index], state, result_category)
 
 
