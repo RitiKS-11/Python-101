@@ -1,8 +1,10 @@
 import nltk
 from nltk.tokenize import sent_tokenize, word_tokenize
-from nltk.corpus import stopwords
+from nltk.corpus import stopwords, wordnet
 from nltk.stem import PorterStemmer
 from nltk.stem import WordNetLemmatizer
+# from nltk.book import text7
+from nltk import FreqDist
 
 
 STRING = """Natural language processing (NLP) is a field of artificial intelligence that focuses on the interaction between computers 
@@ -52,12 +54,62 @@ def chuncking(tagged_post_words):
     tree = chucks.parse(tagged_post_words)
     return tree
 
+def chunk_and_chink(tagged_post_words):
+    grammar = """
+        Chunk: {<.*>+}
+            }<JJ>{"""
+    
+    chunks_chinks = nltk.RegexpParser(grammar)
+    tree = chunks_chinks.parse(tagged_post_words)
+    return tree
+
+def ner(tagged_post_words):
+    tree = nltk.ne_chunk(tagged_post_words)
+    return tree
+
+
+# def dispersion():
+#     text7.dispersion_plot(["same", "right", "next", "first", "hard", "short"])
+
+
+def frequency(filtered_words):
+    freq = FreqDist(filtered_words)
+    # freq.plot(20, cumulative=True)
+
+    return freq.most_common(20)
+
+
+def collocations(text7):
+    lemmatizer = WordNetLemmatizer()
+    lemmatized_words = [lemmatizer.lemmatize(word) for word in text7]
+    new_text = nltk.Text(lemmatized_words)
+    return new_text.collocations()
+
+
+def get_synonym_and_antonym(word):
+    syns = wordnet.synsets(word)
+    # print(syns)
+    synonyms = []
+    antonyms = []
+
+    for syn in syns:
+        for lem in syn.lemmas():
+            synonyms.append(lem.name())
+            if lem.antonyms():
+                antonyms.append(lem.antonyms()[0].name())
+    
+    #definition 
+    print(syns[0].definition())
+
+    #example
+    print(syns[3].examples())
+
+    return (synonyms, antonyms)
 
 if __name__ == "__main__":
-    words = tokenize()
-    filtered_words = remove_stopwords(words)
-    stemed_words = stem(filtered_words)
-    lemmatized_words = lemmatizing(filtered_words)
-    tagged_post_words = tag_pos(filtered_words)
-    tree = chuncking(tagged_post_words)
-    tree.draw()
+    syno, anto = get_synonym_and_antonym("High")
+
+    print("Synonyms: ", syno)
+    print("Antonyms: ", anto)
+
+    
