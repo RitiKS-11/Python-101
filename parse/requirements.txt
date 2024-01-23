@@ -1,0 +1,1 @@
+-e git+ssh://git@github.com/RitiKS-11/Python-101.git@bf8510c2d3e5addff42a1b0cc591decb2d600403#egg=Parser&subdirectory=parse

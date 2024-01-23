@@ -1,0 +1,9 @@
+District | KPI_1
+Kathmandu | .8
+Dhanusa | .85
+Kavre palanchowk | .75
+ 
+District | KPI_2
+Kathmandu | .35
+Kavrepalanchowk | .65
+Dhanusha | .6
