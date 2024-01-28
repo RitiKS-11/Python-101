@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, request, make_response
 
 bp = Blueprint("pages", __name__)
 
-count = 0
 
 @bp.route("/")
 def home():
@@ -14,7 +13,8 @@ def about():
 
 @bp.route('/visit')
 def visit_count():
-    global count
+    count = 0
+
     is_count_present = request.cookies.get('Count')
     count = int(is_count_present) + 1 if is_count_present else 1
 
