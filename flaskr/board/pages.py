@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, make_response
 
 bp = Blueprint("pages", __name__)
 
@@ -14,11 +14,13 @@ def about():
 
 @bp.route('/visit')
 def visit_count():
-    count = counter()
-    return render_template('pages/count.html', count=count)
-
-
-def counter():
     global count
-    count += 1
-    return count
+    is_count_present = request.cookies.get('Count')
+    count = int(is_count_present) + 1 if is_count_present else 1
+
+    res = make_response(render_template('pages/count.html', count=count))
+    res.set_cookie('Count', str(count))
+
+    return res
+
+
