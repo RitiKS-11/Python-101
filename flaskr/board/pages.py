@@ -2,6 +2,8 @@ from flask import Blueprint, render_template
 
 bp = Blueprint("pages", __name__)
 
+count = 0
+
 @bp.route("/")
 def home():
     return render_template('pages/home.html')
@@ -10,5 +12,13 @@ def home():
 def about():
     return render_template('pages/about.html')
 
-def page_not_found(e):
-    return render_template("errors/404.html"), 404
+@bp.route('/visit')
+def visit_count():
+    count = counter()
+    return render_template('pages/count.html', count=count)
+
+
+def counter():
+    global count
+    count += 1
+    return count
