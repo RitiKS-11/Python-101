@@ -1,26 +1,31 @@
-from flask import Blueprint, render_template, request, make_response
+from flask import Blueprint, render_template, request
+import redis
 
 bp = Blueprint("pages", __name__)
+redis_cache = redis.Redis(host='localhost', port='6379')
 
 
 @bp.route("/")
 def home():
     return render_template('pages/home.html')
 
+
 @bp.route("/about")
 def about():
     return render_template('pages/about.html')
 
+
 @bp.route('/visit')
 def visit_count():
+    user_ip = request.remote_addr
     count = 0
 
-    is_count_present = request.cookies.get('Count')
-    count = int(is_count_present) + 1 if is_count_present else 1
+    if redis_cache.exists(user_ip):
+        count = int(redis_cache.get(user_ip)) + 1
+        redis_cache.set(user_ip, count)
+    else:
+        redis_cache.set(user_ip, count)
 
-    res = make_response(render_template('pages/count.html', count=count))
-    res.set_cookie('Count', str(count))
 
-    return res
-
+    return render_template('pages/count.html', count=count)
 
