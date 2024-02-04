@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, request
 import redis
 
 bp = Blueprint("pages", __name__)
-redis_cache = redis.Redis(host='localhost', port='6379')
+redis_client = redis.Redis(host='localhost', port='6379')
 
 
 @bp.route("/")
@@ -20,11 +20,11 @@ def visit_count():
     user_ip = request.remote_addr
     count = 0
 
-    if redis_cache.exists(user_ip):
-        count = int(redis_cache.get(user_ip)) + 1
-        redis_cache.set(user_ip, count)
+    if redis_client.exists(user_ip):
+        count = int(redis_client.get(user_ip)) + 1
+        redis_client.set(user_ip, count)
     else:
-        redis_cache.set(user_ip, count)
+        redis_client.set(user_ip, count)
 
 
     return render_template('pages/count.html', count=count)
