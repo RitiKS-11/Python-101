@@ -8,34 +8,21 @@ def validation(dictionary, validation_rule):
 
         value = dictionary[key]
 
+        keys_items = ['min_length', 'max_length', 'min_value', 'max_value']
+
+        for item in keys_items:
+            if item in rule:
+                if not isinstance(rule[item], int):
+                    raise ValueError('min_length should be an integer')
+                if item.startswith('min') and not isinstance(value, int) and len(value) < rule[item]:
+                    return False
+                if item.startswith('max') and not isinstance(value, int) and len(value) > rule[item]:
+                    return False
+
         if 'bool' in rule:
             if not isinstance(rule['bool'], bool):
-                raise ValueError('min_length should be an integer')
+                raise ValueError('bool should be boolean')
             if rule['bool'] != value:
-                return False
-
-        if 'min_length' in rule:
-            if not isinstance(rule['min_length'], int):
-                raise ValueError('min_length should be an integer')
-            if len(value) < rule['min_length']:
-                return False
-
-        if 'max_length' in rule:
-            if not isinstance(rule['max_length'], int):
-                raise ValueError('max_length should be an integer')
-            if len(value) > rule['max_length']:
-                return False
-
-        if 'min_value' in rule:
-            if not isinstance(rule['min_value'], int):
-                raise ValueError('min_value should be an integer')
-            if value < rule['min_value']:
-                return False
-
-        if 'max_value' in rule:
-            if not isinstance(rule['max_value'], int):
-                raise ValueError('max_value should be an integer')
-            if value > rule['max_value']:
                 return False
 
     return True

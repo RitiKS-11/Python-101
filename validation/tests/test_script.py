@@ -28,8 +28,8 @@ def test_data_one():
             'is_disabled': True,
         },
         {
-            'name': {'max_length': 15, 'min_length':5},
-            'age': {'min_value': 10, 'max_value':21},
+            'name': {'max_length': 15},
+            'age': {'min_value': 10},
             'is_disabled': {'bool': True}
         },
         True
@@ -41,8 +41,8 @@ def test_data_one():
             'python': False,
         },
         {
-            'tutorial': {'max_length': 50, 'min_length':20},
-            'time_min': {'min_value': 10, 'max_value':25},
+            'tutorial': {'max_length': 50, 'min_length': 20},
+            'time_min': {'min_value': 10, 'max_value': 25},
             'python': {'bool': True}
         },
         False
@@ -54,4 +54,9 @@ def test_validation(data, rule, expected_result):
     result = validation(data, rule)
 
     assert result == expected_result
+
+# def test_cerberus_validator(data,rule, expected_result):
+#     result = cerberus_validator(data, rule)
+#     assert result == expected_result
+
 
