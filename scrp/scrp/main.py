@@ -1,6 +1,8 @@
 import requests, csv
 from collections import defaultdict
 
+from urls import provide_urls
+
 def get_page(url):
     try:
         cookies = {
@@ -46,7 +48,7 @@ def get_page(url):
 
         response = requests.get(
             'https://www.tripadvisor.com/Attraction_Review-g298570-d447384-Reviews-Chinatown-Kuala_Lumpur_Wilayah_Persekutuan.html',
-            cookies=cookies,
+            # cookies=cookies,
             headers=headers,
             timeout=10
         )
@@ -101,4 +103,6 @@ def handle_process(url):
 
 
 if __name__ == "__main__":
-    res = handle_process("https://www.tripadvisor.com/Attraction_Review-g298570-d447384-Reviews-Chinatown-Kuala_Lumpur_Wilayah_Persekutuan.html")
+    urls = provide_urls()
+    for url in urls:
+        handle_process(url)
