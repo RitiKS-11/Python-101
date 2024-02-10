@@ -1,4 +1,4 @@
-import requests, csv
+import requests, csv, re
 from collections import defaultdict
 
 from urls import provide_urls
@@ -47,8 +47,8 @@ def get_page(url):
         }
 
         response = requests.get(
-            'https://www.tripadvisor.com/Attraction_Review-g298570-d447384-Reviews-Chinatown-Kuala_Lumpur_Wilayah_Persekutuan.html',
-            # cookies=cookies,
+            url,
+            cookies=cookies,
             headers=headers,
             timeout=10
         )
@@ -63,46 +63,70 @@ def get_page(url):
 def parse_content(response):
     parsed_text = defaultdict()
 
-    content = response.split('<span class="biGQs _P fiohW fOtGX"><a target="_self" href="/Profile/ianb111" class="BMQDV _F Gv wSSLS SwZTJ FGwzt ukgoS">ianb111</a></span><div class="JINyA"><div class="biGQs _P pZUbB osNWb"><span>')[-1].split('<div class="HdolS"></div><div class="xkSty">')[0]
-    reviews = content.split('<div class="biGQs _P fiohW qWPrE ncFvv fOtGX">')[1:]
+    content = response.split('<span class="biGQs _P fiohW fOtGX"><a target="_self" href="/Profile/ianb111" class="BMQDV _F Gv wSSLS SwZTJ FGwzt ukgoS">ianb111</a></span><div class="JINyA"><div class="biGQs _P pZUbB osNWb"><span>')[-1].split('<div class="HdolS"></div><div class="xkSty">')
+
+
+    next_page_count = content[-1].split('<div class="UCacc"><a class="BrOJk u j z _F wSSLS tIqAi unMkR" data-smoke-attr="pagination-next-arrow" aria-label="Next page" href="')
+    if not len(next_page_count)<=1:
+        next_page = next_page_count[1].split('"><svg viewBox="0 0 24 24" width="24px" height="24px" class="d Vb UmNoP">')[0]
+        
+    reviews = content[0].split('<div class="biGQs _P fiohW qWPrE ncFvv fOtGX">')[1:]
 
     for review in reviews:
         title = review.split('<span class="yCeTE">')[1].split('</span></a></div><div class="RpeCd">')[0]
-        review_date = review.split('</div><div class="RpeCd">')[1].split('</div><div class="_T FKffI bmUTE">')[0]
+        # date = len(review.split('</div><div class="RpeCd">'))
+        # if date >= 2:
+        #     review_date = review.split('</div><div class="RpeCd">')[1].split('</div><div class="_T FKffI bmUTE">')[0]
+        # else:
+        #     review_date = ''
         review_body = review.split('<span class="JguWG"><span class="yCeTE">')[1].split('</span></span></div></div><div class="lszDU">')[0]
-        
-        parsed_text[title] = {'title': title, 'date': review_date, 'body': review_body}    
+
+        parsed_text[title] = {'title': title,  'body': review_body}    
     
-    return dict(parsed_text)
+    return (dict(parsed_text), next_page)
 
 
 def clean_content(text):
+    PATTERN = '\<[^>]*\>'
     for _, item in text.items():
-        item['title'] = item['title'].replace('<br />', '')
-        item['date'] = item['date'].replace('<br />', '')
-        item['body'] = item['body'].replace('<br />', '')
+        item['title'] = re.sub(PATTERN, '', item['title'])
+        # item['date'] = item['date'].replace('<br />', '')
+        item['body'] = re.sub(PATTERN, '', item['body'])
+
+        
 
     return text
 
 
 def save_csv(cleaned_reviews):
     with open('data.csv', 'a') as file:
-        writer = csv.DictWriter(file, fieldnames=['title', 'date', 'body'])
+        writer = csv.DictWriter(file, fieldnames=['title', 'body'])
         for _, review in cleaned_reviews.items():
-            writer.writerow({'title': review['title'], 'date': review['date'], 'body':review['body']})
+            writer.writerow({'title': review['title'], 'body':review['body']})
         
 
 
 
 def handle_process(url):
     response = get_page(url)
-    reviews_dict = parse_content(response)
+    reviews_dict, next_page = parse_content(response)
     cleaned_reviews = clean_content(reviews_dict)
     save_csv(cleaned_reviews)
+
+    if next_page:
+        handle_process('https://www.tripadvisor.com/'+next_page)
+
 
 
 
 if __name__ == "__main__":
     urls = provide_urls()
+
+    import random
+
+    # url = random.choice(urls)
+    # handle_process(url)
+    
     for url in urls:
         handle_process(url)
+
