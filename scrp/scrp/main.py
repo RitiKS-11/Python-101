@@ -1,7 +1,11 @@
 import requests, csv, re
 from collections import defaultdict
+import json
 
 from urls import provide_urls
+
+total_reviews = dict()
+
 
 def get_page(url):
     try:
@@ -93,8 +97,6 @@ def clean_content(text):
         # item['date'] = item['date'].replace('<br />', '')
         item['body'] = re.sub(PATTERN, '', item['body'])
 
-        
-
     return text
 
 
@@ -103,30 +105,35 @@ def save_csv(cleaned_reviews):
         writer = csv.DictWriter(file, fieldnames=['title', 'body'])
         for _, review in cleaned_reviews.items():
             writer.writerow({'title': review['title'], 'body':review['body']})
+
+
+def save_json(cleaned_reviews):
+    with open('data.json', 'w') as file:
+        json.dump(cleaned_reviews, file, indent=4)        
+
+
+def handle_process(urls):
+    global total_reviews
+
+    for url in urls:
+        response = get_page(url)
+        reviews_dict, next_page = parse_content(response)
+        cleaned_reviews = clean_content(reviews_dict)
+
+        total_reviews = total_reviews | cleaned_reviews
+        print(len(total_reviews))
+        save_json(total_reviews)
+
+
+        if next_page:
+            handle_process(['https://www.tripadvisor.com/'+next_page])
         
-
-
-
-def handle_process(url):
-    response = get_page(url)
-    reviews_dict, next_page = parse_content(response)
-    cleaned_reviews = clean_content(reviews_dict)
-    save_csv(cleaned_reviews)
-
-    if next_page:
-        handle_process('https://www.tripadvisor.com/'+next_page)
 
 
 
 
 if __name__ == "__main__":
     urls = provide_urls()
-
-    import random
-
-    # url = random.choice(urls)
-    # handle_process(url)
+    handle_process(urls)
     
-    for url in urls:
-        handle_process(url)
 
