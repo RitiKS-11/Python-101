@@ -1,5 +1,4 @@
 import requests, csv, re
-from collections import defaultdict
 import json
 
 from urls import provide_urls
@@ -66,11 +65,11 @@ def get_page(url):
 
 def parse_content(response):
     parsed_content_list = list()
+    next_page = ''
 
     content = response.split('<span class="biGQs _P fiohW fOtGX"><a target="_self" href="/Profile/ianb111" class="BMQDV _F Gv wSSLS SwZTJ FGwzt ukgoS">ianb111</a></span><div class="JINyA"><div class="biGQs _P pZUbB osNWb"><span>')[-1].split('<div class="HdolS"></div><div class="xkSty">')
-
-
     next_page_count = content[-1].split('<div class="UCacc"><a class="BrOJk u j z _F wSSLS tIqAi unMkR" data-smoke-attr="pagination-next-arrow" aria-label="Next page" href="')
+
     if not len(next_page_count)<=1:
         next_page = next_page_count[1].split('"><svg viewBox="0 0 24 24" width="24px" height="24px" class="d Vb UmNoP">')[0]
         
@@ -84,20 +83,21 @@ def parse_content(response):
         # else:
         #     review_date = ''
         review_body = review.split('<span class="JguWG"><span class="yCeTE">')[1].split('</span></span></div></div><div class="lszDU">')[0]
-
         parsed_content_list.append({'title': title,  'body': review_body})    
     
     return (parsed_content_list, next_page)
 
 
 def clean_content(content_list):
+    updated_contet_list = content_list
     PATTERN = '\<[^>]*\>'
-    for item in content_list:
+    
+    for item in updated_contet_list:
         item['title'] = re.sub(PATTERN, '', item['title'])
         # item['date'] = item['date'].replace('<br />', '')
         item['body'] = re.sub(PATTERN, '', item['body'])
 
-    return content_list
+    return updated_contet_list
 
 
 def save_csv(cleaned_reviews):
@@ -108,7 +108,7 @@ def save_csv(cleaned_reviews):
 
 
 def save_json(cleaned_reviews):
-    with open('data1.json', 'w') as file:
+    with open('data.json', 'w') as file:
         json.dump(cleaned_reviews, file, indent=4)        
 
 
@@ -122,17 +122,21 @@ def handle_process(urls):
 
         total_reviews = total_reviews + cleaned_reviews
         print(len(total_reviews))
-        save_json(cleaned_reviews)
 
         if next_page:
             handle_process(['https://www.tripadvisor.com/'+next_page])
-        
+    
+    return total_reviews
+
+
+def scrp_main():
+    urls = provide_urls()
+    result_list = handle_process(urls)
+    save_json(result_list)
 
 
 
 
 if __name__ == "__main__":
-    urls = provide_urls()
-    handle_process(urls)
-    
+    scrp_main()    
 
