@@ -4,7 +4,7 @@ import json
 
 from urls import provide_urls
 
-total_reviews = dict()
+total_reviews = list()
 
 
 def get_page(url):
@@ -65,7 +65,7 @@ def get_page(url):
     
 
 def parse_content(response):
-    parsed_text = defaultdict()
+    parsed_content_list = list()
 
     content = response.split('<span class="biGQs _P fiohW fOtGX"><a target="_self" href="/Profile/ianb111" class="BMQDV _F Gv wSSLS SwZTJ FGwzt ukgoS">ianb111</a></span><div class="JINyA"><div class="biGQs _P pZUbB osNWb"><span>')[-1].split('<div class="HdolS"></div><div class="xkSty">')
 
@@ -85,19 +85,19 @@ def parse_content(response):
         #     review_date = ''
         review_body = review.split('<span class="JguWG"><span class="yCeTE">')[1].split('</span></span></div></div><div class="lszDU">')[0]
 
-        parsed_text[title] = {'title': title,  'body': review_body}    
+        parsed_content_list.append({'title': title,  'body': review_body})    
     
-    return (dict(parsed_text), next_page)
+    return (parsed_content_list, next_page)
 
 
-def clean_content(text):
+def clean_content(content_list):
     PATTERN = '\<[^>]*\>'
-    for _, item in text.items():
+    for item in content_list:
         item['title'] = re.sub(PATTERN, '', item['title'])
         # item['date'] = item['date'].replace('<br />', '')
         item['body'] = re.sub(PATTERN, '', item['body'])
 
-    return text
+    return content_list
 
 
 def save_csv(cleaned_reviews):
@@ -108,7 +108,7 @@ def save_csv(cleaned_reviews):
 
 
 def save_json(cleaned_reviews):
-    with open('data.json', 'w') as file:
+    with open('data1.json', 'w') as file:
         json.dump(cleaned_reviews, file, indent=4)        
 
 
@@ -117,13 +117,12 @@ def handle_process(urls):
 
     for url in urls:
         response = get_page(url)
-        reviews_dict, next_page = parse_content(response)
-        cleaned_reviews = clean_content(reviews_dict)
+        content_list, next_page = parse_content(response)
+        cleaned_reviews = clean_content(content_list)
 
-        total_reviews = total_reviews | cleaned_reviews
+        total_reviews = total_reviews + cleaned_reviews
         print(len(total_reviews))
-        save_json(total_reviews)
-
+        save_json(cleaned_reviews)
 
         if next_page:
             handle_process(['https://www.tripadvisor.com/'+next_page])
