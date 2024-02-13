@@ -3,8 +3,6 @@ import json
 
 from urls import provide_urls
 
-total_reviews = list()
-
 
 def get_page(url):
     try:
@@ -89,13 +87,14 @@ def parse_content(response):
 
 
 def clean_content(content_list):
-    updated_contet_list = content_list
+    updated_contet_list = list()
     PATTERN = '\<[^>]*\>'
     
-    for item in updated_contet_list:
+    for item in content_list:
         item['title'] = re.sub(PATTERN, '', item['title'])
         # item['date'] = item['date'].replace('<br />', '')
         item['body'] = re.sub(PATTERN, '', item['body'])
+        updated_contet_list.append(item)
 
     return updated_contet_list
 
@@ -112,8 +111,7 @@ def save_json(cleaned_reviews):
         json.dump(cleaned_reviews, file, indent=4)        
 
 
-def handle_process(urls):
-    global total_reviews
+def handle_process(urls, total_reviews=[]):
 
     for url in urls:
         response = get_page(url)
@@ -124,7 +122,7 @@ def handle_process(urls):
         print(len(total_reviews))
 
         if next_page:
-            handle_process(['https://www.tripadvisor.com/'+next_page])
+            handle_process(['https://www.tripadvisor.com/'+next_page], total_reviews)
     
     return total_reviews
 
