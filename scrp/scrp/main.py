@@ -2,50 +2,12 @@ import requests, csv, re
 import json
 
 from urls import provide_urls
+from utils.headers import json_header, request_headers
 
 
 def get_page(url):
     try:
-        cookies = {
-            'datadome': 'HzoMS4d9zQPohVkHwNryHUurcq1LMYl_ZZzuN8JB~~RYPoHo9Dv62h9oNaemiAPBdkzhm5ylx77eFUoQVaff83VcOSgNQzHhT1pIpSaFYNBurftfCLvn0E6qmxHEBo2M',
-            'TASameSite': '1',
-            'TAUnique': '%1%enc%3A5yphkXU%2B%2BLE12Ai27pmPshWwJnM%2F%2BIoJceiJCLjggzgTdR%2F89nytZX2VzCc4LdYwNox8JbUSTxk%3D',
-            'TATrkConsent': 'eyJvdXQiOiJBRFYsU09DSUFMX01FRElBIiwiaW4iOiJBTkEsRlVOQ1RJT05BTCJ9',
-            'TASSK': 'enc%3AAOZhcd88jgZx5Gsg6ghAZ%2BnEIw2nWbyNt2a86V%2Fxaoe%2B3el4fX7x%2BXx8BXZQ3NQEgAraizZaeCeD5XEXSa%2FQLuiqBYIWJ61wCvDFJ4YoStZf82FuVX1vmnFVCf2MVuixtg%3D%3D',
-            'TART': '%1%enc%3A9zZlyhdOj3%2BGjsFP5n%2FeuFwA13lc73bXJ%2F8siwmntBgC7Cb4Yt1LIFh0A7jrkulyfYtftmnsPgU%3D',
-            'VRMCID': '%1%V1*id.10568*llp.%2FRestaurant_Review-g293890-d2343431-Reviews-Kathmandu_Grill_Restaurant_And_Wine_Bar-Kathmandu_Kathmandu_Valley_Bagmati_Zone_C%5C.html*e.1707917361815',
-            'TATravelInfo': 'V2*AY.2024*AM.2*AD.18*DY.2024*DM.2*DD.19*A.2*MG.-1*HP.2*FL.3*DSM.1707312617200*RS.1',
-            'ServerPool': 'A',
-            'PMC': 'V2*MS.29*MD.20240207*LD.20240208',
-            '__vt': 'QgEF9W_o81o6qK0sABQCwRB1grfcRZKTnW7buAoPsStOcPaMUmg45mKFNHpw056hwKkwIJPHmCYyExCkHhjSld1UiRRx62_Xx4yxUUy7IYxb2ejMUaYVxdhM68zw3JYw27bdvn21oxKJ8wOUaul96qguiQ',
-            'TADCID': 'qix_3iDdPOUE__RqABQCmq6heh9ZSU2yA8SXn9Wv5Htw0JqppRds4BfM46DOyoFsr3Haqt3gees8ns3h8nHQDrDTD2aMoZxoGhs',
-            'SRT': 'TART_SYNC',
-            'TAUD': 'LA-1707309208069-1*RDD-1-2024_02_07*HDD-3409041-2024_02_18.2024_02_19*LG-93268474-2.1.F.*LD-93268475-.....',
-            'TASID': 'A7A49C92710F430D8BA773DB9F926428',
-            '_abck': '4586BF59B484F2C5F4E0FBCB035DD521~-1~YAAQjwVaaOcr0nqNAQAAlzweiQtJzyKy8MWtpGkIMmq1K/0JvngmbaxDCT5lb3LVqhlWg8hviw374S4wdgQYih5Z0yN8j6HxdJMq+NOZ3YZp66MHFDcMXNFFyFm0llQrRcwkLbszYRc2Xl7XD5sceDdApojVVof7FQdvl9g22ML6hQmWfflN0Hgkg9w0vHHcewczw+zC+SEhGCQsWJcFtfs+RC7j+yihfZMrxX+vdZpOss0eLduQutgNgaHgnbnD/vju9h6BPmgfhgwbWZhwVP8oqDJ2uhDdeAwqgOge8ZYGhj0u71fDtcODXvngoRm3lY2YDfR8krNRZXEynUaVgqnIpA8bU29efHG1hSz949PXLVBxQkvomLP59aLl+WwKlX5Me44jDNqwDQ/RmYU=~-1~-1~-1',
-            'bm_sz': '2E626DB98F926F58D4D790F5594E9F1D~YAAQjwVaaOgr0nqNAQAAlzweiRYbMJSTkjyN9nkjrvXiVLqen8q9SnRlc7rF+TXKQ/UIT/tmauZfNcS6l83keDzLRfYT5QXp5/iepMUr8zAUaix3jnlZ4pjPO8DgAE9tISRNaLYG6C7quuFE2hJ29E+3xYlroCsKk/qqfcdAvqHQAXqi6EvDXijzEcAFmmrtMcYHlh1m6zCGpIn308A5kW/QaXEcrdOEsXnM+0itSdsJIiGnJqj+toMUuTHF1Z/7f1s8/lJPjQXP5EeSG9bUAPd0MUONecSUZ/hC2lfhOXwM9jEsntw+gGDxzuhXjMHyJ+VBHkzH78ZJ3ed1kokM7DM=~4408630~4605251',
-            'OptanonConsent': 'isGpcEnabled=1&datestamp=Thu+Feb+08+2024+20%3A13%3A01+GMT%2B0545+(Nepal+Time)&version=202310.2.0&browserGpcFlag=1&isIABGlobal=false&hosts=&consentId=4f46448b-88ed-4a92-bd87-ee42bd527e31&interactionCount=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A0&AwaitingReconsent=false',
-            'TASession': 'V2ID.A7A49C92710F430D8BA773DB9F926428*SQ.4*LS.Attraction_Review*HS.recommended*ES.popularity*DS.5*SAS.popularity*FPS.oldFirst*FA.1*DF.0*TRA.true*LD.447384*EAU._',
-            'PAC': 'AIMmqvhQg1U77s_1otwr_P3PPBW7WtmshR-DSf2PwvgtWYNZmYVdu1Mxc9TPXh2MZS3vAv7c95LteQRYE4mJHc6OUjyl9zGTDsR0y7d5gFOsE1zGxhaWYXaiOp00l17HPh-kB0Pl2-1f3XV_O29tFbeoqY0TCZGizDFiwjvVJ4ANoVMVTmoT0fUa1tccwLbbyKEs9dXVnD4WXg8-G5x37dvjchM8SE39zs7OqH_c4mziFBbGmkaagy-dzJbx91Brgg%3D%3D',
-        }
-
-        headers = {
-            'authority': 'www.tripadvisor.com',
-            'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
-            'accept-language': 'en-US,en;q=0.6',
-            'cache-control': 'no-cache',
-            'pragma': 'no-cache',
-            'sec-ch-ua': '"Not A(Brand";v="99", "Brave";v="121", "Chromium";v="121"',
-            'sec-ch-ua-mobile': '?0',
-            'sec-ch-ua-platform': '"Linux"',
-            'sec-fetch-dest': 'document',
-            'sec-fetch-mode': 'navigate',
-            'sec-fetch-site': 'same-origin',
-            'sec-fetch-user': '?1',
-            'sec-gpc': '1',
-            'upgrade-insecure-requests': '1',
-            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
-        }
+        cookies, headers = request_headers()
 
         response = requests.get(
             url,
@@ -53,7 +15,7 @@ def get_page(url):
             headers=headers,
             timeout=10
         )
-
+        # print(response.text)
         return response.text
 
     except Exception as e:
@@ -75,15 +37,43 @@ def parse_content(response):
 
     for review in reviews:
         title = review.split('<span class="yCeTE">')[1].split('</span></a></div><div class="RpeCd">')[0]
-        # date = len(review.split('</div><div class="RpeCd">'))
-        # if date >= 2:
-        #     review_date = review.split('</div><div class="RpeCd">')[1].split('</div><div class="_T FKffI bmUTE">')[0]
-        # else:
-        #     review_date = ''
+        date = len(review.split('</div><div class="RpeCd">'))
+        if date >= 2:
+            review_date = review.split('</div><div class="RpeCd">')[1].split('</div><div class="_T FKffI bmUTE">')[0]
+        else:
+            review_date = ''
         review_body = review.split('<span class="JguWG"><span class="yCeTE">')[1].split('</span></span></div></div><div class="lszDU">')[0]
-        parsed_content_list.append({'title': title,  'body': review_body})    
+        parsed_content_list.append({'title': title,  'body': review_body, 'date':review_date})    
     
     return (parsed_content_list, next_page)
+
+
+def json_request(url, geo, detail, offset):
+    cookies, headers, json_data = json_header(url, geo, detail, offset)
+    response = requests.post('https://www.tripadvisor.com/data/graphql/ids', cookies=cookies, headers=headers, json=json_data)
+
+    return response.json()
+
+
+def parse_json(json_response):
+    content_list = []
+    pr = json_response
+    reviews = (pr[4]['data']['Result'][0]['detailSectionGroups'][0]['detailSections'][0]['tabs'][0]['content'][2:12])
+    for review in reviews:
+        title = review['htmlTitle']['text']
+        body = review['htmlText']['text']
+        date = review['publishedDate']['text']
+
+        content_list.append({'title': title, 'body':body, 'date':date})
+    return content_list
+
+
+def get_geo_info(url):
+    geo = url.split('-g')[1].split('-d')[0]
+    detail = url.split('-d')[1].split('-R')[0]
+    offset = url.split('-o')[1].split('-')[0]
+
+    return (geo, detail, offset)
 
 
 def clean_content(content_list):
@@ -92,7 +82,7 @@ def clean_content(content_list):
     
     for item in content_list:
         item['title'] = re.sub(PATTERN, '', item['title'])
-        # item['date'] = item['date'].replace('<br />', '')
+        item['date'] = item['date'].replace('<br />', '')
         item['body'] = re.sub(PATTERN, '', item['body'])
         updated_contet_list.append(item)
 
@@ -112,7 +102,7 @@ def save_json(cleaned_reviews):
 
 
 def handle_process(urls, total_reviews=[]):
-
+    i = 0
     for url in urls:
         response = get_page(url)
         content_list, next_page = parse_content(response)
@@ -122,8 +112,11 @@ def handle_process(urls, total_reviews=[]):
         print(len(total_reviews))
 
         if next_page:
-            handle_process(['https://www.tripadvisor.com/'+next_page], total_reviews)
-    
+            geo, detail, offset = get_geo_info(next_page)
+            res = json_request(next_page, geo, detail, offset)
+            reviews = parse_json(res)
+            total_reviews = total_reviews + reviews
+
     return total_reviews
 
 
@@ -133,8 +126,7 @@ def scrp_main():
     save_json(result_list)
 
 
-
-
 if __name__ == "__main__":
+    # get_geo_info('/Attraction_Review-g298570-d447384-Reviews-or10-Chinatown-Kuala_Lumpur_Wilayah_Persekutuan.html')
     scrp_main()    
 
