@@ -4,6 +4,7 @@ import json
 from urls import provide_urls
 from utils.headers import json_header, request_headers
 
+index = 0
 
 def get_page(url):
     try:
@@ -45,6 +46,8 @@ def parse_content(response):
         review_body = review.split('<span class="JguWG"><span class="yCeTE">')[1].split('</span></span></div></div><div class="lszDU">')[0]
         parsed_content_list.append({'title': title,  'body': review_body, 'date':review_date})    
     
+    print(next_page)
+    print('\n')
     return (parsed_content_list, next_page)
 
 
@@ -65,6 +68,11 @@ def parse_json(json_response):
         date = review['publishedDate']['text']
 
         content_list.append({'title': title, 'body':body, 'date':date})
+
+        currentPageNumber = pr[4]['data']['Result'][0]['detailSectionGroups'][0]['detailSections'][0]['tabs'][0]['content'][12]['currentPageNumber']
+        next_page = pr[4]['data']['Result'][0]['detailSectionGroups'][0]['detailSections'][0]['tabs'][0]['content'][12]['links'][2]['internalLink']['webRoute']['webLinkUrl']
+        print(next_page)
+
     return content_list
 
 
@@ -102,7 +110,7 @@ def save_json(cleaned_reviews):
 
 
 def handle_process(urls, total_reviews=[]):
-    i = 0
+    global index
     for url in urls:
         response = get_page(url)
         content_list, next_page = parse_content(response)
@@ -112,6 +120,8 @@ def handle_process(urls, total_reviews=[]):
         print(len(total_reviews))
 
         if next_page:
+            print(f'Next page {index}')
+            index += 1
             geo, detail, offset = get_geo_info(next_page)
             res = json_request(next_page, geo, detail, offset)
             reviews = parse_json(res)
