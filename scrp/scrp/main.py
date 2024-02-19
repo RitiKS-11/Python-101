@@ -24,31 +24,44 @@ def get_page(url):
         raise e
     
 
-def parse_content(response):
-    parsed_content_list = list()
-    next_page = ''
+# def parse_content(response):
+#     parsed_content_list = list()
+#     next_page = ''
 
-    content = response.split('<span class="biGQs _P fiohW fOtGX"><a target="_self" href="/Profile/ianb111" class="BMQDV _F Gv wSSLS SwZTJ FGwzt ukgoS">ianb111</a></span><div class="JINyA"><div class="biGQs _P pZUbB osNWb"><span>')[-1].split('<div class="HdolS"></div><div class="xkSty">')
-    next_page_count = content[-1].split('<div class="UCacc"><a class="BrOJk u j z _F wSSLS tIqAi unMkR" data-smoke-attr="pagination-next-arrow" aria-label="Next page" href="')
-
-    if not len(next_page_count)<=1:
-        next_page = next_page_count[1].split('"><svg viewBox="0 0 24 24" width="24px" height="24px" class="d Vb UmNoP">')[0]
-        
-    reviews = content[0].split('<div class="biGQs _P fiohW qWPrE ncFvv fOtGX">')[1:]
-
-    for review in reviews:
-        title = review.split('<span class="yCeTE">')[1].split('</span></a></div><div class="RpeCd">')[0]
-        date = len(review.split('</div><div class="RpeCd">'))
-        if date >= 2:
-            review_date = review.split('</div><div class="RpeCd">')[1].split('</div><div class="_T FKffI bmUTE">')[0]
-        else:
-            review_date = ''
-        review_body = review.split('<span class="JguWG"><span class="yCeTE">')[1].split('</span></span></div></div><div class="lszDU">')[0]
-        parsed_content_list.append({'title': title,  'body': review_body, 'date':review_date})    
+#     content = response.split('<span class="biGQs _P fiohW fOtGX"><a target="_self" href="/Profile/ianb111" class="BMQDV _F Gv wSSLS SwZTJ FGwzt ukgoS">ianb111</a></span><div     \
+#                                        class="JINyA"><div class="biGQs _P pZUbB osNWb"><span>')[-1]. \
+#                                         split('<div class="HdolS"></div><div class="xkSty">')
     
-    print(next_page)
-    print('\n')
-    return (parsed_content_list, next_page)
+#     next_page_count = content[-1].split('<div class="UCacc"><a class="BrOJk u j z _F wSSLS tIqAi unMkR" data-smoke-attr="pagination-next-arrow" aria-label="Next page" href="')
+
+#     if not len(next_page_count)<=1:
+#         next_page = next_page_count[1].split('"><svg viewBox="0 0 24 24" width="24px" height="24px" class="d Vb UmNoP">')[0]
+#     reviews = content[0].split('<div class="biGQs _P fiohW qWPrE ncFvv fOtGX">')[1:]
+
+#     for review in reviews:
+#         title = review.split('<span class="yCeTE">')[1].split('</span></a></div><div class="RpeCd">')[0]
+#         date = len(review.split('</div><div class="RpeCd">'))
+#         if date >= 2:
+#             review_date = review.split('</div><div class="RpeCd">')[1].split('</div><div class="_T FKffI bmUTE">')[0]
+#         else:
+#             review_date = ''
+#         review_body = review.split('<span class="JguWG"><span class="yCeTE">')[1].split('</span></span></div></div><div class="lszDU">')[0]
+#         parsed_content_list.append({'title': title,  'body': review_body, 'date':review_date})    
+    
+#     return (parsed_content_list, next_page)
+
+
+# def clean_content(content_list):
+#     updated_contet_list = list()
+#     PATTERN = '\<[^>]*\>'
+    
+#     for item in content_list:
+#         item['title'] = re.sub(PATTERN, '', item['title'])
+#         item['date'] = item['date'].replace('<br />', '')
+#         item['body'] = re.sub(PATTERN, '', item['body'])
+#         updated_contet_list.append(item)
+
+#     return updated_contet_list
 
 
 def json_request(url, geo, detail, offset, attraction):
@@ -61,11 +74,8 @@ def json_request(url, geo, detail, offset, attraction):
 def parse_json(json_response):
     content_list = []
     pr = json_response
-    # print(pr)
     reviews = (pr[4]['data']['Result'][0]['detailSectionGroups'][0]['detailSections'][0]['tabs'][0]['content'][2:12])
     for review in reviews:
-        print(review)
-        print('\n\n\n\n\n')
 
         if review['__typename'] == 'WebPresentation_ReviewsNoFilterResultsCardWeb':
             continue
@@ -76,35 +86,31 @@ def parse_json(json_response):
 
         content_list.append({'title': title, 'body':body, 'date':date})
 
-        currentPageNumber = pr[4]['data']['Result'][0]['detailSectionGroups'][0]['detailSections'][0]['tabs'][0]['content'][12]['currentPageNumber']
-        next_page = pr[4]['data']['Result'][0]['detailSectionGroups'][0]['detailSections'][0]['tabs'][0]['content'][12]['links'][2]['internalLink']['webRoute']['webLinkUrl']
-        print(next_page)
+        # currentPageNumber = pr[4]['data']['Result'][0]['detailSectionGroups'][0]['detailSections'][0]['tabs'][0]['content'][12]['currentPageNumber']
+    try:
+        next_page = pr[4]['data']['Result'][0]['detailSectionGroups'][0]['detailSections'][0]['tabs'] \
+                    [0]['content'][12]['links'][2]['updateLink']['webRoute']['webLinkUrl']
+        # print('next_page\n')
+        # print(next_page) 
+    except:
+        next_page = None
 
-    return content_list
+    return (content_list, next_page)
 
 
 def get_geo_info(url):
     attraction = url.split('/')[1].split('-g')[0]
-
-    # attraction = 'attraction' if attraction == 'Attraction' else 'attraction_product'
     geo = url.split('-g')[1].split('-d')[0]
     detail = url.split('-d')[1].split('-or')[0]
-    offset = url.split('-o')[1].split('-')[0]
 
-    return (geo, detail, offset, attraction)
-
-
-def clean_content(content_list):
-    updated_contet_list = list()
-    PATTERN = '\<[^>]*\>'
-    
-    for item in content_list:
-        item['title'] = re.sub(PATTERN, '', item['title'])
-        item['date'] = item['date'].replace('<br />', '')
-        item['body'] = re.sub(PATTERN, '', item['body'])
-        updated_contet_list.append(item)
-
-    return updated_contet_list
+    # if not isinstance(int(detail), int):
+    try:
+        detail = int(detail)
+        detail = str(detail)
+    except:
+        detail = url.split('-d')[1].split('-')[0]
+        
+    return (geo, detail, attraction)
 
 
 def save_csv(cleaned_reviews):
@@ -119,30 +125,48 @@ def save_json(cleaned_reviews):
         json.dump(cleaned_reviews, file, indent=4)        
 
 
-def handle_process(urls, total_reviews=[]):
-    global index
-    for url in urls:
-        response = get_page(url)
-        content_list, next_page = parse_content(response)
-        cleaned_reviews = clean_content(content_list)
+def handle_process(url, geo, detail, attraction, total_reviews=[], offset='r10'):
+    offset_num = int(offset[1:]) + 10
+    offset = 'r' + str(offset_num)
 
-        total_reviews = total_reviews + cleaned_reviews
-        print(len(total_reviews))
+    res = json_request(url, geo, detail, offset, attraction)
+    reviews, next_page = parse_json(res)
+    total_reviews.extend(reviews)
 
-        if next_page:
-            print(f'Next page {index}')
-            index += 1
-            geo, detail, offset, attraction = get_geo_info(next_page)
-            res = json_request(next_page, geo, detail, offset, attraction)
-            reviews = parse_json(res)
-            total_reviews = total_reviews + reviews
+    print('json_reviews\n')
+    print(len(total_reviews))
+
+    if next_page:
+        total_reviews = handle_process(next_page, geo, detail, attraction, total_reviews, offset)
+    
 
     return total_reviews
 
 
+# def handle_json(next_page, total_reviews=[]):
+
+
+#     geo, detail, offset, attraction = get_geo_info(next_page)
+#     res = json_request(next_page, geo, detail, offset, attraction)
+#     reviews, next_page = parse_json(res)
+#     total_reviews.extend(reviews)
+
+#     print('json_reviews\n')
+#     print(len(total_reviews))
+#     print(f'next_page - {next_page}')
+
+#     if next_page:
+#         total_reviews = handle_json(next_page)
+    
+
+#     return total_reviews
+
+
 def scrp_main():
     urls = provide_urls()
-    result_list = handle_process(urls)
+    for url in urls:
+        geo, detail, attraction = get_geo_info(url)   
+        result_list = handle_process(url, geo, detail, attraction)
     save_json(result_list)
 
 
