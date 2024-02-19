@@ -1,6 +1,9 @@
 
 
-def json_header(url, geo, detail, offset):
+def json_header(url, geo, detail, offset, attraction):
+    content_type = 'attraction' if attraction == 'Attraction_Review' else 'attraction_product'
+    # print(content_type, attraction, url)
+    # print(geo, detail, offset)
     cookies = {
             'datadome': 'HzoMS4d9zQPohVkHwNryHUurcq1LMYl_ZZzuN8JB~~RYPoHo9Dv62h9oNaemiAPBdkzhm5ylx77eFUoQVaff83VcOSgNQzHhT1pIpSaFYNBurftfCLvn0E6qmxHEBo2M',
             'TASameSite': '1',
@@ -43,7 +46,7 @@ def json_header(url, geo, detail, offset):
     json_data = [
             {
                 'variables': {
-                    'page': 'AttractionProductReview',
+                    'page': attraction,
                     'pos': 'en-US',
                     'parameters': [
                         {
@@ -68,7 +71,7 @@ def json_header(url, geo, detail, offset):
                         'RELCANONICAL',
                     ],
                     'route': {
-                        'page': 'AttractionProductReview',
+                        'page': attraction,
                         'params': {
                             'offset': offset,
                             'geoId': geo,
@@ -83,7 +86,7 @@ def json_header(url, geo, detail, offset):
             {
                 'variables': {
                     'route': {
-                        'page': 'AttractionProductReview',
+                        'page': attraction,
                         'params': {
                             'offset': offset,
                             'geoId': geo,
@@ -98,7 +101,7 @@ def json_header(url, geo, detail, offset):
             },
             {
                 'variables': {
-                    'pageName': 'AttractionProductReview',
+                    'pageName': attraction,
                     'relativeUrl': url,
                     'parameters': [
                         {
@@ -115,7 +118,7 @@ def json_header(url, geo, detail, offset):
                         },
                     ],
                     'route': {
-                        'page': 'AttractionProductReview',
+                        'page': attraction,
                         'params': {
                             'offset': offset,
                             'geoId': geo,
@@ -129,7 +132,7 @@ def json_header(url, geo, detail, offset):
             },
             {
                 'variables': {
-                    'page': 'AttractionProductReview',
+                    'page': attraction,
                     'params': [
                         {
                             'key': 'offset',
@@ -145,7 +148,7 @@ def json_header(url, geo, detail, offset):
                         },
                     ],
                     'route': {
-                        'page': 'AttractionProductReview',
+                        'page': attraction,
                         'params': {
                             'offset': offset,
                             'geoId': geo,
@@ -161,12 +164,12 @@ def json_header(url, geo, detail, offset):
                 'variables': {
                     'request': {
                         'tracking': {
-                            'screenName': 'AttractionProductReview',
+                            'screenName': attraction,
                             'pageviewUid': 'ef4c58ef-0087-47a2-801c-5cafecfc927a',
                         },
                         'routeParameters': {
-                            'contentType': 'attraction_product',
-                            'contentId': '12962337',
+                            'contentType': content_type,
+                            'contentId': detail,
                             'pagee': '40',
                         },
                         'clientState': None,
@@ -175,7 +178,7 @@ def json_header(url, geo, detail, offset):
                     'commerce': {},
                     'sessionId': '956C011FB28514BB4C6AF6D750A0A15C',
                     'tracking': {
-                        'screenName': 'AttractionProductReview',
+                        'screenName': attraction,
                         'pageviewUid': 'ef4c58ef-0087-47a2-801c-5cafecfc927a',
                     },
                     'currency': 'USD',
@@ -188,9 +191,9 @@ def json_header(url, geo, detail, offset):
             },
             {
                 'variables': {
-                    'page': 'AttractionProductReview',
+                    'page': attraction,
                     'locale': 'en-US',
-                    'platform': 'mobileweb',
+                    'platform': 'tablet',
                     'id': '12962337',
                     'urlRoute': url,
                 },

@@ -51,8 +51,8 @@ def parse_content(response):
     return (parsed_content_list, next_page)
 
 
-def json_request(url, geo, detail, offset):
-    cookies, headers, json_data = json_header(url, geo, detail, offset)
+def json_request(url, geo, detail, offset, attraction):
+    cookies, headers, json_data = json_header(url, geo, detail, offset, attraction)
     response = requests.post('https://www.tripadvisor.com/data/graphql/ids', cookies=cookies, headers=headers, json=json_data)
 
     return response.json()
@@ -61,8 +61,15 @@ def json_request(url, geo, detail, offset):
 def parse_json(json_response):
     content_list = []
     pr = json_response
+    # print(pr)
     reviews = (pr[4]['data']['Result'][0]['detailSectionGroups'][0]['detailSections'][0]['tabs'][0]['content'][2:12])
     for review in reviews:
+        print(review)
+        print('\n\n\n\n\n')
+
+        if review['__typename'] == 'WebPresentation_ReviewsNoFilterResultsCardWeb':
+            continue
+
         title = review['htmlTitle']['text']
         body = review['htmlText']['text']
         date = review['publishedDate']['text']
@@ -77,11 +84,14 @@ def parse_json(json_response):
 
 
 def get_geo_info(url):
+    attraction = url.split('/')[1].split('-g')[0]
+
+    # attraction = 'attraction' if attraction == 'Attraction' else 'attraction_product'
     geo = url.split('-g')[1].split('-d')[0]
-    detail = url.split('-d')[1].split('-R')[0]
+    detail = url.split('-d')[1].split('-or')[0]
     offset = url.split('-o')[1].split('-')[0]
 
-    return (geo, detail, offset)
+    return (geo, detail, offset, attraction)
 
 
 def clean_content(content_list):
@@ -122,8 +132,8 @@ def handle_process(urls, total_reviews=[]):
         if next_page:
             print(f'Next page {index}')
             index += 1
-            geo, detail, offset = get_geo_info(next_page)
-            res = json_request(next_page, geo, detail, offset)
+            geo, detail, offset, attraction = get_geo_info(next_page)
+            res = json_request(next_page, geo, detail, offset, attraction)
             reviews = parse_json(res)
             total_reviews = total_reviews + reviews
 
