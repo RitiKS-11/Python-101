@@ -4,74 +4,17 @@ import json
 from urls import provide_urls
 from utils.headers import json_header, request_headers
 
-index = 0
 
-def get_page(url):
-    try:
-        cookies, headers = request_headers()
-
-        response = requests.get(
-            url,
-            cookies=cookies,
-            headers=headers,
-            timeout=10
-        )
-        # print(response.text)
-        return response.text
-
-    except Exception as e:
-        print(e)
-        raise e
-    
-
-# def parse_content(response):
-#     parsed_content_list = list()
-#     next_page = ''
-
-#     content = response.split('<span class="biGQs _P fiohW fOtGX"><a target="_self" href="/Profile/ianb111" class="BMQDV _F Gv wSSLS SwZTJ FGwzt ukgoS">ianb111</a></span><div     \
-#                                        class="JINyA"><div class="biGQs _P pZUbB osNWb"><span>')[-1]. \
-#                                         split('<div class="HdolS"></div><div class="xkSty">')
-    
-#     next_page_count = content[-1].split('<div class="UCacc"><a class="BrOJk u j z _F wSSLS tIqAi unMkR" data-smoke-attr="pagination-next-arrow" aria-label="Next page" href="')
-
-#     if not len(next_page_count)<=1:
-#         next_page = next_page_count[1].split('"><svg viewBox="0 0 24 24" width="24px" height="24px" class="d Vb UmNoP">')[0]
-#     reviews = content[0].split('<div class="biGQs _P fiohW qWPrE ncFvv fOtGX">')[1:]
-
-#     for review in reviews:
-#         title = review.split('<span class="yCeTE">')[1].split('</span></a></div><div class="RpeCd">')[0]
-#         date = len(review.split('</div><div class="RpeCd">'))
-#         if date >= 2:
-#             review_date = review.split('</div><div class="RpeCd">')[1].split('</div><div class="_T FKffI bmUTE">')[0]
-#         else:
-#             review_date = ''
-#         review_body = review.split('<span class="JguWG"><span class="yCeTE">')[1].split('</span></span></div></div><div class="lszDU">')[0]
-#         parsed_content_list.append({'title': title,  'body': review_body, 'date':review_date})    
-    
-#     return (parsed_content_list, next_page)
-
-
-# def clean_content(content_list):
-#     updated_contet_list = list()
-#     PATTERN = '\<[^>]*\>'
-    
-#     for item in content_list:
-#         item['title'] = re.sub(PATTERN, '', item['title'])
-#         item['date'] = item['date'].replace('<br />', '')
-#         item['body'] = re.sub(PATTERN, '', item['body'])
-#         updated_contet_list.append(item)
-
-#     return updated_contet_list
-
-
-def json_request(url, geo, detail, offset, attraction):
-    cookies, headers, json_data = json_header(url, geo, detail, offset, attraction)
+def json_request(url, geo, detail, offset, attraction, update_token):
+    """ Send a request to get json data """
+    cookies, headers, json_data = json_header(url, geo, detail, offset, attraction, update_token)
     response = requests.post('https://www.tripadvisor.com/data/graphql/ids', cookies=cookies, headers=headers, json=json_data)
 
     return response.json()
 
 
 def parse_json(json_response):
+    """ Retrive required data form the json response """
     content_list = []
     pr = json_response
     reviews = (pr[4]['data']['Result'][0]['detailSectionGroups'][0]['detailSections'][0]['tabs'][0]['content'][2:12])
@@ -87,30 +30,46 @@ def parse_json(json_response):
         content_list.append({'title': title, 'body':body, 'date':date})
 
         # currentPageNumber = pr[4]['data']['Result'][0]['detailSectionGroups'][0]['detailSections'][0]['tabs'][0]['content'][12]['currentPageNumber']
-    try:
-        next_page = pr[4]['data']['Result'][0]['detailSectionGroups'][0]['detailSections'][0]['tabs'] \
-                    [0]['content'][12]['links'][2]['updateLink']['webRoute']['webLinkUrl']
+    # try:
+    # next_page = pr[3]['data']['Result'][0]['detailSectionGroups'][0]['detailSections'][0]['tabs'] \
+    #                 [0]['content'][12]['links'][1]['updateLink']['webRoute']['webLinkUrl']
         # print('next_page\n')
         # print(next_page) 
-    except:
-        next_page = None
+        # print('\n\n\n\n')
+    # except:
+        # next_page = None
 
-    return (content_list, next_page)
+    # print(content_list[0])
+    # print(next_page)
+
+    return content_list
 
 
 def get_geo_info(url):
+    """ Retrieve info from the url """
+    if 'https://www.tripadvisor.com' in url:
+        url = url.replace('https://www.tripadvisor.com', '')
+
     attraction = url.split('/')[1].split('-g')[0]
+    offset = 'r10'
     geo = url.split('-g')[1].split('-d')[0]
     detail = url.split('-d')[1].split('-or')[0]
+    
 
-    # if not isinstance(int(detail), int):
     try:
         detail = int(detail)
         detail = str(detail)
     except:
         detail = url.split('-d')[1].split('-')[0]
+
+    try: 
+        offset = url.split('-o')[1].split('-')[0]
+    except:
+        # print(url.split('-'))
+        url = '-'.join(url.split('-')[0:3]) + '-or10-' + '-'.join(url.split('-')[3:]) 
+        # print(url)
         
-    return (geo, detail, attraction)
+    return {'geo':geo, 'offset':offset, 'detail':detail, 'attraction':attraction, 'url':url}
 
 
 def save_csv(cleaned_reviews):
@@ -125,48 +84,86 @@ def save_json(cleaned_reviews):
         json.dump(cleaned_reviews, file, indent=4)        
 
 
-def handle_process(url, geo, detail, attraction, total_reviews=[], offset='r10'):
-    offset_num = int(offset[1:]) + 10
-    offset = 'r' + str(offset_num)
+# def handle_process(url, geo, detail, attraction, total_reviews=[], offset='r10'):
+    
+#     offset_num = int(offset[1:]) + 10
+#     offset = 'r' + str(offset_num)
+#     # url = url.replace('r80', offset)
+#     pattern = r'r\d+'
+#     url = re.sub(pattern, offset, url)
+#     # print(geo, detail, offset, attraction, url)
 
-    res = json_request(url, geo, detail, offset, attraction)
-    reviews, next_page = parse_json(res)
-    total_reviews.extend(reviews)
+#     res = json_request(url, geo, detail, offset, attraction)
+#     reviews, next_page = parse_json(res)
+#     total_reviews.extend(reviews)
 
-    print('json_reviews\n')
+#     print('json_reviews')
+#     print(len(total_reviews))
+
+#     # if next_page:
+#         # total_reviews = handle_process(url=next_page, geo=geo, detail=detail, attraction=attraction, total_reviews=total_reviews, offset=offset)
+    
+
+#     return total_reviews
+
+def check_content(reviews):
+    with open('data.json') as file:
+        datas = json.load(file)
+    
+    if datas == reviews:
+        return True
+    return False
+
+def handle_json(geo_info, update_token=None, total_reviews=[]):
+    """ Scrape multiple pages of reviews """
+
+    res = json_request(geo_info['url'], geo_info['geo'], geo_info['detail'], geo_info['offset'], geo_info['attraction'], update_token)
+    # print(res[0]['data']['Opf_getOnPageFactorsForLocale'][0]['errMessage'])
+    no_of_reviews = res[4]['data']['Result'][0]['detailSectionGroups'][0]['detailSections'][0]['tabs'][0]['content'][1]['reviewCountText']['text'].split(' ')[0]
+    update_token = res[4]['data']['Result'][0]['detailSectionGroups'][0]['detailSections'][0]['tabs'][0]['content'][12]['links'][1]['updateLink']['updateToken']
+    print(no_of_reviews)
     print(len(total_reviews))
 
-    if next_page:
-        total_reviews = handle_process(next_page, geo, detail, attraction, total_reviews, offset)
+    # print('\n\n')
+    # print(res)
+    # print(res[4]['data']['Result'][0]['detailSectionGroups'][0]['detailSections'][0]['tabs'][0]['content'][2:12][0])
+
+    if (int(geo_info['offset'].split('r')[1]) + 10) < (int(no_of_reviews) - 20): 
+        reviews = parse_json(res)
+        total_reviews.extend(reviews)
+
+        new_offset =  'r' + str(int(geo_info['offset'].split('r')[1]) + 10)
+        geo_info['url'] = geo_info['url'].replace(geo_info['offset'], new_offset)
+        geo_info['offset'] = new_offset
+
+
+        print(geo_info['url'])
+        total_reviews = handle_json(geo_info, update_token, total_reviews)
+
+    else: 
+        print('not running')
+
+    # print('json_reviews\n')
+    # print(len(total_reviews))
+    # print(f'next_page - {next_page}')
+
+    # if next_page:
+    #     total_reviews = handle_json(next_page)
     
 
     return total_reviews
 
 
-# def handle_json(next_page, total_reviews=[]):
-
-
-#     geo, detail, offset, attraction = get_geo_info(next_page)
-#     res = json_request(next_page, geo, detail, offset, attraction)
-#     reviews, next_page = parse_json(res)
-#     total_reviews.extend(reviews)
-
-#     print('json_reviews\n')
-#     print(len(total_reviews))
-#     print(f'next_page - {next_page}')
-
-#     if next_page:
-#         total_reviews = handle_json(next_page)
-    
-
-#     return total_reviews
-
-
 def scrp_main():
     urls = provide_urls()
     for url in urls:
-        geo, detail, attraction = get_geo_info(url)   
-        result_list = handle_process(url, geo, detail, attraction)
+        geo_info = get_geo_info(url) 
+        result = json_request(geo=geo_info['geo'], detail=geo_info['detail'], offset=geo_info['offset'], url=url, update_token=None, attraction=geo_info['attraction'])
+        # print(result)
+        update_token = result[4]['data']['Result'][0]['detailSectionGroups'][3]['detailSections'][0]['tabs'][0]['content'][12]['links'][1]['updateLink']['updateToken']
+        # print(update_token)
+
+        result_list = handle_json(geo_info=geo_info, update_token=update_token, total_reviews=[])
     save_json(result_list)
 
 
