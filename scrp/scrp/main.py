@@ -16,6 +16,7 @@ def json_request(url, geo, detail, offset, attraction, update_token):
 def parse_json(json_response):
     """ Retrive required data form the json response """
     content_list = []
+    photo = dict()
     json_data = json_response
     reviews = (json_data[4]['data']['Result'][0]['detailSectionGroups'][0]['detailSections'][0]['tabs'][0]['content'][2:12])
 
@@ -26,8 +27,15 @@ def parse_json(json_response):
         title = review['htmlTitle']['text']
         body = review['htmlText']['text']
         date = review['publishedDate']['text']
+        name = review['userProfile']['displayName']
+        hometown = review['userProfile']['hometown']
+        url = review['cardLink']['webRoute']['webLinkUrl']
+        images = review['userProfile']['profileImage']['photoSizes']
+        
+        for index, image in enumerate(images):
+            photo = photo | {f'photo{index}': image['url']}
 
-        content_list.append({'title': title, 'body':body, 'date':date})
+        content_list.append({'title': title, 'body':body, 'date':date, 'name':name, 'hometown':hometown, 'url':url, 'images': photo})
 
         # currentPageNumber = pr[4]['data']['Result'][0]['detailSectionGroups'][0]['detailSections'][0]['tabs'][0]['content'][12]['currentPageNumber']
     # try:
@@ -78,6 +86,7 @@ def save_csv(cleaned_reviews):
 
 
 def save_json(cleaned_reviews):
+    """ Save parsed json data in json file """
     with open('data.json', 'w') as file:
         json.dump(cleaned_reviews, file, indent=4)        
 
@@ -127,7 +136,7 @@ def handle_json(geo_info, update_token=None, total_reviews=[]):
     # print(res)
     # print(res[4]['data']['Result'][0]['detailSectionGroups'][0]['detailSections'][0]['tabs'][0]['content'][2:12][0])
 
-    if (int(geo_info['offset'].split('r')[1]) + 10) < (int(no_of_reviews) - 20): 
+    if (int(geo_info['offset'].split('r')[1]) + 10) < (int(no_of_reviews) - 50): 
         reviews = parse_json(res)
         total_reviews.extend(reviews)
 
