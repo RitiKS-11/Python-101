@@ -250,3 +250,250 @@ def request_headers():
         }
      
     return (cookies, headers)
+
+
+def profile_json_data(username):
+    # json_data = [
+    #     {
+    #         'variables': {
+    #             'experimentKeys': [
+    #                 'datadome_envoy_bucketing_1697032802',
+    #             ],
+    #         },
+    #         'extensions': {
+    #             'preRegisteredQueryId': '21d24a06e22ceef2',
+    #         },
+    #     },
+    #     {
+    #         'variables': {
+    #             'experimentKeys': [
+    #                 'amazon_publisher_audiences_1695657425',
+    #             ],
+    #         },
+    #         'extensions': {
+    #             'preRegisteredQueryId': '21d24a06e22ceef2',
+    #         },
+    #     },
+    #     {
+    #         'variables': {
+    #             'experimentKeys': [
+    #                 'braze_sdk_feature_toggle_1706895311',
+    #             ],
+    #         },
+    #         'extensions': {
+    #             'preRegisteredQueryId': '21d24a06e22ceef2',
+    #         },
+    #     },
+    #     {
+    #         'variables': {
+    #             'page': 'Profile',
+    #             'locale': 'en-US',
+    #             'platform': 'tablet',
+    #             'id': None,
+    #             'urlRoute': '/Profile/Navigate424997?fid=d68c9e21-2d62-4240-80bb-92bcc2b409a3',
+    #         },
+    #         'extensions': {
+    #             'preRegisteredQueryId': 'd194875f0fc023a6',
+    #         },
+    #     },
+    #     {
+    #         'variables': {
+    #             'page': 'Profile',
+    #             'platform': 'tablet',
+    #         },
+    #         'extensions': {
+    #             'preRegisteredQueryId': 'b4613962d98df032',
+    #         },
+    #     },
+    #     {
+    #         'variables': {
+    #             'userName': 'Navigate424997',
+    #         },
+    #         'extensions': {
+    #             'preRegisteredQueryId': 'ecb4eb0c5349550c',
+    #         },
+    #     },
+    #     {
+    #         'variables': {
+    #             'allowedTypes': [],
+    #             'locationId': 1,
+    #             'owner': 'E28CF4070A4C056580C6EF0352B4B3F4',
+    #             'placement': 'PROFILE',
+    #             'puid': '27a7269e-3fdc-4814-98b1-fe0b2ad6b03c',
+    #             'sessionType': 'DESKTOP',
+    #             'sectionId': '4612a389-fdcc-4446-8626-327e8ce53b94_0',
+    #         },
+    #         'extensions': {
+    #             'preRegisteredQueryId': 'c1178a2624e1fd8e',
+    #         },
+    #     },
+    #     {
+    #         'variables': {
+    #             'username': 'Navigate424997',
+    #         },
+    #         'extensions': {
+    #             'preRegisteredQueryId': 'd06b57a5164dd54b',
+    #         },
+    #     },
+    #     {
+    #         'variables': {
+    #             'username': 'Navigate424997',
+    #             'reset': False,
+    #             'allowedTypes': [],
+    #             'sessionType': 'TABLET_WEB',
+    #             'puid': '27a7269e-3fdc-4814-98b1-fe0b2ad6b03c',
+    #             'preloadForumPostIds': [],
+    #             'preloadLinkPostIds': [],
+    #             'preloadPhotoIds': [],
+    #             'preloadMediaBatchIds': [],
+    #             'preloadRepostIds': [],
+    #             'preloadReviewIds': [],
+    #             'preloadVideoIds': [],
+    #             'restoreFromFeedId': 'd68c9e21-2d62-4240-80bb-92bcc2b409a3',
+    #             'socialReference': True,
+    #             'shouldFetchTripsStatuses': False,
+    #         },
+    #         'extensions': {
+    #             'preRegisteredQueryId': '991491c725fc1626',
+    #         },
+    #     },
+    #     {
+    #         'variables': {
+    #             'currency': 'USD',
+    #             'trafficSourceInfo': {
+    #                 'mcid': None,
+    #                 'servletName': 'Profile',
+    #                 'sessionId': '7ED23334028EBCDF6E6646243E27F2A5',
+    #                 'referrer': 'https://www.tripadvisor.com/Attraction_Review-g298570-d12276424-Reviews-Vespalicious-Kuala_Lumpur_Wilayah_Persekutuan.html',
+    #             },
+    #         },
+    #         'extensions': {
+    #             'preRegisteredQueryId': '3c36e4d2aa11f4c7',
+    #         },
+    #     },
+    #     {
+    #         'variables': {
+    #             'request': [
+    #                 {
+    #                     'timestamp': '1708874109041',
+    #                 },
+    #             ],
+    #         },
+    #         'extensions': {
+    #             'preRegisteredQueryId': '7e232d3cbc211ec6',
+    #         },
+    #     },
+    #     {
+    #         'variables': {
+    #             'request': [
+    #                 {
+    #                     'locationIds': [],
+    #                     'timestamp': '1708874109288',
+    #                     'pageContentId': None,
+    #                     'pageType': None,
+    #                 },
+    #             ],
+    #         },
+    #         'extensions': {
+    #             'preRegisteredQueryId': 'bc99048f6dd84da1',
+    #         },
+    #     },
+    # ]
+
+    cookies = {
+        'datadome': 'HzoMS4d9zQPohVkHwNryHUurcq1LMYl_ZZzuN8JB~~RYPoHo9Dv62h9oNaemiAPBdkzhm5ylx77eFUoQVaff83VcOSgNQzHhT1pIpSaFYNBurftfCLvn0E6qmxHEBo2M',
+        'TASameSite': '1',
+        'TAUnique': '%1%enc%3A5yphkXU%2B%2BLE12Ai27pmPshWwJnM%2F%2BIoJceiJCLjggzgTdR%2F89nytZX2VzCc4LdYwNox8JbUSTxk%3D',
+        'TASSK': 'enc%3AAOZhcd88jgZx5Gsg6ghAZ%2BnEIw2nWbyNt2a86V%2Fxaoe%2B3el4fX7x%2BXx8BXZQ3NQEgAraizZaeCeD5XEXSa%2FQLuiqBYIWJ61wCvDFJ4YoStZf82FuVX1vmnFVCf2MVuixtg%3D%3D',
+        'TATrkConsent': 'eyJvdXQiOiJBRFYsU09DSUFMX01FRElBIiwiaW4iOiJBTkEsRlVOQ1RJT05BTCJ9',
+        'TATravelInfo': 'V2*A.2*MG.-1*HP.2*FL.3*DSM.1707312617200*RS.1',
+        'TART': '%1%enc%3A9zZlyhdOj38KSphF3FXw6xYJcETBXMBq%2Ffm1piT%2FWi%2BVCaMzj%2B1f6b%2F2uGqXJTalW1JxtpsONWQ%3D',
+        'VRMCID': '%1%V1*id.10568*llp.%2FAttractionProductReview-g298570-d19765373-Country_Batu_Cave_Half_Day_Tour_SIC_Join_In_Tour-Kuala_Lumpur_Wilayah_Persekutuan%5C.html*e.1709372788257',
+        'TADCID': 'QXqLUkLHzHBJmrMRABQCmq6heh9ZSU2yA8SXn9Wv5HvQn-Y33B4xfO7p1i-Qw5kkJpDObtcP915YMtW0N5AcPkh-75RzvqnB80k',
+        'TASID': '7ED23334028EBCDF6E6646243E27F2A5',
+        '_abck': '4586BF59B484F2C5F4E0FBCB035DD521~-1~YAAQhpbTZwNXpFWNAQAACwPV4AuWSOk/4m1kYCuf99W+YpT/H0YtrxRPKuDV3YGFvEBOFWKGgn+DSkZOCv5u8ny3waAqrATbRbGN975UAJq9ufB1YElaLt/0TJKzSYHH4DszaR/XTrmwGq53W9ue0RVtICtFs4GNqSbugYiEc/c2MS4T2KdWX1svIc9Dn9ZyOM5DEMUBT5n7x08J+uNgYdpJgnhAu/cE3yLxCoVEvKFsXk3j+MuYAxmCIeQLJZWagfQI0p3DZ86IVJJpJul506ZNmEY73rwOavOgQfGWBufb6mfslM2ry29u1xUkU8hNzLZjXc2/divAduwKaUQ4ZkdZ/mFub42+zFEvYpFSHjC+mKbTU0LTBPORnPUAt5Ell42daY/WU7/BvVn/CtM=~-1~-1~-1',
+        'bm_sz': '055476BCC7F4EAAD393E17082546A6AB~YAAQhpbTZwRXpFWNAQAACwPV4BYOO8wQB7xuFtn7QN8nIGH9u4EE2J3flQWho5AWkDK2InqNTJNiEUHWXjcyLoiBqC9QWcRP6K4PxAf10/A4YJkk4Sldlm6z+YW8p8867ZlWjMqhhIiJo914kTM+WJyCIBTSg7sNButWX/n/eG28nQmbL2+hIu8dl896O6/E13Y2RTQdpS6mCT7VvnazbxnSJJTtujgKLtLdsW+Fc+sUt24g69d71Aqs1PmObPVp/dcjj24wPtSwI02AccPZcbT2miqY23TnbShy8ep+SpBZJUf7b8H5YPhf2RUFcX5l6pql2IVDEr5sSDFNoW/ZvhejsckrtbQk/uls5Sr++zCW7O5dM25jOCwriQ==~4604467~3552070',
+        'PAC': 'AMDRD6nJxe4c542wticy1zAkYeizseNInXYimPOHrBs9mRllihhWKvERTM6YPVYqQyKzC_QZipzkEqbcsA-C5rT3ZV7pukd59-tkxKprgBDFtsCdu5XOobjwDGeyYJ5eCcUFJmqc5fLLqhngTfE2d-M%3D',
+        'SRT': 'TART_SYNC',
+        'ServerPool': 'R',
+        'PMC': 'V2*MS.29*MD.20240207*LD.20240225',
+        'OptanonConsent': 'isGpcEnabled=1&datestamp=Sun+Feb+25+2024+21%3A04%3A26+GMT%2B0545+(Nepal+Time)&version=202310.2.0&browserGpcFlag=1&isIABGlobal=false&hosts=&consentId=0d5f4688-c039-4d12-bbaa-656e08345da8&interactionCount=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A0&AwaitingReconsent=false',
+        '__vt': 'uBx-KpNRwE0G3XPIABQCwRB1grfcRZKTnW7buAoPsSuuTvKqwzfSq4CJU7Vjphmifrmns4q4Nv2HJHXep43kzzcm_np6LKxYM_CWFk4F7SdBN86gyGmKPDtglnNZPYUAbrSKd3fEzSI07viIf8WLIg0b_g',
+        'roybatty': 'TNI1625!AGaopfC8r%2BXkGioblp2qWcBh6r5WCHKCgb%2FKsF%2FYhl7G1iA%2FOfunwpn2paNrEWJlIrR%2BTJTrsNVQkx1t6PHg6KYpQROLtEfnx6p1ATq4CLVFrANc8j8vs5BJC3JB0U3m39XWBcRuchH3AL9Vr2Ru0lmwQYdo2alOcbh46gt%2BXEfwYD%2BwwUbfWxJ2M4uRfh%2BNKw%3D%3D%2C1',
+        'TASession': 'V2ID.7ED23334028EBCDF6E6646243E27F2A5*SQ.20*LS.DemandLoadAjax*HS.recommended*ES.popularity*DS.5*SAS.popularity*FPS.oldFirst*FA.1*DF.0*TRA.true*EAU._',
+        'TAUD': 'LA-1707309208069-1*RDD-1-2024_02_07*HDD-3409041-2024_02_18.2024_02_19*ARC-96486623*LG-1565744525-2.1.F.*LD-1565744526-.....',
+    }
+
+    headers = {
+        'authority': 'www.tripadvisor.com',
+        'accept': '*/*',
+        'accept-language': 'en-US,en;q=0.9',
+        'content-type': 'application/json',
+        # 'cookie': 'datadome=HzoMS4d9zQPohVkHwNryHUurcq1LMYl_ZZzuN8JB~~RYPoHo9Dv62h9oNaemiAPBdkzhm5ylx77eFUoQVaff83VcOSgNQzHhT1pIpSaFYNBurftfCLvn0E6qmxHEBo2M; TASameSite=1; TAUnique=%1%enc%3A5yphkXU%2B%2BLE12Ai27pmPshWwJnM%2F%2BIoJceiJCLjggzgTdR%2F89nytZX2VzCc4LdYwNox8JbUSTxk%3D; TASSK=enc%3AAOZhcd88jgZx5Gsg6ghAZ%2BnEIw2nWbyNt2a86V%2Fxaoe%2B3el4fX7x%2BXx8BXZQ3NQEgAraizZaeCeD5XEXSa%2FQLuiqBYIWJ61wCvDFJ4YoStZf82FuVX1vmnFVCf2MVuixtg%3D%3D; TATrkConsent=eyJvdXQiOiJBRFYsU09DSUFMX01FRElBIiwiaW4iOiJBTkEsRlVOQ1RJT05BTCJ9; TATravelInfo=V2*A.2*MG.-1*HP.2*FL.3*DSM.1707312617200*RS.1; TART=%1%enc%3A9zZlyhdOj38KSphF3FXw6xYJcETBXMBq%2Ffm1piT%2FWi%2BVCaMzj%2B1f6b%2F2uGqXJTalW1JxtpsONWQ%3D; VRMCID=%1%V1*id.10568*llp.%2FAttractionProductReview-g298570-d19765373-Country_Batu_Cave_Half_Day_Tour_SIC_Join_In_Tour-Kuala_Lumpur_Wilayah_Persekutuan%5C.html*e.1709372788257; TADCID=QXqLUkLHzHBJmrMRABQCmq6heh9ZSU2yA8SXn9Wv5HvQn-Y33B4xfO7p1i-Qw5kkJpDObtcP915YMtW0N5AcPkh-75RzvqnB80k; TASID=7ED23334028EBCDF6E6646243E27F2A5; _abck=4586BF59B484F2C5F4E0FBCB035DD521~-1~YAAQhpbTZwNXpFWNAQAACwPV4AuWSOk/4m1kYCuf99W+YpT/H0YtrxRPKuDV3YGFvEBOFWKGgn+DSkZOCv5u8ny3waAqrATbRbGN975UAJq9ufB1YElaLt/0TJKzSYHH4DszaR/XTrmwGq53W9ue0RVtICtFs4GNqSbugYiEc/c2MS4T2KdWX1svIc9Dn9ZyOM5DEMUBT5n7x08J+uNgYdpJgnhAu/cE3yLxCoVEvKFsXk3j+MuYAxmCIeQLJZWagfQI0p3DZ86IVJJpJul506ZNmEY73rwOavOgQfGWBufb6mfslM2ry29u1xUkU8hNzLZjXc2/divAduwKaUQ4ZkdZ/mFub42+zFEvYpFSHjC+mKbTU0LTBPORnPUAt5Ell42daY/WU7/BvVn/CtM=~-1~-1~-1; bm_sz=055476BCC7F4EAAD393E17082546A6AB~YAAQhpbTZwRXpFWNAQAACwPV4BYOO8wQB7xuFtn7QN8nIGH9u4EE2J3flQWho5AWkDK2InqNTJNiEUHWXjcyLoiBqC9QWcRP6K4PxAf10/A4YJkk4Sldlm6z+YW8p8867ZlWjMqhhIiJo914kTM+WJyCIBTSg7sNButWX/n/eG28nQmbL2+hIu8dl896O6/E13Y2RTQdpS6mCT7VvnazbxnSJJTtujgKLtLdsW+Fc+sUt24g69d71Aqs1PmObPVp/dcjj24wPtSwI02AccPZcbT2miqY23TnbShy8ep+SpBZJUf7b8H5YPhf2RUFcX5l6pql2IVDEr5sSDFNoW/ZvhejsckrtbQk/uls5Sr++zCW7O5dM25jOCwriQ==~4604467~3552070; PAC=AMDRD6nJxe4c542wticy1zAkYeizseNInXYimPOHrBs9mRllihhWKvERTM6YPVYqQyKzC_QZipzkEqbcsA-C5rT3ZV7pukd59-tkxKprgBDFtsCdu5XOobjwDGeyYJ5eCcUFJmqc5fLLqhngTfE2d-M%3D; SRT=TART_SYNC; ServerPool=R; PMC=V2*MS.29*MD.20240207*LD.20240225; OptanonConsent=isGpcEnabled=1&datestamp=Sun+Feb+25+2024+21%3A04%3A26+GMT%2B0545+(Nepal+Time)&version=202310.2.0&browserGpcFlag=1&isIABGlobal=false&hosts=&consentId=0d5f4688-c039-4d12-bbaa-656e08345da8&interactionCount=1&landingPath=NotLandingPage&groups=C0001%3A1%2CC0002%3A1%2CC0003%3A1%2CC0004%3A0&AwaitingReconsent=false; __vt=uBx-KpNRwE0G3XPIABQCwRB1grfcRZKTnW7buAoPsSuuTvKqwzfSq4CJU7Vjphmifrmns4q4Nv2HJHXep43kzzcm_np6LKxYM_CWFk4F7SdBN86gyGmKPDtglnNZPYUAbrSKd3fEzSI07viIf8WLIg0b_g; roybatty=TNI1625!AGaopfC8r%2BXkGioblp2qWcBh6r5WCHKCgb%2FKsF%2FYhl7G1iA%2FOfunwpn2paNrEWJlIrR%2BTJTrsNVQkx1t6PHg6KYpQROLtEfnx6p1ATq4CLVFrANc8j8vs5BJC3JB0U3m39XWBcRuchH3AL9Vr2Ru0lmwQYdo2alOcbh46gt%2BXEfwYD%2BwwUbfWxJ2M4uRfh%2BNKw%3D%3D%2C1; TASession=V2ID.7ED23334028EBCDF6E6646243E27F2A5*SQ.20*LS.DemandLoadAjax*HS.recommended*ES.popularity*DS.5*SAS.popularity*FPS.oldFirst*FA.1*DF.0*TRA.true*EAU._; TAUD=LA-1707309208069-1*RDD-1-2024_02_07*HDD-3409041-2024_02_18.2024_02_19*ARC-96486623*LG-1565744525-2.1.F.*LD-1565744526-.....',
+        'origin': 'https://www.tripadvisor.com',
+        'referer': f'https://www.tripadvisor.com/Profile/{username}',
+        'sec-ch-ua': '"Not A(Brand";v="99", "Brave";v="121", "Chromium";v="121"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"Linux"',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'same-origin',
+        'sec-fetch-site': 'same-origin',
+        'sec-gpc': '1',
+        'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
+    }
+
+    json_data = [
+        {
+            'variables': {
+                'userName': username,
+            },
+            'extensions': {
+                'preRegisteredQueryId': 'ecb4eb0c5349550c',
+            },
+        },
+        {
+            'variables': {
+                'allowedTypes': [],
+                'locationId': 1,
+                'owner': 'E28CF4070A4C056580C6EF0352B4B3F4',
+                'placement': 'PROFILE',
+                'puid': '096e1981-9a04-469e-975e-fb94efc023b6',
+                'sessionType': 'DESKTOP',
+                'sectionId': 'a0de2f22-49ba-4377-9109-5853a19c7eae_0',
+            },
+            'extensions': {
+                'preRegisteredQueryId': 'c1178a2624e1fd8e',
+            },
+        },
+        {
+            'variables': {
+                'username': username,
+            },
+            'extensions': {
+                'preRegisteredQueryId': 'd06b57a5164dd54b',
+            },
+        },
+        {
+            'variables': {
+                'username': username,
+                'reset': True,
+                'allowedTypes': [],
+                'sessionType': 'TABLET_WEB',
+                'puid': '096e1981-9a04-469e-975e-fb94efc023b6',
+                'preloadForumPostIds': [],
+                'preloadLinkPostIds': [],
+                'preloadPhotoIds': [],
+                'preloadMediaBatchIds': [],
+                'preloadRepostIds': [],
+                'preloadReviewIds': [],
+                'preloadVideoIds': [],
+                'socialReference': True,
+                'shouldFetchTripsStatuses': False,
+            },
+            'extensions': {
+                'preRegisteredQueryId': '991491c725fc1626',
+            },
+        },
+    ]
+
+    return (cookies, headers, json_data)

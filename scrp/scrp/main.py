@@ -31,24 +31,12 @@ def parse_json(json_response):
         hometown = review['userProfile']['hometown']
         url = review['cardLink']['webRoute']['webLinkUrl']
         images = review['userProfile']['profileImage']['photoSizes']
+        profile = review['userProfile']['profileRoute']['url']
         
         for index, image in enumerate(images):
             photo = photo | {f'photo{index}': image['url']}
 
-        content_list.append({'title': title, 'body':body, 'date':date, 'name':name, 'hometown':hometown, 'url':url, 'images': photo})
-
-        # currentPageNumber = pr[4]['data']['Result'][0]['detailSectionGroups'][0]['detailSections'][0]['tabs'][0]['content'][12]['currentPageNumber']
-    # try:
-    # next_page = pr[3]['data']['Result'][0]['detailSectionGroups'][0]['detailSections'][0]['tabs'] \
-    #                 [0]['content'][12]['links'][1]['updateLink']['webRoute']['webLinkUrl']
-        # print('next_page\n')
-        # print(next_page) 
-        # print('\n\n\n\n')
-    # except:
-        # next_page = None
-
-    # print(content_list[0])
-    # print(next_page)
+        content_list.append({'title': title, 'body':body, 'date':date, 'name':name, 'hometown':hometown, 'profile':profile, 'url':url, 'images': photo})
 
     return content_list
 
@@ -63,7 +51,6 @@ def get_geo_info(url):
     geo = url.split('-g')[1].split('-d')[0]
     detail = url.split('-d')[1].split('-or')[0]
     
-
     try:
         detail = int(detail)
         detail = str(detail)
@@ -125,16 +112,8 @@ def handle_json(geo_info, update_token=None, total_reviews=[]):
     """ Scrape multiple pages of reviews """
 
     res = json_request(geo_info['url'], geo_info['geo'], geo_info['detail'], geo_info['offset'], geo_info['attraction'], update_token)
-    # print(res[0]['data']['Opf_getOnPageFactorsForLocale'][0]['errMessage'])
     no_of_reviews = res[4]['data']['Result'][0]['detailSectionGroups'][0]['detailSections'][0]['tabs'][0]['content'][1]['reviewCountText']['text'].split(' ')[0]
     update_token = res[4]['data']['Result'][0]['detailSectionGroups'][0]['detailSections'][0]['tabs'][0]['content'][12]['links'][2]['updateLink']['updateToken']
-    # print(update_token)
-    # print(no_of_reviews)
-    # print(len(total_reviews))
-
-    # print('\n\n')
-    # print(res)
-    # print(res[4]['data']['Result'][0]['detailSectionGroups'][0]['detailSections'][0]['tabs'][0]['content'][2:12][0])
 
     if (int(geo_info['offset'].split('r')[1]) + 10) < (int(no_of_reviews) - 50): 
         reviews = parse_json(res)
@@ -150,14 +129,6 @@ def handle_json(geo_info, update_token=None, total_reviews=[]):
     else: 
         print('not running')
 
-    # print('json_reviews\n')
-    # print(len(total_reviews))
-    # print(f'next_page - {next_page}')
-
-    # if next_page:
-    #     total_reviews = handle_json(next_page)
-    
-
     return total_reviews
 
 
@@ -166,9 +137,8 @@ def scrp_main():
     for url in urls:
         geo_info = get_geo_info(url) 
         result = json_request(geo=geo_info['geo'], detail=geo_info['detail'], offset=geo_info['offset'], url=url, update_token=None, attraction=geo_info['attraction'])
-        # print(result)
+
         update_token = result[4]['data']['Result'][0]['detailSectionGroups'][3]['detailSections'][0]['tabs'][0]['content'][12]['links'][1]['updateLink']['updateToken']
-        print(update_token)
 
         result_list = handle_json(geo_info=geo_info, update_token=update_token, total_reviews=[])
     save_json(result_list)
