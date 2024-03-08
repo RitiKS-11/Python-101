@@ -60,18 +60,13 @@ class HimalayanTimes(NewsBase):
         articles = self.soup.find_all('article', class_='row animate-box fadeInUp animated-fast')
 
         for article in articles:
-            tilte = article.find('h3', class_='alith_post_title').text
+            title = article.find('h3', class_='alith_post_title').text
             url = article.find('h3', class_='alith_post_title').find('a')['href']
             description = article.find('div', class_='alith_post_except').text.strip().replace('\n','')
 
-            parsed_list.append({'title': tilte, 'description': description, 'url': url})
+            parsed_list.append({'title': title, 'description': description, 'url': url})
 
         self.data = parsed_list
-
-
-        
-        print(len(self.data))
-
         self.save_data('himalayantimes',self.data, int(current_page) + 1)
 
     def next(self):
@@ -81,8 +76,39 @@ class HimalayanTimes(NewsBase):
         self.parse_content()
 
 
+class RatoPati(NewsBase):
+    def __init__(self):
+        self.page = self.get_page('ratopati')
+        self.url = f'https://english.ratopati.com/search?query=tech&page={self.page}'
+        self.data = {}
+
+    def parse_content(self):
+        parsed_list = []
+        self.content = self.get_response()
+        self.soup = self.create_soup(self.content.text)
+
+        articles = self.soup.find_all('article', class_='post-card post-card__more-secondary alternate')
+        current_page = self.soup.find('li', class_='page-item active').text
+
+        for article in articles:
+            title = article.find('h3', class_='post-card__title').text.strip().replace('\n','')
+            url = article.find('h3', class_='post-card__title').find('a')['href']
+            description = article.find('div', class_='article-excerpt-default__teaser').text.strip().replace('\n','')
+
+            parsed_list.append({'title': title, 'description': description, 'url': url})
+
+        print(parsed_list)
+
+        self.data = parsed_list
+        self.save_data('ratopati', self.data, int(current_page) + 1)
+
+
+        
+
+
+
 def process():
-    result = HimalayanTimes()
+    result = RatoPati()
     result.parse_content()
     # result.next()
 
