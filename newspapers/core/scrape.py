@@ -16,15 +16,16 @@ class NewsBase:
         return soup
     
     def save_data(self, site, data, page):
+        contents = dict()
         if os.path.isfile(site+'.json'):
             with open(site+'.json', 'r') as file:
                 contents = json.load(file)
 
-            contents = contents + data
-            contents[0]['current_page'] = page
+            contents['articles'] = contents['articles'] + data
+            contents['current_page'] = page
         else:
-            contents = data
-            contents.insert(0, {'current_page':page})
+            contents['articles'] = data
+            contents['current_page'] = page
 
 
         # filename = site + datetime.now().strftime('%c').replace(' ','_') + '.json'
@@ -36,8 +37,8 @@ class NewsBase:
             with open(site+'.json', 'r') as file:
                 contents = json.load(file)
                 
-                if 'current_page' in contents[0].keys():
-                    return contents[0]['current_page']
+                if 'current_page' in contents.keys():
+                    return contents['current_page']
                 return 1
         return 1    
         
@@ -46,7 +47,7 @@ class HimalayanTimes(NewsBase):
     def __init__(self, url=''):
         self.page_no = self.get_page('himalayantimes')
         self.url = f'https://thehimalayantimes.com/search?query=job&pgno={self.page_no}'
-        self.data = []
+        self.data = {}
 
     def parse_content(self):
         parsed_list = []
@@ -65,7 +66,8 @@ class HimalayanTimes(NewsBase):
 
             parsed_list.append({'title': tilte, 'description': description, 'url': url})
 
-        self.data = self.data + parsed_list
+        self.data = parsed_list
+
 
         
         print(len(self.data))
@@ -86,6 +88,3 @@ def process():
 
 if __name__ == "__main__":
     process()
-    # r = NewsBase()
-    # a =  r.get_page('himalayantimes')
-    # print(a)
