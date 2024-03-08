@@ -17,8 +17,10 @@ class NewsBase:
     
     def save_data(self, site, data, page):
         contents = dict()
-        if os.path.isfile(site+'.json'):
-            with open(site+'.json', 'r') as file:
+        filename = site + '.json'
+
+        if os.path.isfile(filename) and os.stat(filename).st_size != 0:
+            with open(filename, 'r') as file:
                 contents = json.load(file)
 
             contents['articles'] = contents['articles'] + data
@@ -28,13 +30,15 @@ class NewsBase:
             contents['current_page'] = page
 
 
-        # filename = site + datetime.now().strftime('%c').replace(' ','_') + '.json'
-        with open(site+'.json', 'w') as file:
+        with open(filename, 'w') as file:
             json.dump(contents, file, indent=4)
 
     def get_page(self, site):
-        if os.path.isfile(site+'.json'):
-            with open(site+'.json', 'r') as file:
+        filename = site + '.json'
+        
+        if os.path.isfile(filename) and os.stat(filename).st_size != 0:
+
+            with open(filename, 'r') as file:
                 contents = json.load(file)
                 
                 if 'current_page' in contents.keys():
