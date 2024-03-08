@@ -4,8 +4,9 @@ import json
 from datetime import datetime
 
 class NewsBase:
-    def __init__(self, url=''):
+    def __init__(self, url='', keyword='tech'):
         self.url = url
+        self.keyword = keyword
 
     def get_response(self):
         response= requests.get(self.url, timeout=10)
@@ -35,7 +36,7 @@ class NewsBase:
 
     def get_page(self, site):
         filename = site + '.json'
-        
+
         if os.path.isfile(filename) and os.stat(filename).st_size != 0:
 
             with open(filename, 'r') as file:
@@ -49,8 +50,9 @@ class NewsBase:
 
 class HimalayanTimes(NewsBase):
     def __init__(self, url=''):
+        super().__init__()
         self.page_no = self.get_page('himalayantimes')
-        self.url = f'https://thehimalayantimes.com/search?query=job&pgno={self.page_no}'
+        self.url = f'https://thehimalayantimes.com/search?query={self.keyword}&pgno={self.page_no}'
         self.data = {}
 
     def parse_content(self):
@@ -59,8 +61,6 @@ class HimalayanTimes(NewsBase):
         self.soup = self.create_soup(self.content.text)
 
         current_page = self.soup.find('li', class_='pager-nav active').text
-        print(current_page)
-        # self.next_page = self.soup.find_all('li', class_='pager-nav')[int(self.current_page)+1].find('a')['href']
         articles = self.soup.find_all('article', class_='row animate-box fadeInUp animated-fast')
 
         for article in articles:
@@ -82,8 +82,9 @@ class HimalayanTimes(NewsBase):
 
 class RatoPati(NewsBase):
     def __init__(self):
+        super().__init__()
         self.page = self.get_page('ratopati')
-        self.url = f'https://english.ratopati.com/search?query=tech&page={self.page}'
+        self.url = f'https://english.ratopati.com/search?query={self.keyword}&page={self.page}'
         self.data = {}
 
     def parse_content(self):
@@ -107,15 +108,5 @@ class RatoPati(NewsBase):
         self.save_data('ratopati', self.data, int(current_page) + 1)
 
 
-        
 
 
-
-def process():
-    result = RatoPati()
-    result.parse_content()
-    # result.next()
-
-if __name__ == "__main__":
-    process()
- 
