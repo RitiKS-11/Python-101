@@ -108,5 +108,50 @@ class RatoPati(NewsBase):
         self.save_data('ratopati', self.data, int(current_page) + 1)
 
 
+class SetoPati(NewsBase):
+    def __init__(self):
+        super().__init__()
+        self.page = self.get_page('setopati')
+        self.url = f'https://en.setopati.com/search?keyword={self.keyword}&page={self.page}'
+
+    def parse_content(self):
+        parsed_list = []
+
+        self.content = self.get_response()
+        self.soup = self.create_soup(self.content.text)
+
+        articles = self.soup.find_all('div', class_='items col-md-4')
+        current_page = self.soup.find('span', class_='current').text
+
+        for article in articles:
+            title = article.find('a').text.replace('\n','').strip()
+            url = article.find('a')['href']
+
+            parsed_list.append({'title': title, 'url': url})
+
+        self.save_data('setopati', parsed_list, int(current_page) + 1)
+
+class HamroPatro(NewsBase):
+    pass
 
 
+class OnlineKhabar(NewsBase):
+    pass
+
+
+class NepalKhabar(NewsBase):
+    pass
+
+
+class Republica(NewsBase):
+    def __int__(self):
+        self.url = 'https://myrepublica.nagariknetwork.com/news/ajax/query?key=tech&page=1'
+        
+
+    def parse_content(self):
+        self.content = self.get_response()
+        self.soup = self.create_soup(self.content.text)
+
+        print(self.content.title)
+
+        return self.content.text
