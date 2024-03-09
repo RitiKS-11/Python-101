@@ -124,34 +124,58 @@ class SetoPati(NewsBase):
         current_page = self.soup.find('span', class_='current').text
 
         for article in articles:
-            title = article.find('a').text.replace('\n','').strip()
+            title = article.find('a').text.replace('\n','').strip
             url = article.find('a')['href']
 
             parsed_list.append({'title': title, 'url': url})
 
         self.save_data('setopati', parsed_list, int(current_page) + 1)
 
-class HamroPatro(NewsBase):
-    pass
-
 
 class OnlineKhabar(NewsBase):
-    pass
+    def __init__(self):
+        super().__init__()
+        self.page = self.get_page('onlinekhabar')
+        self.url = f'https://english.onlinekhabar.com/page/{self.page}?s={self.keyword}'
+
+    def parse_content(self):
+        parsed_list = []
+
+        content = self.get_response()
+        soup = self.create_soup(content.text)
+
+        articles = soup.find_all('div', class_='ok-news-post ltr-post')
+        current_page = soup.find('span', class_='page-numbers current').text
+
+        for ariticle in articles:
+            title = ariticle.find('h2').find('a').text.replace('\n','').strip()
+            url = ariticle.find('h2').find('a')['href']
+
+            parsed_list.append({'title': title, 'url': url})
+
+        self.save_data('onlinekhabar', parsed_list, int(current_page)+1)
 
 
 class NepalKhabar(NewsBase):
-    pass
-
-
-class Republica(NewsBase):
-    def __int__(self):
-        self.url = 'https://myrepublica.nagariknetwork.com/news/ajax/query?key=tech&page=1'
-        
+    def __init__(self):
+        super().__init__()
+        self.page = self.get_page('nepalkhabar')
+        self.url = f'https://en.nepalkhabar.com/search/{self.keyword}?page={self.page}'
 
     def parse_content(self):
-        self.content = self.get_response()
-        self.soup = self.create_soup(self.content.text)
+        parsed_list = []
 
-        print(self.content.title)
+        content = self.get_response()
+        soup = self.create_soup(content.text)
 
-        return self.content.text
+        articles = soup.find_all('div', class_='uk-grid-margin uk-first-column')
+        current_page = soup.find('li', class_='uk-active')
+
+        for article in articles:
+            title = article.find('a', class_='uk-link-heading').text.strip().replace('\n','')
+            url = article.find('a', class_='uk-link-heading')['href']
+
+            parsed_list.append({'title': title, 'url': url})
+
+        self.save_data('nepalkhabar', parsed_list, int(current_page)+1)
+
