@@ -5,5 +5,5 @@ setup(
     version='1.0.0',
     description='News from newspapers',
     author='RitiKS',
-    packages=['newspapers']
+    packages=['core']
 )

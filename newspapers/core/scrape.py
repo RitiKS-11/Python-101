@@ -179,3 +179,7 @@ class NepalKhabar(NewsBase):
 
         self.save_data('nepalkhabar', parsed_list, int(current_page)+1)
 
+
+if __name__ == "__main__":
+    n = NewsBase('https://twitter.com')
+    n.get_response()
