@@ -1,4 +1,5 @@
 import requests, os
+import csv
 from bs4 import BeautifulSoup
 import json
 from datetime import datetime
@@ -34,6 +35,7 @@ class NewsBase:
         with open(filename, 'w') as file:
             json.dump(contents, file, indent=4)
 
+ 
     def get_page(self, site):
         filename = site + '.json'
 
@@ -49,20 +51,26 @@ class NewsBase:
         
 
 class HimalayanTimes(NewsBase):
-    def __init__(self, url=''):
-        super().__init__()
+    def __init__(self, keyword):
+        self.keyword = keyword
+        super().__init__(keyword=self.keyword)
         self.page_no = self.get_page('himalayantimes')
         self.url = f'https://thehimalayantimes.com/search?query={self.keyword}&pgno={self.page_no}'
+        print(self.url)
         self.data = {}
-
-    def parse_content(self):
-        parsed_list = []
         self.content = self.get_response()
         self.soup = self.create_soup(self.content.text)
 
-        current_page = self.soup.find('li', class_='pager-nav active').text
-        articles = self.soup.find_all('article', class_='row animate-box fadeInUp animated-fast')
 
+    def parse_content(self):
+        parsed_list = []
+        
+        self.__init__(self.keyword)
+
+        current_page = self.soup.find('li', class_='pager-nav active').text
+        print(current_page,'------')
+        articles = self.soup.find_all('article', class_='row animate-box fadeInUp animated-fast')
+        
         for article in articles:
             title = article.find('h3', class_='alith_post_title').text
             url = article.find('h3', class_='alith_post_title').find('a')['href']
@@ -72,6 +80,10 @@ class HimalayanTimes(NewsBase):
 
         self.data = parsed_list
         self.save_data('himalayantimes',self.data, int(current_page) + 1)
+
+    def get_total_page(self):
+        total_page = int(self.soup.find_all('li', class_='pager-nav')[-2].text)
+        return total_page
 
     def next(self):
         # print(self.next_page)
