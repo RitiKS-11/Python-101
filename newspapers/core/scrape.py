@@ -2,15 +2,15 @@ import requests, os
 import csv
 from bs4 import BeautifulSoup
 import json
-from datetime import datetime
+from pprint import pprint
 
 class NewsBase:
     def __init__(self, url='', keyword='tech'):
         self.url = url
         self.keyword = keyword
 
-    def get_response(self):
-        response= requests.get(self.url, timeout=10)
+    def get_response(self, headers=''):
+        response= requests.get(self.url, timeout=10, headers=headers)
         return response
     
     def create_soup(self, response_text):
@@ -68,7 +68,7 @@ class HimalayanTimes(NewsBase):
         self.__init__(self.keyword)
 
         current_page = self.soup.find('li', class_='pager-nav active').text
-        print(current_page,'------')
+        current_page = int(current_page) + 1
         articles = self.soup.find_all('article', class_='row animate-box fadeInUp animated-fast')
         
         for article in articles:
@@ -79,7 +79,7 @@ class HimalayanTimes(NewsBase):
             parsed_list.append({'title': title, 'description': description, 'url': url})
 
         self.data = parsed_list
-        self.save_data('himalayantimes',self.data, int(current_page) + 1)
+        self.save_data('himalayantimes',self.data, current_page)
 
     def get_total_page(self):
         total_page = int(self.soup.find_all('li', class_='pager-nav')[-2].text)
@@ -190,6 +190,43 @@ class NepalKhabar(NewsBase):
             parsed_list.append({'title': title, 'url': url})
 
         self.save_data('nepalkhabar', parsed_list, int(current_page)+1)
+
+
+class Republica(NewsBase):
+    def __init__(self, keyword='tech'):
+        self.keyword = keyword
+        self.page = self.get_page('republica')
+        print(f'Page - {self.page}')
+        self.url = f'https://myrepublica.nagariknetwork.com/news/ajax/query?key={self.keyword}&page={self.page}'
+
+        print(self.url)
+        headers = {
+            'x-requested-with': 'XMLHttpRequest',
+        }
+        self.content = self.get_response(headers)
+
+    def parse_content(self):
+        parsed_list = []
+        self.__init__(self.keyword)
+
+        articles = self.content.json()['template'].split('<h4>')[1:]
+        
+        for article in articles:
+            url = article.split('<a href="')[1].split('/"><u>')[0]
+            title = article.split('/"><u>')[1].split('</u></a>')[0]
+            description = article.split('<p class="text-default">')[1].split('</p>')[0]
+
+            parsed_list.append({'title':title, 'url':url, 'description':description})
+
+        page = article.split('<li class="active">\n                <span>')[1].split('</span>\n')[0]
+        page = int(page) + 1
+
+        self.save_data('republica', parsed_list, page)
+
+    def get_total_page(self):
+        total_page = self.content.json()['template'].split('<li class="disabled">\n                    <span>&hellip;</span>\n                </li>\n                            <li>\n')[-1].split('">')[1].split('</a>\n')[0]
+        return int(total_page)
+
 
 
 if __name__ == "__main__":

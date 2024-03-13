@@ -13,7 +13,6 @@ def json_to_csv(site):
             writer.writerow(result)
 
     
-
 def process():
     result = OnlineKhabar()
     result.parse_content()
@@ -31,7 +30,25 @@ def get_results_himalayantimes():
     except AttributeError:
         json_to_csv('himalayantimes')
 
+
+def get_results_republica():
+    try:
+        result = Republica(keyword='bri')
+        total_pages = int(result.get_total_page())
+        current_page = int(result.get_page('republica'))
+
+        for _ in range(current_page, total_pages):
+            result.parse_content()
+
+    except Exception as e:
+        print(e)
+
+    else:
+        json_to_csv('republica')
+
 if __name__ == "__main__":
-    get_results_himalayantimes()
     
+    get_results_republica()
+
+
     
