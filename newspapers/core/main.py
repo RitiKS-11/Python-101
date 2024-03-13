@@ -46,9 +46,21 @@ def get_results_republica():
     else:
         json_to_csv('republica')
 
+
+def get_results_kathmandu_post():
+    try:
+        result = KathmanduPost(keyword='bri')
+        total_page = int(result.get_total_page())
+        current_page = int(result.get_page('kathmandupost'))
+
+        for _ in range(current_page, total_page):
+            result.parse_content()
+
+    except Exception as e:
+        print(e)
+
+    else:
+        json_to_csv('kathmandupost')
+
 if __name__ == "__main__":
-    
-    get_results_republica()
-
-
-    
+    get_results_kathmandu_post()
