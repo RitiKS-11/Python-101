@@ -1,8 +1,6 @@
 import requests, os
-import csv
 from bs4 import BeautifulSoup
 import json
-from pprint import pprint
 
 class NewsBase:
     def __init__(self, url='', keyword='tech'):
@@ -13,10 +11,11 @@ class NewsBase:
         response= requests.get(self.url, timeout=10, headers=headers)
         return response
     
-    def create_soup(self, response_text):
-        soup = BeautifulSoup(response_text, 'html.parser')
-        return soup
-    
+    def get_soup(self):
+        self.content = self.get_response()
+        self.soup = BeautifulSoup(self.content.text, 'html.parser')
+        return self.soup
+       
     def save_data(self, site, data, page):
         contents = dict()
         filename = site + '.json'
@@ -48,19 +47,16 @@ class NewsBase:
                     return contents['current_page']
                 return 1
         return 1    
-        
+
 
 class HimalayanTimes(NewsBase):
     def __init__(self, keyword):
         self.keyword = keyword
-        super().__init__(keyword=self.keyword)
         self.page_no = self.get_page('HimalayanTimes')
         self.url = f'https://thehimalayantimes.com/search?query={self.keyword}&pgno={self.page_no}'
-        print(self.url)
-        self.data = {}
-        self.content = self.get_response()
-        self.soup = self.create_soup(self.content.text)
 
+        self.soup = self.get_soup()
+        
 
     def parse_content(self):
         parsed_list = []
@@ -84,14 +80,8 @@ class HimalayanTimes(NewsBase):
     def get_total_page(self):
         total_page = int(self.soup.find_all('li', class_='pager-nav')[-2].text)
         return total_page
-
-    def next(self):
-        # print(self.next_page)
-        self.url = self.next_page
-        print(self.url)
-        self.parse_content()
-
-
+    
+    
 class RatoPati(NewsBase):
     def __init__(self):
         super().__init__()
@@ -196,13 +186,9 @@ class Republica(NewsBase):
     def __init__(self, keyword='tech'):
         self.keyword = keyword
         self.page = self.get_page('Republica')
-        print(f'Page - {self.page}')
         self.url = f'https://myrepublica.nagariknetwork.com/news/ajax/query?key={self.keyword}&page={self.page}'
 
-        print(self.url)
-        headers = {
-            'x-requested-with': 'XMLHttpRequest',
-        }
+        headers = {'x-requested-with': 'XMLHttpRequest'}
         self.content = self.get_response(headers)
 
     def parse_content(self):
@@ -232,8 +218,9 @@ class KathmanduPost(NewsBase):
     def __init__(self, keyword):
         self.keyword = keyword
         self.page = int(self.get_page('KathmanduPost')) * 10
+
         self.url = f'https://cse.google.com/cse/element/v1?rsz=filtered_cse&num=10&hl=en&source=gcsc&gss=.com&start={self.page}&cselibv=8435450f13508ca1&cx=006439178574289969438%3A21nndnycfqd&q={self.keyword}&safe=off&cse_tok=AB-tC_6-V-nvygNNStnMjuvkL9EY%3A1710327425779&sort=&exp=cc%2Cnpo%2Cdtsq-3&fexp=72519161%2C72519164&callback=google.search.cse.api8080'
-        print(self.page)
+
         self.response = self.get_response()
         response = str(self.response.text)
         new = response.replace('/*O_o*/', ''). \
