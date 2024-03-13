@@ -1,66 +1,48 @@
 import csv
+import os
 
 from core.scrape import *
 
-def json_to_csv(site):
-    with open(f'{site}.json') as file:
-        contents = json.load(file)
 
-    with open(f'{site}.csv', 'w') as file:
-        fieldnames = ['title', 'url', 'description']
-        writer = csv.DictWriter(file, fieldnames=fieldnames)
-        for result in contents['articles']:
-            writer.writerow(result)
+def json_to_csv(site):
+    if os.path.isfile(f'{site}.json'):
+        with open(f'{site}.json') as file:
+            contents = json.load(file)
+
+        with open(f'{site}.csv', 'w') as file:
+            fieldnames = ['title', 'url', 'description']
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
+            for result in contents['articles']:
+                writer.writerow(result)
 
     
 def process():
     result = OnlineKhabar()
     result.parse_content()
 
-def get_results_himalayantimes():
+NEWS_SITES = [HimalayanTimes, Republica, KathmanduPost]
+
+def get_news():
+    for site in NEWS_SITES:
+        print(site)
+        perform_operation(source=site, file=str(site).lower())
+        break
+
+def perform_operation(source, file):
     try:
-        result = HimalayanTimes(keyword='bri')
+        result = source(keyword='bri')
         total_pages = int(result.get_total_page())
-        current_page = int(result.get_page('himalayantimes'))
+        current_page = int(result.get_page(file))
+
+        for _ in range(current_page, total_pages):
+            result.parse_content()
+
+    except Exception as e:
+        print(e)
+
+    finally:
+        json_to_csv(file)
         
-        for _ in range(current_page, total_pages):
-            print(f'Page no - {_}')
-            result.parse_content()
-    
-    except AttributeError:
-        json_to_csv('himalayantimes')
-
-
-def get_results_republica():
-    try:
-        result = Republica(keyword='bri')
-        total_pages = int(result.get_total_page())
-        current_page = int(result.get_page('republica'))
-
-        for _ in range(current_page, total_pages):
-            result.parse_content()
-
-    except Exception as e:
-        print(e)
-
-    else:
-        json_to_csv('republica')
-
-
-def get_results_kathmandu_post():
-    try:
-        result = KathmanduPost(keyword='bri')
-        total_page = int(result.get_total_page())
-        current_page = int(result.get_page('kathmandupost'))
-
-        for _ in range(current_page, total_page):
-            result.parse_content()
-
-    except Exception as e:
-        print(e)
-
-    else:
-        json_to_csv('kathmandupost')
 
 if __name__ == "__main__":
-    get_results_kathmandu_post()
+    get_news()

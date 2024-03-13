@@ -54,7 +54,7 @@ class HimalayanTimes(NewsBase):
     def __init__(self, keyword):
         self.keyword = keyword
         super().__init__(keyword=self.keyword)
-        self.page_no = self.get_page('himalayantimes')
+        self.page_no = self.get_page('HimalayanTimes')
         self.url = f'https://thehimalayantimes.com/search?query={self.keyword}&pgno={self.page_no}'
         print(self.url)
         self.data = {}
@@ -79,7 +79,7 @@ class HimalayanTimes(NewsBase):
             parsed_list.append({'title': title, 'description': description, 'url': url})
 
         self.data = parsed_list
-        self.save_data('himalayantimes',self.data, current_page)
+        self.save_data('HimalayanTimes',self.data, current_page)
 
     def get_total_page(self):
         total_page = int(self.soup.find_all('li', class_='pager-nav')[-2].text)
@@ -195,7 +195,7 @@ class NepalKhabar(NewsBase):
 class Republica(NewsBase):
     def __init__(self, keyword='tech'):
         self.keyword = keyword
-        self.page = self.get_page('republica')
+        self.page = self.get_page('Republica')
         print(f'Page - {self.page}')
         self.url = f'https://myrepublica.nagariknetwork.com/news/ajax/query?key={self.keyword}&page={self.page}'
 
@@ -221,7 +221,7 @@ class Republica(NewsBase):
         page = article.split('<li class="active">\n                <span>')[1].split('</span>\n')[0]
         page = int(page) + 1
 
-        self.save_data('republica', parsed_list, page)
+        self.save_data('Republica', parsed_list, page)
 
     def get_total_page(self):
         total_page = self.content.json()['template'].split('<li class="disabled">\n                    <span>&hellip;</span>\n                </li>\n                            <li>\n')[-1].split('">')[1].split('</a>\n')[0]
@@ -231,7 +231,7 @@ class Republica(NewsBase):
 class KathmanduPost(NewsBase):
     def __init__(self, keyword):
         self.keyword = keyword
-        self.page = int(self.get_page('kathmandupost')) * 10
+        self.page = int(self.get_page('KathmanduPost')) * 10
         self.url = f'https://cse.google.com/cse/element/v1?rsz=filtered_cse&num=10&hl=en&source=gcsc&gss=.com&start={self.page}&cselibv=8435450f13508ca1&cx=006439178574289969438%3A21nndnycfqd&q={self.keyword}&safe=off&cse_tok=AB-tC_6-V-nvygNNStnMjuvkL9EY%3A1710327425779&sort=&exp=cc%2Cnpo%2Cdtsq-3&fexp=72519161%2C72519164&callback=google.search.cse.api8080'
         print(self.page)
         self.response = self.get_response()
@@ -256,7 +256,7 @@ class KathmanduPost(NewsBase):
             parsed_list.append({'title': title, 'url': url, 'description':description})
 
         page = int(page) + 1
-        self.save_data('kathmandupost', parsed_list, page)
+        self.save_data('KathmanduPost', parsed_list, page)
 
     def get_total_page(self):
         total_page = self.json_response['cursor']['pages'][9]['start']
