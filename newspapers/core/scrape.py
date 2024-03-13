@@ -18,7 +18,8 @@ class NewsBase:
        
     def save_data(self, site, data, page):
         contents = dict()
-        filename = site + '.json'
+
+        filename = site + '_contents.json' if type(page) == str else site + '.json'
 
         if os.path.isfile(filename) and os.stat(filename).st_size != 0:
             with open(filename, 'r') as file:
@@ -34,7 +35,6 @@ class NewsBase:
         with open(filename, 'w') as file:
             json.dump(contents, file, indent=4)
 
- 
     def get_page(self, site):
         filename = site + '.json'
 
@@ -47,20 +47,39 @@ class NewsBase:
                     return contents['current_page']
                 return 1
         return 1    
+    
+    def get_all_urls(self, site):
+        urls = []
+        if not os.path.isfile(f'{site}.json'):
+            return False
+        
+        with open(f'{site}.json') as file:
+            file_contents = json.load(file)
+
+        for article in file_contents['articles']:
+            urls.append(article['url'])
+
+        return urls
+
+        
 
 
 class HimalayanTimes(NewsBase):
-    def __init__(self, keyword):
+    def __init__(self, keyword, url=None):
         self.keyword = keyword
         self.page_no = self.get_page('HimalayanTimes')
-        self.url = f'https://thehimalayantimes.com/search?query={self.keyword}&pgno={self.page_no}'
 
+        if url == None:
+            self.url = f'https://thehimalayantimes.com/search?query={self.keyword}&pgno={self.page_no}'
+        else:
+            self.url = url
+
+        print(self.url)
         self.soup = self.get_soup()
         
 
     def parse_content(self):
         parsed_list = []
-        
         self.__init__(self.keyword)
 
         current_page = self.soup.find('li', class_='pager-nav active').text
@@ -74,25 +93,40 @@ class HimalayanTimes(NewsBase):
 
             parsed_list.append({'title': title, 'description': description, 'url': url})
 
-        self.data = parsed_list
-        self.save_data('HimalayanTimes',self.data, current_page)
+        self.save_data('HimalayanTimes', parsed_list, current_page)
 
     def get_total_page(self):
         total_page = int(self.soup.find_all('li', class_='pager-nav')[-2].text)
         return total_page
     
+    def get_full_content(self):
+        urls = self.get_all_urls('HimalayanTimes')
+        current_page = self.get_page('HimalayanTimes_contents')
+
+        index = 0 if type(current_page) == int else urls.index(current_page)
+
+        for url in urls[index+1:]:
+            self.__init__(keyword='', url=url)
+            soup = self.get_soup()
+            
+            title = soup.find('h1', class_='alith_post_title').text.strip()
+            published_date = soup.find('div', class_='article_date').text
+            content_elements = soup.find('div', class_='post-content').find_all('p')
+            content = ''.join(map(lambda x: x.text, content_elements[1:]))
+
+            self.save_data('HimalayanTimes',[{'title': title, 'published_date': published_date, 'url': url, 'content': content}], url)         
+
     
 class RatoPati(NewsBase):
     def __init__(self):
         super().__init__()
         self.page = self.get_page('ratopati')
         self.url = f'https://english.ratopati.com/search?query={self.keyword}&page={self.page}'
-        self.data = {}
+
+        self.soup = self.get_soup()
 
     def parse_content(self):
         parsed_list = []
-        self.content = self.get_response()
-        self.soup = self.create_soup(self.content.text)
 
         articles = self.soup.find_all('article', class_='post-card post-card__more-secondary alternate')
         current_page = self.soup.find('li', class_='page-item active').text
@@ -104,10 +138,10 @@ class RatoPati(NewsBase):
 
             parsed_list.append({'title': title, 'description': description, 'url': url})
 
-        print(parsed_list)
-
-        self.data = parsed_list
         self.save_data('ratopati', self.data, int(current_page) + 1)
+
+    def get_total_page(self):
+        pass
 
 
 class SetoPati(NewsBase):
@@ -133,6 +167,9 @@ class SetoPati(NewsBase):
 
         self.save_data('setopati', parsed_list, int(current_page) + 1)
 
+    def get_total_page(self):
+        pass
+
 
 class OnlineKhabar(NewsBase):
     def __init__(self):
@@ -157,6 +194,9 @@ class OnlineKhabar(NewsBase):
 
         self.save_data('onlinekhabar', parsed_list, int(current_page)+1)
 
+    def get_total_page(self):
+        pass
+
 
 class NepalKhabar(NewsBase):
     def __init__(self):
@@ -164,14 +204,13 @@ class NepalKhabar(NewsBase):
         self.page = self.get_page('nepalkhabar')
         self.url = f'https://en.nepalkhabar.com/search/{self.keyword}?page={self.page}'
 
+        self.soup = self.get_soup()
+
     def parse_content(self):
         parsed_list = []
 
-        content = self.get_response()
-        soup = self.create_soup(content.text)
-
-        articles = soup.find_all('div', class_='uk-grid-margin uk-first-column')
-        current_page = soup.find('li', class_='uk-active')
+        articles = self.soup.find_all('div', class_='uk-grid-margin uk-first-column')
+        current_page = self.soup.find('li', class_='uk-active')
 
         for article in articles:
             title = article.find('a', class_='uk-link-heading').text.strip().replace('\n','')
@@ -180,6 +219,9 @@ class NepalKhabar(NewsBase):
             parsed_list.append({'title': title, 'url': url})
 
         self.save_data('nepalkhabar', parsed_list, int(current_page)+1)
+
+    def get_total_page(self):
+        pass
 
 
 class Republica(NewsBase):

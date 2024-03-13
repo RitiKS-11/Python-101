@@ -45,4 +45,9 @@ def perform_operation(source, file):
         
 
 if __name__ == "__main__":
-    get_news()
+    # get_news()
+
+    r = HimalayanTimes('tech')
+    urls = r.get_full_content()
+    # print(len(urls))
+    # print(urls)
