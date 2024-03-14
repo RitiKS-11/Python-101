@@ -31,12 +31,11 @@ class NewsBase:
             contents['articles'] = data
             contents['current_page'] = page
 
-        print('this is')
         with open(filename, 'w') as file:
             json.dump(contents, file, indent=4)
 
-    @staticmethod
-    def get_page(site):
+    def get_page(self,site):
+        self.validate_path(site)
         filename = site + '.json'
 
         if os.path.isfile(filename) and os.stat(filename).st_size != 0:
@@ -62,6 +61,14 @@ class NewsBase:
             urls.append(article['url'])
 
         return urls
+    
+    @staticmethod
+    def validate_path(file_path):
+        folder_name = file_path.split('/')[-2]
+    
+        if not os.path.isdir(folder_name): 
+            os.mkdir(folder_name)
+        
 
         
 

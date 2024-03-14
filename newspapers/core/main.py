@@ -23,15 +23,17 @@ NEWS_SITES = [HimalayanTimes, Republica, KathmanduPost]
 
 def get_news():
     for site in NEWS_SITES:
-        print(site)
-        perform_operation(source=site, file=str(site).lower())
+        perform_operation(source=site, keyword='nepal')
         break
 
-def perform_operation(source, file):
+def perform_operation(source, keyword):
     try:
-        result = source(keyword='nepal', url=None)
+
+        result = source(keyword=keyword, url=None)
+        full_path = os.path.join(os.getcwd() + '/' + str(result.__repr__()) + '/' + keyword)
+
         total_pages = int(result.get_total_page())
-        current_page = int(result.get_page(file))
+        current_page = int(result.get_page(full_path))
 
         for _ in range(current_page, total_pages):
             result.parse_content()
@@ -40,7 +42,7 @@ def perform_operation(source, file):
         print(e)
 
     finally:
-        json_to_csv(file)
+        json_to_csv(keyword)
         
 
 if __name__ == "__main__":

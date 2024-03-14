@@ -5,7 +5,7 @@ from core.scrape import NewsBase
 class HimalayanTimes(NewsBase):
     def __init__(self, keyword, url=None):
         self.keyword = keyword
-        self.fname = self.keyword
+        self.fname = os.path.join(os.getcwd() + '/himalayantimes/' + self.keyword)
         self.page_no = self.get_page(self.fname)
 
         if url == None:
@@ -52,3 +52,6 @@ class HimalayanTimes(NewsBase):
             self.fname = self.fname + '_content'
 
             self.save_data(self.fname, [{'title': title, 'published_date': published_date, 'url': url, 'content': content}], url)       
+
+    def __repr__(self):
+        return 'himalayantimes'
