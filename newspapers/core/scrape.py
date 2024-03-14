@@ -15,11 +15,11 @@ class NewsBase:
         self.content = self.get_response()
         self.soup = BeautifulSoup(self.content.text, 'html.parser')
         return self.soup
-       
-    def save_data(self, site, data, page):
+    
+    @staticmethod
+    def save_data(site, data, page):
         contents = dict()
-
-        filename = site + '_contents.json' if type(page) == str else site + '.json'
+        filename = site + '.json'
 
         if os.path.isfile(filename) and os.stat(filename).st_size != 0:
             with open(filename, 'r') as file:
@@ -31,11 +31,12 @@ class NewsBase:
             contents['articles'] = data
             contents['current_page'] = page
 
-
+        print('this is')
         with open(filename, 'w') as file:
             json.dump(contents, file, indent=4)
 
-    def get_page(self, site):
+    @staticmethod
+    def get_page(site):
         filename = site + '.json'
 
         if os.path.isfile(filename) and os.stat(filename).st_size != 0:
@@ -48,10 +49,11 @@ class NewsBase:
                 return 1
         return 1    
     
-    def get_all_urls(self, site):
+    @staticmethod
+    def get_all_saved_urls( site):
         urls = []
         if not os.path.isfile(f'{site}.json'):
-            return False
+            return ''
         
         with open(f'{site}.json') as file:
             file_contents = json.load(file)
@@ -64,57 +66,7 @@ class NewsBase:
         
 
 
-class HimalayanTimes(NewsBase):
-    def __init__(self, keyword, url=None):
-        self.keyword = keyword
-        self.page_no = self.get_page('HimalayanTimes')
-
-        if url == None:
-            self.url = f'https://thehimalayantimes.com/search?query={self.keyword}&pgno={self.page_no}'
-        else:
-            self.url = url
-
-        print(self.url)
-        self.soup = self.get_soup()
-        
-
-    def parse_content(self):
-        parsed_list = []
-        self.__init__(self.keyword)
-
-        current_page = self.soup.find('li', class_='pager-nav active').text
-        current_page = int(current_page) + 1
-        articles = self.soup.find_all('article', class_='row animate-box fadeInUp animated-fast')
-        
-        for article in articles:
-            title = article.find('h3', class_='alith_post_title').text
-            url = article.find('h3', class_='alith_post_title').find('a')['href']
-            description = article.find('div', class_='alith_post_except').text.strip().replace('\n','')
-
-            parsed_list.append({'title': title, 'description': description, 'url': url})
-
-        self.save_data('HimalayanTimes', parsed_list, current_page)
-
-    def get_total_page(self):
-        total_page = int(self.soup.find_all('li', class_='pager-nav')[-2].text)
-        return total_page
-    
-    def get_full_content(self):
-        urls = self.get_all_urls('HimalayanTimes')
-        current_page = self.get_page('HimalayanTimes_contents')
-
-        index = 0 if type(current_page) == int else urls.index(current_page)
-
-        for url in urls[index+1:]:
-            self.__init__(keyword='', url=url)
-            soup = self.get_soup()
-            
-            title = soup.find('h1', class_='alith_post_title').text.strip()
-            published_date = soup.find('div', class_='article_date').text
-            content_elements = soup.find('div', class_='post-content').find_all('p')
-            content = ''.join(map(lambda x: x.text, content_elements[1:]))
-
-            self.save_data('HimalayanTimes',[{'title': title, 'published_date': published_date, 'url': url, 'content': content}], url)         
+  
 
     
 class RatoPati(NewsBase):
@@ -224,69 +176,6 @@ class NepalKhabar(NewsBase):
         pass
 
 
-class Republica(NewsBase):
-    def __init__(self, keyword='tech'):
-        self.keyword = keyword
-        self.page = self.get_page('Republica')
-        self.url = f'https://myrepublica.nagariknetwork.com/news/ajax/query?key={self.keyword}&page={self.page}'
-
-        headers = {'x-requested-with': 'XMLHttpRequest'}
-        self.content = self.get_response(headers)
-
-    def parse_content(self):
-        parsed_list = []
-        self.__init__(self.keyword)
-
-        articles = self.content.json()['template'].split('<h4>')[1:]
-        
-        for article in articles:
-            url = article.split('<a href="')[1].split('/"><u>')[0]
-            title = article.split('/"><u>')[1].split('</u></a>')[0]
-            description = article.split('<p class="text-default">')[1].split('</p>')[0]
-
-            parsed_list.append({'title':title, 'url':url, 'description':description})
-
-        page = article.split('<li class="active">\n                <span>')[1].split('</span>\n')[0]
-        page = int(page) + 1
-
-        self.save_data('Republica', parsed_list, page)
-
-    def get_total_page(self):
-        total_page = self.content.json()['template'].split('<li class="disabled">\n                    <span>&hellip;</span>\n                </li>\n                            <li>\n')[-1].split('">')[1].split('</a>\n')[0]
-        return int(total_page)
 
 
-class KathmanduPost(NewsBase):
-    def __init__(self, keyword):
-        self.keyword = keyword
-        self.page = int(self.get_page('KathmanduPost')) * 10
 
-        self.url = f'https://cse.google.com/cse/element/v1?rsz=filtered_cse&num=10&hl=en&source=gcsc&gss=.com&start={self.page}&cselibv=8435450f13508ca1&cx=006439178574289969438%3A21nndnycfqd&q={self.keyword}&safe=off&cse_tok=AB-tC_6-V-nvygNNStnMjuvkL9EY%3A1710327425779&sort=&exp=cc%2Cnpo%2Cdtsq-3&fexp=72519161%2C72519164&callback=google.search.cse.api8080'
-
-        self.response = self.get_response()
-        response = str(self.response.text)
-        new = response.replace('/*O_o*/', ''). \
-                        replace('google.search.cse.api8080(',''). \
-                        replace(');', '')
-        self.json_response = json.loads(new)
-
-    def parse_content(self):
-        parsed_list = []
-        
-        self.__init__(self.keyword)
-        articles = self.json_response['results']
-        page = int(self.json_response['cursor']['currentPageIndex'])
-
-        for article in articles:
-            title = article['titleNoFormatting']
-            description = article['contentNoFormatting']
-            url = article['url']
-
-            parsed_list.append({'title': title, 'url': url, 'description':description})
-
-        page = int(page) + 1
-        self.save_data('KathmanduPost', parsed_list, page)
-
-    def get_total_page(self):
-        total_page = self.json_response['cursor']['pages'][9]['start']
-        return total_page

@@ -1,7 +1,10 @@
 import csv
 import os
+import json
 
-from core.scrape import *
+from core.sites.himalayan_times import HimalayanTimes
+from core.sites.republica import Republica
+from core.sites.kathmandu_post import KathmanduPost
 
 
 def json_to_csv(site):
@@ -16,10 +19,6 @@ def json_to_csv(site):
                 writer.writerow(result)
 
     
-def process():
-    result = OnlineKhabar()
-    result.parse_content()
-
 NEWS_SITES = [HimalayanTimes, Republica, KathmanduPost]
 
 def get_news():
@@ -30,7 +29,7 @@ def get_news():
 
 def perform_operation(source, file):
     try:
-        result = source(keyword='bri')
+        result = source(keyword='nepal', url=None)
         total_pages = int(result.get_total_page())
         current_page = int(result.get_page(file))
 
@@ -45,9 +44,9 @@ def perform_operation(source, file):
         
 
 if __name__ == "__main__":
-    # get_news()
+    get_news()
 
-    r = HimalayanTimes('tech')
-    urls = r.get_full_content()
+    # r = HimalayanTimes('nepal')
+    # urls = r.get_full_content()
     # print(len(urls))
     # print(urls)
