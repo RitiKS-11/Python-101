@@ -37,7 +37,7 @@ class HimalayanTimes(NewsBase):
         total_page = int(self.soup.find_all('li', class_='pager-nav')[-2].text)
         return total_page
     
-    def get_full_content(self):
+    def full_content(self):
         saved_urls = self.get_all_saved_urls(site=self.fname)
 
         for url in saved_urls:

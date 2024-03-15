@@ -19,17 +19,21 @@ def json_to_csv(site):
                 writer.writerow(result)
 
     
-NEWS_SITES = [HimalayanTimes, Republica, KathmanduPost]
+NEWS_SITES = [Republica]
 
 def get_news():
     for site in NEWS_SITES:
+        print(site)
         perform_operation(source=site, keyword='nepal')
-        break
+
 
 def perform_operation(source, keyword):
     try:
+        print(source, 'in perform')
 
         result = source(keyword=keyword, url=None)
+        print(source, 'in perform')
+
         full_path = os.path.join(os.getcwd() + '/' + str(result.__repr__()) + '/' + keyword)
 
         total_pages = int(result.get_total_page())
@@ -43,10 +47,21 @@ def perform_operation(source, keyword):
 
     finally:
         json_to_csv(keyword)
+
+
+def handle_full_contents(source, keyword):
+    try:
+        result = source(keyword=keyword)
+        result.full_content()
+    except Exception as e:
+        print(e)
+
         
 
 if __name__ == "__main__":
-    get_news()
+    # get_news()
+    handle_full_contents(Republica, 'nepal')
+
 
     # r = HimalayanTimes('nepal')
     # urls = r.get_full_content()
