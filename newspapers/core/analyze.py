@@ -1,6 +1,5 @@
 import spacy
-from spacy.matcher import Matcher
-import json
+import json, os
 from collections import defaultdict
 
 def create_nlp(text):
@@ -18,7 +17,14 @@ def get_article(filepath):
 
 
 def save_json(filepath, data):
-    with open(filepath, 'w') as file:
+    data = data
+    if os.path.isfile(filepath) and os.stat(filepath).st_size != 0:
+        with open(filepath, 'r') as file:
+            contents = json.load(file)
+
+        data = contents + data
+
+    with open(filepath, 'a') as file:
         json.dump(data, file, indent=4)
 
 
@@ -43,20 +49,23 @@ def extract_data(content):
 def handle_process():
     contents = get_article('himalayantimes/Belt+and+Road+Initiative_content.json')
     # content = clean_words(content)
-    total_results = dict()
+    result_list = list()
 
     for content in contents:
+        new_reuslt = dict()
         result = extract_data(content['content'])
 
-        keys = set(total_results.keys()) | set(result.keys())
-        for key in keys:
-            if key in total_results.keys() and key in result.keys():
-                total_results[key] = total_results[key] + result[key]
-            elif key in result:
-                total_results[key] = result[key]
+        new_reuslt['url'] = content['url']
+        new_reuslt['title'] = content['title']
+        new_reuslt['anlayzed'] = reomve_repetative_data(result)
 
-    total_results = reomve_repetative_data(total_results)
-    save_json('processed.json', total_results)
+        print(new_reuslt)
+        print('\n')
+        result_list.append(new_reuslt)
+    save_json('processed.json', result_list)
+
+
+
 
 
 def reomve_repetative_data(total_results):
