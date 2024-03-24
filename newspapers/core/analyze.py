@@ -12,9 +12,14 @@ def create_nlp(text):
 def get_article(filepath):
     with open(filepath) as file:
         result = json.load(file)      
-    content = result['articles'][0]['content']
+    contents = result['articles']
 
-    return content
+    return contents
+
+
+def save_json(filepath, data):
+    with open(filepath, 'w') as file:
+        json.dump(data, file, indent=4)
 
 
 def clean_words(text):
@@ -24,7 +29,7 @@ def clean_words(text):
     return cleaned_content
     
 
-def extract_org_name(content):
+def extract_data(content):
     content_doc = create_nlp(content)
     result = defaultdict(list)
 
@@ -32,14 +37,36 @@ def extract_org_name(content):
         if token.label_ in ['ORG', 'DATE', 'PERSON', 'GPE']:
             result[token.label_].append(token.text)
 
-    print(result)
-    return result
+    return dict(result)
 
 
 def handle_process():
-    content = get_article('himalayantimes/Belt+and+Road+Initiative_content.json')
+    contents = get_article('himalayantimes/Belt+and+Road+Initiative_content.json')
     # content = clean_words(content)
-    extract_org_name(content)
+    total_results = dict()
+
+    for content in contents:
+        result = extract_data(content['content'])
+
+        keys = set(total_results.keys()) | set(result.keys())
+        for key in keys:
+            if key in total_results.keys() and key in result.keys():
+                total_results[key] = total_results[key] + result[key]
+            elif key in result:
+                total_results[key] = result[key]
+
+    total_results = reomve_repetative_data(total_results)
+    save_json('processed.json', total_results)
+
+
+def reomve_repetative_data(total_results):
+    unique_results = dict()
+    for key, values in total_results.items():
+        unique_results[key] = list(set(values))
+
+    return unique_results
+    
+    
 
 
 if __name__ == "__main__":

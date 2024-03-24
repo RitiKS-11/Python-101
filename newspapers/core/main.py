@@ -20,7 +20,7 @@ def json_to_csv(site):
 
     
 # NEWS_SITES = [HimalayanTimes, Republica, KathmanduPost]
-NEWS_SITES = [KathmanduPost]
+NEWS_SITES = [HimalayanTimes]
 
 def get_news():
     for site in NEWS_SITES:
