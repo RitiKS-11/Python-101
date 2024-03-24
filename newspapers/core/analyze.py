@@ -57,7 +57,10 @@ def handle_process():
 
         new_reuslt['url'] = content['url']
         new_reuslt['title'] = content['title']
+        new_reuslt['published_date'] = content['published_date']
+        new_reuslt['content'] = content['content']
         new_reuslt['anlayzed'] = reomve_repetative_data(result)
+
 
         print(new_reuslt)
         print('\n')
