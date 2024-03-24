@@ -4,7 +4,7 @@ from core.scrape import NewsBase
 
 class HimalayanTimes(NewsBase):
     def __init__(self, keyword, url=None):
-        self.keyword = keyword
+        self.keyword = '+'.join(keyword.split(' '))
         self.fname = os.path.join(os.getcwd() + '/himalayantimes/' + self.keyword)
         self.page_no = self.get_page(self.fname)
 
@@ -20,8 +20,12 @@ class HimalayanTimes(NewsBase):
         parsed_list = []
         self.__init__(self.keyword)
 
-        current_page = self.soup.find('li', class_='pager-nav active').text
-        current_page = int(current_page) + 1
+        try:
+            current_page = self.soup.find('li', class_='pager-nav active').text
+            current_page = int(current_page) + 1
+        except:
+            current_page = self.get_page(self.fname)
+            current_page = current_page + 2
         articles = self.soup.find_all('article', class_='row animate-box fadeInUp animated-fast')
         
         for article in articles:
@@ -34,6 +38,7 @@ class HimalayanTimes(NewsBase):
         self.save_data(self.fname, parsed_list, current_page)
 
     def get_total_page(self):
+        print('we here')
         total_page = int(self.soup.find_all('li', class_='pager-nav')[-2].text)
         return total_page
     

@@ -19,25 +19,25 @@ def json_to_csv(site):
                 writer.writerow(result)
 
     
-NEWS_SITES = [Republica]
+# NEWS_SITES = [HimalayanTimes, Republica, KathmanduPost]
+NEWS_SITES = [KathmanduPost]
 
 def get_news():
     for site in NEWS_SITES:
         print(site)
-        perform_operation(source=site, keyword='nepal')
+        perform_operation(source=site, keyword='Belt and Road Initiative')
 
 
 def perform_operation(source, keyword):
     try:
-        print(source, 'in perform')
 
         result = source(keyword=keyword, url=None)
-        print(source, 'in perform')
-
         full_path = os.path.join(os.getcwd() + '/' + str(result.__repr__()) + '/' + keyword)
 
         total_pages = int(result.get_total_page())
+        print(total_pages)
         current_page = int(result.get_page(full_path))
+        print(current_page)
 
         for _ in range(current_page, total_pages):
             result.parse_content()
@@ -56,14 +56,12 @@ def handle_full_contents(source, keyword):
     except Exception as e:
         print(e)
 
+def full_contents_job():
+    for site in NEWS_SITES:
+        handle_full_contents(site, 'Belt and Road Initiative')
+
         
 
 if __name__ == "__main__":
     # get_news()
-    handle_full_contents(Republica, 'nepal')
-
-
-    # r = HimalayanTimes('nepal')
-    # urls = r.get_full_content()
-    # print(len(urls))
-    # print(urls)
+    full_contents_job()

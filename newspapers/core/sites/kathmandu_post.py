@@ -7,13 +7,13 @@ class KathmanduPost(NewsBase):
         self.keyword = keyword
         self.fname = os.path.join(os.getcwd() + '/kathmandupost/' + self.keyword)
         self.page = int(self.get_page(self.fname)) * 10
-
+        print(self.page)
 
         if url == None:
-            self.url = f'https://cse.google.com/cse/element/v1?rsz=filtered_cse&num=10&hl=en&source=gcsc&gss=.com&start={self.page}&cselibv=8435450f13508ca1&cx=006439178574289969438%3A21nndnycfqd&q={self.keyword}&safe=off&cse_tok=AB-tC_6xsIFfHEHcTqkC2KmrN7aS%3A1710484884359&sort=&exp=cc%2Cpos%2Cdtsq-3&fexp=72519171%2C72519168&callback=google.search.cse.api3868'
+            self.url = f'https://cse.google.com/cse/element/v1?rsz=filtered_cse&num=10&hl=en&source=gcsc&gss=.com&start={self.page}&cselibv=8435450f13508ca1&cx=006439178574289969438%3A21nndnycfqd&q={self.keyword}&safe=off&cse_tok=AB-tC_4CQlftr7ldXv_BvAroAFDI%3A1711160334526&sort=&exp=cc%2Cpos%2Cdtsq-3&fexp=72519171%2C72519168&callback=google.search.cse.api14431'
+
         else:
             self.url = url
-
 
     def parse_content(self):
         parsed_list = []
@@ -23,7 +23,7 @@ class KathmanduPost(NewsBase):
         self.response = self.get_response()
         response = str(self.response.text)
         new = response.replace('/*O_o*/', ''). \
-                        replace('google.search.cse.api3868(',''). \
+                        replace('google.search.cse.api14431(',''). \
                         replace(');', '')
         self.json_response = json.loads(new)
 
@@ -41,7 +41,18 @@ class KathmanduPost(NewsBase):
         self.save_data(self.fname, parsed_list, page)
 
     def get_total_page(self):
+        self.response = self.get_response()
+        print(self.response)
+        response = str(self.response.text)
+        print(response)
+        new = response.replace('/*O_o*/', ''). \
+                        replace('google.search.cse.api14431(',''). \
+                        replace(');', '')
+        self.json_response = json.loads(new)
+        # print(self.json_response)
+
         total_page = self.json_response['cursor']['pages'][9]['start']
+        # total_page = 90
         return total_page
 
     def full_content(self):
