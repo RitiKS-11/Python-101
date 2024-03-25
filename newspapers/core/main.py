@@ -5,6 +5,7 @@ import json
 from core.sites.himalayan_times import HimalayanTimes
 from core.sites.republica import Republica
 from core.sites.kathmandu_post import KathmanduPost
+from core.analyze import handle_process, convert_to_csv
 
 
 def json_to_csv(site):
@@ -19,13 +20,13 @@ def json_to_csv(site):
                 writer.writerow(result)
 
     
-# NEWS_SITES = [HimalayanTimes, Republica, KathmanduPost]
-NEWS_SITES = [HimalayanTimes]
+NEWS_SITES = [HimalayanTimes, Republica, KathmanduPost]
+# NEWS_SITES = [HimalayanTimes]
 
-def get_news():
+def get_news(keyword):
     for site in NEWS_SITES:
         print(site)
-        perform_operation(source=site, keyword='Belt and Road Initiative')
+        perform_operation(source=site, keyword=keyword)
 
 
 def perform_operation(source, keyword):
@@ -56,12 +57,21 @@ def handle_full_contents(source, keyword):
     except Exception as e:
         print(e)
 
-def full_contents_job():
+def full_contents_job(keyword):
     for site in NEWS_SITES:
-        handle_full_contents(site, 'Belt and Road Initiative')
+        handle_full_contents(site, keyword)
+
+
+def full_process(keyword):
+    # get_news(keyword)
+    # full_contents_job(keyword)
+    # handle_process()
+    convert_to_csv('processed.json')
+
 
         
 
 if __name__ == "__main__":
     # get_news()
-    full_contents_job()
+    # full_contents_job()
+    full_process('Tech')

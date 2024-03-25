@@ -57,26 +57,33 @@ def get_source(url):
 
 
 def handle_process():
-    contents = get_article('himalayantimes/Belt+and+Road+Initiative_content.json')
-    # content = clean_words(content)
-    result_list = list()
+    file_locations = [
+        'himalayantimes/Belt+and+Road+Initiative_content.json', 
+        'kathmandupost/Belt and Road Initiative_content.json',
+        'republica/Belt and Road Initiative_content.json'
+        ]
+    
+    for location in file_locations:
+        contents = get_article(location)
+        # content = clean_words(content)
+        result_list = list()
 
-    for content in contents:
-        new_reuslt = dict()
-        result = extract_data(content['content'])
+        for content in contents:
+            new_reuslt = dict()
+            result = extract_data(content['content'])
 
-        new_reuslt['url'] = content['url']
-        new_reuslt['title'] = content['title']
-        new_reuslt['published_date'] = format_datetime(content['published_date'])
-        new_reuslt['content'] = content['content']
-        new_reuslt['anlayzed'] = reomve_repetative_data(result)
-        new_reuslt['source'] = get_source(content['url'])
+            new_reuslt['url'] = content['url']
+            new_reuslt['title'] = content['title']
+            new_reuslt['published_date'] = format_datetime(content['published_date'])
+            new_reuslt['content'] = content['content']
+            new_reuslt['anlayzed'] = reomve_repetative_data(result)
+            new_reuslt['source'] = get_source(content['url'])
 
 
-        # print(new_reuslt)
-        # print('\n')
-        result_list.append(new_reuslt)
-    save_json('processed.json', result_list)
+            # print(new_reuslt)
+            # print('\n')
+            result_list.append(new_reuslt)
+        save_json('processed.json', result_list)
 
 
 def format_datetime(unformatted_date):
